@@ -38,7 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnMarcas = new System.Windows.Forms.Button();
-            this.txtFechaAlta = new System.Windows.Forms.TextBox();
             this.lblFechaAlta = new System.Windows.Forms.Label();
             this.txtMicroId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,12 +48,14 @@
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.txtMarca = new System.Windows.Forms.ComboBox();
             this.grdMicros = new System.Windows.Forms.DataGridView();
+            this.dateAlta = new System.Windows.Forms.DateTimePicker();
             this.boxMicros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
             this.SuspendLayout();
             // 
             // boxMicros
             // 
+            this.boxMicros.Controls.Add(this.dateAlta);
             this.boxMicros.Controls.Add(this.textBox2);
             this.boxMicros.Controls.Add(this.label4);
             this.boxMicros.Controls.Add(this.btnDistri);
@@ -64,7 +65,6 @@
             this.boxMicros.Controls.Add(this.label2);
             this.boxMicros.Controls.Add(this.comboBox1);
             this.boxMicros.Controls.Add(this.btnMarcas);
-            this.boxMicros.Controls.Add(this.txtFechaAlta);
             this.boxMicros.Controls.Add(this.lblFechaAlta);
             this.boxMicros.Controls.Add(this.txtMicroId);
             this.boxMicros.Controls.Add(this.label1);
@@ -101,7 +101,7 @@
             // 
             this.btnDistri.Location = new System.Drawing.Point(457, 116);
             this.btnDistri.Name = "btnDistri";
-            this.btnDistri.Size = new System.Drawing.Size(115, 25);
+            this.btnDistri.Size = new System.Drawing.Size(102, 25);
             this.btnDistri.TabIndex = 16;
             this.btnDistri.Text = "Ver Distribucion";
             this.btnDistri.UseVisualStyleBackColor = true;
@@ -158,13 +158,6 @@
             this.btnMarcas.TabIndex = 10;
             this.btnMarcas.Text = "button1";
             this.btnMarcas.UseVisualStyleBackColor = true;
-            // 
-            // txtFechaAlta
-            // 
-            this.txtFechaAlta.Location = new System.Drawing.Point(145, 11);
-            this.txtFechaAlta.Name = "txtFechaAlta";
-            this.txtFechaAlta.Size = new System.Drawing.Size(108, 20);
-            this.txtFechaAlta.TabIndex = 9;
             // 
             // lblFechaAlta
             // 
@@ -256,6 +249,15 @@
             this.grdMicros.Size = new System.Drawing.Size(683, 237);
             this.grdMicros.TabIndex = 1;
             // 
+            // dateAlta
+            // 
+            this.dateAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateAlta.Location = new System.Drawing.Point(134, 15);
+            this.dateAlta.Name = "dateAlta";
+            this.dateAlta.Size = new System.Drawing.Size(142, 20);
+            this.dateAlta.TabIndex = 19;
+            this.dateAlta.Value = new System.DateTime(2013, 5, 21, 0, 0, 0, 0);
+            // 
             // frmMicros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,7 +288,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblFechaAlta;
         private System.Windows.Forms.Button btnMarcas;
-        private System.Windows.Forms.TextBox txtFechaAlta;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDistri;
@@ -296,5 +297,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView grdMicros;
+        private System.Windows.Forms.DateTimePicker dateAlta;
     }
 }
