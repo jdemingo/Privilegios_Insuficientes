@@ -30,5 +30,10 @@ namespace FrbaBus.Abm_Micro
         {
 
         }
+
+        private void frmMicros_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
