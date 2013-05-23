@@ -25,18 +25,6 @@ namespace FrbaBus
 
         private void frmUtnBus_Load(object sender, EventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
-            this.Menu = mainMenu;
-            MenuItem menuABM = new MenuItem("&ABMs");
-            MenuItem menuABMMicros = new MenuItem("&Micros");
-            MenuItem menuABMViajes = new MenuItem("&Viajes");
-            mainMenu.MenuItems.Add(menuABM);
-            menuABM.MenuItems.Add(menuABMMicros);
-            menuABM.MenuItems.Add(menuABMViajes);
-            menuABMMicros.Click += new System.EventHandler(this.menuABMMicros_Click);
-            menuABMViajes.Click += new System.EventHandler(this.menuABMViajes_Click);
-
-
         }
         private void frmUtnBus_Key(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -48,7 +36,7 @@ namespace FrbaBus
             frmMicros = new FrbaBus.Abm_Micro.frmMicros();
             frmMicros.Visible = true;
         }
-        private void menuABMViajes_Click(object sender, EventArgs e)
+        private void menuABMRecorridos_Click(object sender, EventArgs e)
         {
             Form frmMicros;
             frmMicros = new FrbaBus.Abm_Micro.frmMicros();
@@ -60,5 +48,21 @@ namespace FrbaBus
 
         }
 
+        private void cmdLogin_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Cuando presionan este boton debe pedir el login y Crea el Menu");
+
+            MainMenu mainMenu = new MainMenu();
+            this.Menu = mainMenu;
+            MenuItem menuABM = new MenuItem("&ABMs");
+            MenuItem menuABMMicros = new MenuItem("&Micros");
+            MenuItem menuABMRecorridos = new MenuItem("&Recorridos");
+            mainMenu.MenuItems.Add(menuABM);
+            menuABM.MenuItems.Add(menuABMMicros);
+            menuABM.MenuItems.Add(menuABMRecorridos);
+            menuABMMicros.Click += new System.EventHandler(this.menuABMMicros_Click);
+            menuABMRecorridos.Click += new System.EventHandler(this.menuABMRecorridos_Click);
+
+        }
     }
 }

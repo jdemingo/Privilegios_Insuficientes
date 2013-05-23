@@ -112,6 +112,12 @@
     <Compile Include="FrbaUtnBus.Designer.cs">
       <DependentUpon>FrbaUtnBus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Micro\frmMicroDistri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Micro\frmMicroDistri.Designer.cs">
+      <DependentUpon>frmMicroDistri.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarViaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Abm Micro\frmMicroDistri.resx">
+      <DependentUpon>frmMicroDistri.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Micro\frmMicros.resx">
       <DependentUpon>frmMicros.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +150,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Abm Micro\frmDistribucion.Designer.frm" />
+    <None Include="Abm Micro\frmDistribucion.frm">
+      <SubType>Form</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
