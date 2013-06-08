@@ -8,3 +8,14 @@ C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBu
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.exe
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Micro.frmMicros.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Properties.Resources.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources

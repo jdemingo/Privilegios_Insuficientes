@@ -33,16 +33,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.dateSalida = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnConsultar = new System.Windows.Forms.Button();
             this.cmdLogin = new System.Windows.Forms.Button();
-            this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,6 +103,15 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // cmbOrigHide
+            // 
+            this.cmbOrigHide.FormattingEnabled = true;
+            this.cmbOrigHide.Location = new System.Drawing.Point(289, 71);
+            this.cmbOrigHide.Name = "cmbOrigHide";
+            this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
+            this.cmbOrigHide.TabIndex = 21;
+            this.cmbOrigHide.Visible = false;
+            // 
             // dateSalida
             // 
             this.dateSalida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -149,17 +158,17 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "DNI";
             // 
-            // textBox1
+            // txtDNI
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(123, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtDNI.Location = new System.Drawing.Point(70, 26);
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(123, 20);
+            this.txtDNI.TabIndex = 1;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.btnConsultar);
+            this.groupBox3.Controls.Add(this.txtDNI);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(603, 41);
             this.groupBox3.Name = "groupBox3";
@@ -168,14 +177,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Puntos Mega";
             // 
-            // button2
+            // btnConsultar
             // 
-            this.button2.Location = new System.Drawing.Point(24, 71);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Consultar Premios";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnConsultar.Location = new System.Drawing.Point(24, 71);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(169, 23);
+            this.btnConsultar.TabIndex = 5;
+            this.btnConsultar.Text = "Consultar Premios";
+            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // cmdLogin
             // 
@@ -186,15 +196,6 @@
             this.cmdLogin.Text = "Login";
             this.cmdLogin.UseVisualStyleBackColor = true;
             this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
-            // 
-            // cmbOrigHide
-            // 
-            this.cmbOrigHide.FormattingEnabled = true;
-            this.cmbOrigHide.Location = new System.Drawing.Point(289, 71);
-            this.cmbOrigHide.Name = "cmbOrigHide";
-            this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
-            this.cmbOrigHide.TabIndex = 21;
-            this.cmbOrigHide.Visible = false;
             // 
             // frmUtnBus
             // 
@@ -228,9 +229,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button cmdLogin;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dateSalida;

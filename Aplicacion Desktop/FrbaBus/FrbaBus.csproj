@@ -76,12 +76,6 @@
     <Compile Include="Abm Permisos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Recorrido\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Recorrido\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cancelar Viaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +101,12 @@
     </Compile>
     <Compile Include="Consulta Puntos Adquiridos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consulta Puntos Adquiridos\frmConsultaPuntos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consulta Puntos Adquiridos\frmConsultaPuntos.Designer.cs">
+      <DependentUpon>frmConsultaPuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="FrbaUtnBus.cs">
       <SubType>Form</SubType>
@@ -139,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Micro\frmMicros.resx">
       <DependentUpon>frmMicros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulta Puntos Adquiridos\frmConsultaPuntos.resx">
+      <DependentUpon>frmConsultaPuntos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrbaUtnBus.resx">
       <DependentUpon>FrbaUtnBus.cs</DependentUpon>
@@ -227,6 +230,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abm Recorrido\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

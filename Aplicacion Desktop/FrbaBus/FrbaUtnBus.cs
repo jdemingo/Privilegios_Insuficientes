@@ -22,7 +22,6 @@ namespace FrbaBus
         public frmUtnBus()
         {
             InitializeComponent();
-            Common.conectar();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -45,12 +44,12 @@ namespace FrbaBus
         }
         private void crearCombos()
         {
-            using (Common.conn)
+            using (SqlConnection conn = Common.conectar())
             {
                 try
                 {
                     string query = "select * from ciudades";
-                    cmd = new SqlCommand(query, Common.conn);
+                    cmd = new SqlCommand(query, conn);
                     adapter = new SqlDataAdapter(cmd);
                     tablaOrigen = new DataTable();
                     tablaDestino = new DataTable();
@@ -67,6 +66,11 @@ namespace FrbaBus
                 {
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null)
+                        conn.Close();
                 }
             }
         }
@@ -98,23 +102,30 @@ namespace FrbaBus
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";
         }
 
-        private void Conectar()
-        {
+        //private void Conectar()
+        //{
 
-            //Tomar de archivo !!
-            string user = "gd";
-            string passwd = "gd2013";
-            string server = "localhost\\SQLSERVER2008";
-            string db ="GD1C2013";
+        //    //Tomar de archivo !!
+        //    string user = "gd";
+        //    string passwd = "gd2013";
+        //    string server = "localhost\\SQLSERVER2008";
+        //    string db ="GD1C2013";
  
-            SqlConnection conexion = new SqlConnection(buildConnectionURL(user, passwd, server, db));
+        //    SqlConnection conexion = new SqlConnection(buildConnectionURL(user, passwd, server, db));
 
-            conexion.Close();
-        }
+        //    conexion.Close();
+        //}
 
         private void dateSalida_ValueChanged(object sender, EventArgs e)
         {
             MessageBox.Show(String.Format("{0:MM DD YYYY}", dateSalida.Text));
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos frmConsultaPuntos = new FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos();
+            frmConsultaPuntos.cargarGridDelDNI(txtDNI.Text);
+            frmConsultaPuntos.Show();
         }
     }
 }
