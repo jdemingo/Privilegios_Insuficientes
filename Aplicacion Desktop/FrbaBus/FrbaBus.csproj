@@ -94,6 +94,8 @@
     <Compile Include="Canje de Ptos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="common.cs" />
     <Compile Include="Compra de Pasajes\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
