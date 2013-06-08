@@ -28,49 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbOrigen = new System.Windows.Forms.ComboBox();
+            this.cmbDestino = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateSalida = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lstViajesDisp = new System.Windows.Forms.ListBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.cmdLogin = new System.Windows.Forms.Button();
+            this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbOrigen
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbOrigen.FormattingEnabled = true;
+            this.cmbOrigen.Location = new System.Drawing.Point(96, 33);
+            this.cmbOrigen.Name = "cmbOrigen";
+            this.cmbOrigen.Size = new System.Drawing.Size(138, 21);
+            this.cmbOrigen.TabIndex = 0;
+            // 
+            // cmbDestino
+            // 
+            this.cmbDestino.FormattingEnabled = true;
+            this.cmbDestino.Items.AddRange(new object[] {
             "Buenos Aires",
             "Cordoba",
             "Rosario",
             "Mendoza"});
-            this.comboBox1.Location = new System.Drawing.Point(96, 33);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 21);
-            this.comboBox1.TabIndex = 0;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Buenos Aires",
-            "Cordoba",
-            "Rosario",
-            "Mendoza"});
-            this.comboBox2.Location = new System.Drawing.Point(96, 71);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(179, 21);
-            this.comboBox2.TabIndex = 1;
+            this.cmbDestino.Location = new System.Drawing.Point(96, 71);
+            this.cmbDestino.Name = "cmbDestino";
+            this.cmbDestino.Size = new System.Drawing.Size(138, 21);
+            this.cmbDestino.TabIndex = 1;
             // 
             // label1
             // 
@@ -80,7 +78,6 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Origen";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -93,16 +90,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbOrigHide);
+            this.groupBox1.Controls.Add(this.dateSalida);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmbOrigen);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cmbDestino);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 129);
+            this.groupBox1.Size = new System.Drawing.Size(487, 129);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // dateSalida
+            // 
+            this.dateSalida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateSalida.Location = new System.Drawing.Point(351, 34);
+            this.dateSalida.Name = "dateSalida";
+            this.dateSalida.Size = new System.Drawing.Size(103, 20);
+            this.dateSalida.TabIndex = 20;
+            this.dateSalida.Value = new System.DateTime(2013, 5, 21, 0, 0, 0, 0);
+            this.dateSalida.ValueChanged += new System.EventHandler(this.dateSalida_ValueChanged);
             // 
             // button1
             // 
@@ -115,7 +124,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lstViajesDisp);
+            this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(13, 169);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(864, 269);
@@ -123,13 +132,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
-            // lstViajesDisp
+            // dataGridView1
             // 
-            this.lstViajesDisp.FormattingEnabled = true;
-            this.lstViajesDisp.Location = new System.Drawing.Point(28, 27);
-            this.lstViajesDisp.Name = "lstViajesDisp";
-            this.lstViajesDisp.Size = new System.Drawing.Size(806, 225);
-            this.lstViajesDisp.TabIndex = 0;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(17, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(786, 159);
+            this.dataGridView1.TabIndex = 0;
             // 
             // label3
             // 
@@ -178,6 +187,15 @@
             this.cmdLogin.UseVisualStyleBackColor = true;
             this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
             // 
+            // cmbOrigHide
+            // 
+            this.cmbOrigHide.FormattingEnabled = true;
+            this.cmbOrigHide.Location = new System.Drawing.Point(289, 71);
+            this.cmbOrigHide.Name = "cmbOrigHide";
+            this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
+            this.cmbOrigHide.TabIndex = 21;
+            this.cmbOrigHide.Visible = false;
+            // 
             // frmUtnBus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,6 +211,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -201,19 +220,21 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbOrigen;
+        private System.Windows.Forms.ComboBox cmbDestino;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox lstViajesDisp;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button cmdLogin;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dateSalida;
+        private System.Windows.Forms.ComboBox cmbOrigHide;
 
     }
 }

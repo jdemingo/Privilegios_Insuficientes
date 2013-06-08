@@ -7,3 +7,4 @@ C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBu
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.exe
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
+C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
