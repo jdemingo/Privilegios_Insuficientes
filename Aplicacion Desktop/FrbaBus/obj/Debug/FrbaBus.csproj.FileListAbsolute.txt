@@ -34,3 +34,6 @@ C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\Fr
 C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
 C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.exe
 C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.Form1.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Login.frmLogin.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Registrar_LLegada_Micro.frmRegLLegada.resources

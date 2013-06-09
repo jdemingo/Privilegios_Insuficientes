@@ -37,6 +37,7 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnCanjesPrueba = new System.Windows.Forms.Button();
+            this.btnRegLLegada = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdPuntos)).BeginInit();
             this.grpFiltros.SuspendLayout();
             this.SuspendLayout();
@@ -124,12 +125,23 @@
             this.btnCanjesPrueba.UseVisualStyleBackColor = true;
             this.btnCanjesPrueba.Click += new System.EventHandler(this.btnCanjesPrueba_Click);
             // 
+            // btnRegLLegada
+            // 
+            this.btnRegLLegada.Location = new System.Drawing.Point(282, 339);
+            this.btnRegLLegada.Name = "btnRegLLegada";
+            this.btnRegLLegada.Size = new System.Drawing.Size(130, 23);
+            this.btnRegLLegada.TabIndex = 9;
+            this.btnRegLLegada.Text = "RegLLegada prueba";
+            this.btnRegLLegada.UseVisualStyleBackColor = true;
+            this.btnRegLLegada.Click += new System.EventHandler(this.btnRegLLegada_Click);
+            // 
             // frmConsultaPuntos
             // 
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 374);
+            this.Controls.Add(this.btnRegLLegada);
             this.Controls.Add(this.btnCanjesPrueba);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
@@ -158,5 +170,6 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnCanjesPrueba;
+        private System.Windows.Forms.Button btnRegLLegada;
     }
 }

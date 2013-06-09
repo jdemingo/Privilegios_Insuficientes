@@ -172,6 +172,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registrar LLegada Micro\frmRegLLegada.resx">
+      <DependentUpon>frmRegLLegada.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -194,6 +197,12 @@
     </Compile>
     <Compile Include="Registrar LLegada Micro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar LLegada Micro\frmRegLLegada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar LLegada Micro\frmRegLLegada.Designer.cs">
+      <DependentUpon>frmRegLLegada.cs</DependentUpon>
     </Compile>
     <Compile Include="Top Clientes\Form1.cs">
       <SubType>Form</SubType>

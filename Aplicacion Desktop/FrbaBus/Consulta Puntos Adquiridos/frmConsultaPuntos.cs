@@ -60,5 +60,11 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
             frmCanjePuntos.Show();
         }
 
+        private void btnRegLLegada_Click(object sender, EventArgs e)
+        {
+            FrbaBus.Registrar_LLegada_Micro.frmRegLLegada frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
+            frmRegLLegada.Show();
+        }
+
     }
 }
