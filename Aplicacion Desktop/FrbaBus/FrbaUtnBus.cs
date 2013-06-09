@@ -17,6 +17,7 @@ namespace FrbaBus
     {
         DataTable tablaOrigen;
         DataTable tablaDestino;
+        DataTable tablaPasajes;
         SqlCommand cmd;
         SqlDataAdapter adapter;
         public frmUtnBus()
@@ -28,6 +29,7 @@ namespace FrbaBus
             Form frmMicros;
             frmMicros = new FrbaBus.Abm_Micro.frmMicros();
             frmMicros.Visible = true;
+
         }
         private void crearMenu(int rol)
         {
@@ -61,6 +63,8 @@ namespace FrbaBus
                     cmbOrigHide.DataSource = tablaOrigen;
                     cmbDestino.DisplayMember = "ciud_nombre";
                     cmbDestino.DataSource = tablaDestino;
+                    cmbDestHide.DisplayMember = "ciud_id";
+                    cmbDestHide.DataSource = tablaDestino;
                 }
                 catch (Exception ex)
                 {
@@ -127,5 +131,56 @@ namespace FrbaBus
             frmConsultaPuntos.cargarGridDelDNI(txtDNI.Text);
             frmConsultaPuntos.Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = Common.conectar())
+            {
+                try
+                {
+                    string query = "SELECT dest_id,"
+                                    + "       dest_fecha_llegada_estimada,"
+                                    + "       dest_butacas_libres,"
+                                    + "       dest_peso_libre,"
+                                    + "       micr_tipo_servicio "
+                                    + "FROM Destinos,"
+                                    + "     Precios,"
+                                    + "     Micros"
+                        //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
+                                    + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
+                                    +"  and dest_viaje          = prec_viaje_codigo"
+                                    +"  and prec_id_origen      = "+cmbOrigHide.Text
+                                    +"  and prec_id_destino     = "+cmbDestHide.Text
+                                    +"  and dest_id_micro       = micr_id";
+                    cmd = new SqlCommand(query, conn);
+                    adapter = new SqlDataAdapter(cmd);
+                    tablaPasajes = new DataTable();
+                    adapter.Fill(tablaPasajes);
+
+                    dataGridView1.DataSource = tablaPasajes;
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null)
+                        conn.Close();
+                }
+
+
+            }
+
+        }
+
+
     }
 }

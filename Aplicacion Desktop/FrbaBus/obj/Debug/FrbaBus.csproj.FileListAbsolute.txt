@@ -20,3 +20,17 @@ D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Apl
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Micro.frmMicros.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.Form1.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Login.frmLogin.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Properties.Resources.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.exe
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb

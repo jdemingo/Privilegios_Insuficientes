@@ -152,6 +152,9 @@
     <EmbeddedResource Include="Abm Micro\frmMicros.resx">
       <DependentUpon>frmMicros.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cancelar Viaje\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Canje de Ptos\frmCanjePuntos.resx">
       <DependentUpon>frmCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>

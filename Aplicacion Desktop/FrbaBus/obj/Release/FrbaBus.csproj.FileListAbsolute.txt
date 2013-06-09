@@ -11,3 +11,17 @@ D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Apl
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Login.frmLogin.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.frmMicroDistri.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Abm_Micro.frmMicros.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.frmUtnBus.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Login.frmLogin.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Properties.Resources.resources
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.csproj.GenerateResource.Cache
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.exe
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.pdb
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.exe
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb
+C:\Users\Matias\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Cancelar_Viaje.Form1.resources
