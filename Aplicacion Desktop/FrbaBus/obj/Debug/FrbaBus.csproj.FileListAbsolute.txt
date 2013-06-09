@@ -19,3 +19,4 @@ D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Apl
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources

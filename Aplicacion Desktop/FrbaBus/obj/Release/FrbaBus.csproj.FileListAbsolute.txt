@@ -9,3 +9,4 @@ D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Apl
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.csproj.GenerateResource.Cache
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.exe
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb
+D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources

@@ -54,5 +54,11 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
             }
         }
 
+        private void btnCanjesPrueba_Click(object sender, EventArgs e)
+        {
+            FrbaBus.Canje_de_Ptos.frmCanjePuntos frmCanjePuntos = new FrbaBus.Canje_de_Ptos.frmCanjePuntos();
+            frmCanjePuntos.Show();
+        }
+
     }
 }
