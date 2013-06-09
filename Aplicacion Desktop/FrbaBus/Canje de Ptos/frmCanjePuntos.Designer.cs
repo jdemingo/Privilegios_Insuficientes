@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblPuntosDisp = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.grdProductos = new System.Windows.Forms.DataGridView();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtCantidad = new System.Windows.Forms.TextBox();
@@ -41,24 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblPuntosDisp
-            // 
-            this.lblPuntosDisp.AutoSize = true;
-            this.lblPuntosDisp.Location = new System.Drawing.Point(116, 69);
-            this.lblPuntosDisp.Name = "lblPuntosDisp";
-            this.lblPuntosDisp.Size = new System.Drawing.Size(13, 13);
-            this.lblPuntosDisp.TabIndex = 0;
-            this.lblPuntosDisp.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Puntos disponibles:";
-            // 
             // grdProductos
             // 
             this.grdProductos.AllowUserToAddRows = false;
@@ -69,8 +49,8 @@
             this.grdProductos.ReadOnly = true;
             this.grdProductos.Size = new System.Drawing.Size(386, 224);
             this.grdProductos.TabIndex = 2;
+            this.grdProductos.CurrentCellChanged += new System.EventHandler(this.grdProductos_CurrentCellChanged);
             this.grdProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductos_CellContentClick);
-            this.grdProductos.CurrentCellChanged +=new System.EventHandler(this.grdProductos_CurrentCellChanged);
             // 
             // btnRegistrar
             // 
@@ -147,8 +127,6 @@
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.grdProductos);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblPuntosDisp);
             this.Name = "frmCanjePuntos";
             this.Text = "frmCanjePuntos";
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).EndInit();
@@ -159,8 +137,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblPuntosDisp;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView grdProductos;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.TextBox txtCantidad;
