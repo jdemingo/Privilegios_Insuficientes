@@ -37,7 +37,7 @@
             this.lblButacas = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTipoServicio = new System.Windows.Forms.Label();
-            this.cmbServicio = new System.Windows.Forms.ComboBox();
+            this.cmbServicios = new System.Windows.Forms.ComboBox();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.lblFechaAlta = new System.Windows.Forms.Label();
             this.txtMicroId = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@
             this.lblMarca = new System.Windows.Forms.Label();
             this.lblPatente = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
-            this.txtMarca = new System.Windows.Forms.ComboBox();
+            this.cmbMarcas = new System.Windows.Forms.ComboBox();
             this.grdMicros = new System.Windows.Forms.DataGridView();
             this.boxMicros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
@@ -63,7 +63,7 @@
             this.boxMicros.Controls.Add(this.lblButacas);
             this.boxMicros.Controls.Add(this.button1);
             this.boxMicros.Controls.Add(this.lblTipoServicio);
-            this.boxMicros.Controls.Add(this.cmbServicio);
+            this.boxMicros.Controls.Add(this.cmbServicios);
             this.boxMicros.Controls.Add(this.btnMarcas);
             this.boxMicros.Controls.Add(this.lblFechaAlta);
             this.boxMicros.Controls.Add(this.txtMicroId);
@@ -73,7 +73,7 @@
             this.boxMicros.Controls.Add(this.lblMarca);
             this.boxMicros.Controls.Add(this.lblPatente);
             this.boxMicros.Controls.Add(this.txtPatente);
-            this.boxMicros.Controls.Add(this.txtMarca);
+            this.boxMicros.Controls.Add(this.cmbMarcas);
             this.boxMicros.Location = new System.Drawing.Point(34, 12);
             this.boxMicros.Name = "boxMicros";
             this.boxMicros.Size = new System.Drawing.Size(688, 188);
@@ -131,7 +131,6 @@
             this.lblButacas.Size = new System.Drawing.Size(102, 16);
             this.lblButacas.TabIndex = 14;
             this.lblButacas.Text = "Cant. Butacas";
-            this.lblButacas.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 
@@ -151,15 +150,14 @@
             this.lblTipoServicio.Size = new System.Drawing.Size(114, 16);
             this.lblTipoServicio.TabIndex = 12;
             this.lblTipoServicio.Text = "Tipo de Servicio";
-            this.lblTipoServicio.Click += new System.EventHandler(this.label2_Click);
             // 
-            // cmbServicio
+            // cmbServicios
             // 
-            this.cmbServicio.FormattingEnabled = true;
-            this.cmbServicio.Location = new System.Drawing.Point(420, 77);
-            this.cmbServicio.Name = "cmbServicio";
-            this.cmbServicio.Size = new System.Drawing.Size(152, 21);
-            this.cmbServicio.TabIndex = 11;
+            this.cmbServicios.FormattingEnabled = true;
+            this.cmbServicios.Location = new System.Drawing.Point(420, 77);
+            this.cmbServicios.Name = "cmbServicios";
+            this.cmbServicios.Size = new System.Drawing.Size(152, 21);
+            this.cmbServicios.TabIndex = 11;
             // 
             // btnMarcas
             // 
@@ -203,7 +201,6 @@
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(117, 20);
             this.txtModelo.TabIndex = 5;
-            this.txtModelo.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblModelo
             // 
@@ -224,7 +221,6 @@
             this.lblMarca.Size = new System.Drawing.Size(48, 16);
             this.lblMarca.TabIndex = 3;
             this.lblMarca.Text = "Marca";
-            this.lblMarca.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // lblPatente
             // 
@@ -235,7 +231,6 @@
             this.lblPatente.Size = new System.Drawing.Size(60, 16);
             this.lblPatente.TabIndex = 2;
             this.lblPatente.Text = "Patente";
-            this.lblPatente.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtPatente
             // 
@@ -244,13 +239,13 @@
             this.txtPatente.Size = new System.Drawing.Size(117, 20);
             this.txtPatente.TabIndex = 1;
             // 
-            // txtMarca
+            // cmbMarcas
             // 
-            this.txtMarca.FormattingEnabled = true;
-            this.txtMarca.Location = new System.Drawing.Point(420, 48);
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(152, 21);
-            this.txtMarca.TabIndex = 0;
+            this.cmbMarcas.FormattingEnabled = true;
+            this.cmbMarcas.Location = new System.Drawing.Point(420, 48);
+            this.cmbMarcas.Name = "cmbMarcas";
+            this.cmbMarcas.Size = new System.Drawing.Size(152, 21);
+            this.cmbMarcas.TabIndex = 0;
             // 
             // grdMicros
             // 
@@ -282,7 +277,7 @@
         private System.Windows.Forms.GroupBox boxMicros;
         private System.Windows.Forms.Label lblPatente;
         private System.Windows.Forms.TextBox txtPatente;
-        private System.Windows.Forms.ComboBox txtMarca;
+        private System.Windows.Forms.ComboBox cmbMarcas;
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.Label lblModelo;
@@ -297,7 +292,7 @@
         private System.Windows.Forms.Label lblButacas;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTipoServicio;
-        private System.Windows.Forms.ComboBox cmbServicio;
+        private System.Windows.Forms.ComboBox cmbServicios;
         private System.Windows.Forms.DataGridView grdMicros;
         private System.Windows.Forms.DateTimePicker dateAlta;
     }
