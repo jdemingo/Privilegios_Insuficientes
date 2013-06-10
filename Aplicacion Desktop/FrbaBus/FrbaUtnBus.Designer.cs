@@ -33,18 +33,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbDestHide = new System.Windows.Forms.ComboBox();
-            this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.dateSalida = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
+            this.cmbDestHide = new System.Windows.Forms.ComboBox();
+            this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.cmdLogin = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -104,24 +108,6 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
-            // cmbDestHide
-            // 
-            this.cmbDestHide.FormattingEnabled = true;
-            this.cmbDestHide.Location = new System.Drawing.Point(441, 133);
-            this.cmbDestHide.Name = "cmbDestHide";
-            this.cmbDestHide.Size = new System.Drawing.Size(138, 21);
-            this.cmbDestHide.TabIndex = 22;
-            this.cmbDestHide.Visible = false;
-            // 
-            // cmbOrigHide
-            // 
-            this.cmbOrigHide.FormattingEnabled = true;
-            this.cmbOrigHide.Location = new System.Drawing.Point(441, 104);
-            this.cmbOrigHide.Name = "cmbOrigHide";
-            this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
-            this.cmbOrigHide.TabIndex = 21;
-            this.cmbOrigHide.Visible = false;
-            // 
             // dateSalida
             // 
             this.dateSalida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -142,8 +128,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // cmbDestHide
+            // 
+            this.cmbDestHide.FormattingEnabled = true;
+            this.cmbDestHide.Location = new System.Drawing.Point(441, 133);
+            this.cmbDestHide.Name = "cmbDestHide";
+            this.cmbDestHide.Size = new System.Drawing.Size(138, 21);
+            this.cmbDestHide.TabIndex = 22;
+            this.cmbDestHide.Visible = false;
+            // 
+            // cmbOrigHide
+            // 
+            this.cmbOrigHide.FormattingEnabled = true;
+            this.cmbOrigHide.Location = new System.Drawing.Point(441, 104);
+            this.cmbOrigHide.Name = "cmbOrigHide";
+            this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
+            this.cmbOrigHide.TabIndex = 21;
+            this.cmbOrigHide.Visible = false;
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(13, 169);
@@ -152,6 +160,16 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 240);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "abmCancelarPasajes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
@@ -210,15 +228,37 @@
             this.cmdLogin.UseVisualStyleBackColor = true;
             this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
             // 
-            // button2
+            // label4
             // 
-            this.button2.Location = new System.Drawing.Point(17, 240);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "abmCancelarPasajes";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 208);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Pasajes a comprar:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(215, 208);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Kg a enviar:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(122, 208);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(87, 20);
+            this.textBox1.TabIndex = 6;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(285, 208);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(87, 20);
+            this.textBox2.TabIndex = 23;
             // 
             // frmUtnBus
             // 
@@ -237,6 +277,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -263,6 +304,10 @@
         private System.Windows.Forms.ComboBox cmbOrigHide;
         private System.Windows.Forms.ComboBox cmbDestHide;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
 
     }
 }

@@ -9,19 +9,14 @@ using System.Windows.Forms;
 
 namespace FrbaBus.Compra_de_Pasajes
 {
-    public partial class frmComprarPasajes : Form
+    public partial class Form2 : Form
     {
-        public frmComprarPasajes()
+        public Form2()
         {
             InitializeComponent();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmComprarPasajes_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
 
         }
