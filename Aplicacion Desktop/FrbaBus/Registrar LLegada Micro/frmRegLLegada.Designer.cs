@@ -43,7 +43,8 @@
             // 
             // dateLLegada
             // 
-            this.dateLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateLLegada.CustomFormat = "yyyy-MM-dd hh:mm:ss.ms";
+            this.dateLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateLLegada.Location = new System.Drawing.Point(237, 30);
             this.dateLLegada.Name = "dateLLegada";
             this.dateLLegada.Size = new System.Drawing.Size(200, 20);
@@ -77,7 +78,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(384, 354);
+            this.btnRegistrar.Location = new System.Drawing.Point(493, 220);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 4;
@@ -124,7 +125,7 @@
             this.grdMicros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMicros.Location = new System.Drawing.Point(16, 116);
             this.grdMicros.Name = "grdMicros";
-            this.grdMicros.Size = new System.Drawing.Size(443, 232);
+            this.grdMicros.Size = new System.Drawing.Size(552, 98);
             this.grdMicros.TabIndex = 9;
             // 
             // frmRegLLegada
@@ -132,7 +133,7 @@
             this.AcceptButton = this.btnRegistrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 389);
+            this.ClientSize = new System.Drawing.Size(580, 253);
             this.Controls.Add(this.grdMicros);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
