@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbDestHide = new System.Windows.Forms.ComboBox();
             this.cmbOrigHide = new System.Windows.Forms.ComboBox();
             this.dateSalida = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,7 +44,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.cmdLogin = new System.Windows.Forms.Button();
-            this.cmbDestHide = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -91,8 +92,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbDestHide);
-            this.groupBox1.Controls.Add(this.cmbOrigHide);
             this.groupBox1.Controls.Add(this.dateSalida);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.cmbOrigen);
@@ -105,10 +104,19 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // cmbDestHide
+            // 
+            this.cmbDestHide.FormattingEnabled = true;
+            this.cmbDestHide.Location = new System.Drawing.Point(441, 133);
+            this.cmbDestHide.Name = "cmbDestHide";
+            this.cmbDestHide.Size = new System.Drawing.Size(138, 21);
+            this.cmbDestHide.TabIndex = 22;
+            this.cmbDestHide.Visible = false;
+            // 
             // cmbOrigHide
             // 
             this.cmbOrigHide.FormattingEnabled = true;
-            this.cmbOrigHide.Location = new System.Drawing.Point(289, 71);
+            this.cmbOrigHide.Location = new System.Drawing.Point(441, 104);
             this.cmbOrigHide.Name = "cmbOrigHide";
             this.cmbOrigHide.Size = new System.Drawing.Size(138, 21);
             this.cmbOrigHide.TabIndex = 21;
@@ -136,6 +144,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(13, 169);
             this.groupBox2.Name = "groupBox2";
@@ -201,20 +210,23 @@
             this.cmdLogin.UseVisualStyleBackColor = true;
             this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
             // 
-            // cmbDestHide
+            // button2
             // 
-            this.cmbDestHide.FormattingEnabled = true;
-            this.cmbDestHide.Location = new System.Drawing.Point(331, 60);
-            this.cmbDestHide.Name = "cmbDestHide";
-            this.cmbDestHide.Size = new System.Drawing.Size(138, 21);
-            this.cmbDestHide.TabIndex = 22;
-            this.cmbDestHide.Visible = false;
+            this.button2.Location = new System.Drawing.Point(17, 240);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "abmCancelarPasajes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmUtnBus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 450);
+            this.Controls.Add(this.cmbOrigHide);
+            this.Controls.Add(this.cmbDestHide);
             this.Controls.Add(this.cmdLogin);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -250,6 +262,7 @@
         private System.Windows.Forms.DateTimePicker dateSalida;
         private System.Windows.Forms.ComboBox cmbOrigHide;
         private System.Windows.Forms.ComboBox cmbDestHide;
+        private System.Windows.Forms.Button button2;
 
     }
 }

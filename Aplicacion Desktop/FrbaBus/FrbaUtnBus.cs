@@ -132,11 +132,6 @@ namespace FrbaBus
             frmConsultaPuntos.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -180,6 +175,22 @@ namespace FrbaBus
             }
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+        }
+
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form frmAbm_cancelar;
+            frmAbm_cancelar = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
+            frmAbm_cancelar.Visible = true;
+        }
+
+
 
 
     }
