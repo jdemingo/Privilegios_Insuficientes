@@ -74,7 +74,6 @@
             this.txtPatente.Size = new System.Drawing.Size(200, 20);
             this.txtPatente.TabIndex = 3;
             this.txtPatente.Leave += new System.EventHandler(this.txtPatente_Leave);
-
             // 
             // btnRegistrar
             // 
@@ -84,6 +83,7 @@
             this.btnRegistrar.TabIndex = 4;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // cmbOrigen
             // 

@@ -19,7 +19,6 @@ namespace FrbaBus.Registrar_LLegada_Micro
 
         internal void cargarGridDelMicro(string patente)
         {
-
             using (SqlConnection conn = Common.conectar())
                 try
                 {
@@ -46,8 +45,62 @@ namespace FrbaBus.Registrar_LLegada_Micro
 
         }
 
+        // -1: error en try-catch, 0 no existe ese origen y destino, >0 origen y destino encontrado
+        private bool origenYDestinoOk(string patente)
+        {
+            int coincidencias = -1;
+            using (SqlConnection conn = Common.conectar())
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(1)" +
+                    "FROM Micros, Destinos, Precios, Ciudades" +
+                    "WHERE micr_patente = '" + patente + "' AND" +
+                    "dest_id_micro = micr_id  AND" +
+                    "dest_viaje = prec_viaje_codigo AND" +
+                    "dest_fecha_llegada_estimada = '"+dateLLegada.Value.Date+"'"+
+                    "prec_id_origen = " + cmbOrigen.SelectedValue.ToString() + " AND" +
+                    "prec_id_destino =" + cmbDestino.SelectedValue.ToString(), conn);
+                    coincidencias = (int) cmd.ExecuteScalar();               
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null)
+                        conn.Close();
+                }
+            return ((coincidencias > 0) ? true : false);
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            if (origenYDestinoOk(txtPatente.Text))
+            {
+                using (SqlConnection conn = Common.conectar())
+                    try
+                    {
+                        //SqlCommand cmd = new SqlCommand("UPDATE Destinos SET dest_fecha_llegada = '"+dateLLegada.Value.Date+"' WHERE ", conn);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                            conn.Close();
+                    }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo registrar la llegada");
+            }
+        }
+
     }
 
-    
+
 
 }
