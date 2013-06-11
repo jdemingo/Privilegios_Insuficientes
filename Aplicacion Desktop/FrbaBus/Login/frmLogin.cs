@@ -19,10 +19,20 @@ namespace FrbaBus.Login
             InitializeComponent();
         }
 
+        private bool camposValidados()
+        {
+
+            if (txtUser.Text.Equals(""))
+                MessageBox.Show("Falta llenar el campo Usuario");
+            else if (txtPass.Text.Equals(""))
+                MessageBox.Show("Faltan llenar el campo Contraseña");
+            else return true;
+            return false;
+        }
+
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            
-            if (!txtUser.Text.Equals("") && !txtPass.Text.Equals(""))
+            if (camposValidados())
             {
                 bool ingresoExitoso = false;
                 using (SqlConnection conn = Common.conectar())
@@ -41,7 +51,7 @@ namespace FrbaBus.Login
                                 myReader.Close();
                                 userRole = (int)cmd.ExecuteScalar();
                                 MessageBox.Show("Ha ingresado con éxito.");
-                                ingresoExitoso = true;                            
+                                ingresoExitoso = true;
                             }
                             else if (intentosFallidos == 2)
                             {
@@ -66,7 +76,7 @@ namespace FrbaBus.Login
                     finally
                     {
                         if (conn != null)
-                            conn.Close();                       
+                            conn.Close();
                     }
                 if (ingresoExitoso)
                 {

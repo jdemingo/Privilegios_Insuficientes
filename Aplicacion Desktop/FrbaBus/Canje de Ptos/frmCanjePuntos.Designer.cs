@@ -48,7 +48,7 @@
             this.grdProductos.Name = "grdProductos";
             this.grdProductos.ReadOnly = true;
             this.grdProductos.Size = new System.Drawing.Size(386, 224);
-            this.grdProductos.TabIndex = 2;
+            this.grdProductos.TabIndex = 10;
             this.grdProductos.CurrentCellChanged += new System.EventHandler(this.grdProductos_CurrentCellChanged);
             this.grdProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductos_CellContentClick);
             // 
@@ -57,7 +57,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(313, 373);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(85, 23);
-            this.btnRegistrar.TabIndex = 3;
+            this.btnRegistrar.TabIndex = 2;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -67,7 +67,7 @@
             this.txtCantidad.Location = new System.Drawing.Point(194, 325);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(47, 20);
-            this.txtCantidad.TabIndex = 4;
+            this.txtCantidad.TabIndex = 1;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // label2
@@ -102,7 +102,7 @@
             this.txtDNI.Location = new System.Drawing.Point(15, 35);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(171, 20);
-            this.txtDNI.TabIndex = 8;
+            this.txtDNI.TabIndex = 0;
             // 
             // label4
             // 
@@ -128,7 +128,7 @@
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.grdProductos);
             this.Name = "frmCanjePuntos";
-            this.Text = "frmCanjePuntos";
+            this.Text = "Canje de puntos";
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

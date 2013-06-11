@@ -38,17 +38,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grdMicros = new System.Windows.Forms.DataGridView();
+            this.timeLLegada = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
             this.SuspendLayout();
             // 
             // dateLLegada
             // 
-            this.dateLLegada.CustomFormat = "yyyy-MM-dd hh:mm:ss.ms";
+            this.dateLLegada.CustomFormat = "yyyy-MM-dd";
             this.dateLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateLLegada.Location = new System.Drawing.Point(237, 30);
             this.dateLLegada.Name = "dateLLegada";
-            this.dateLLegada.Size = new System.Drawing.Size(200, 20);
-            this.dateLLegada.TabIndex = 0;
+            this.dateLLegada.Size = new System.Drawing.Size(108, 20);
+            this.dateLLegada.TabIndex = 1;
             // 
             // label1
             // 
@@ -73,7 +74,7 @@
             this.txtPatente.Location = new System.Drawing.Point(16, 30);
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(200, 20);
-            this.txtPatente.TabIndex = 3;
+            this.txtPatente.TabIndex = 0;
             this.txtPatente.Leave += new System.EventHandler(this.txtPatente_Leave);
             // 
             // btnRegistrar
@@ -81,26 +82,30 @@
             this.btnRegistrar.Location = new System.Drawing.Point(493, 220);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 4;
+            this.btnRegistrar.TabIndex = 5;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // cmbOrigen
             // 
+            this.cmbOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cmbOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbOrigen.FormattingEnabled = true;
             this.cmbOrigen.Location = new System.Drawing.Point(16, 77);
             this.cmbOrigen.Name = "cmbOrigen";
             this.cmbOrigen.Size = new System.Drawing.Size(200, 21);
-            this.cmbOrigen.TabIndex = 5;
+            this.cmbOrigen.TabIndex = 3;
             // 
             // cmbDestino
             // 
+            this.cmbDestino.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cmbDestino.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbDestino.FormattingEnabled = true;
             this.cmbDestino.Location = new System.Drawing.Point(237, 77);
             this.cmbDestino.Name = "cmbDestino";
             this.cmbDestino.Size = new System.Drawing.Size(200, 21);
-            this.cmbDestino.TabIndex = 6;
+            this.cmbDestino.TabIndex = 4;
             // 
             // label3
             // 
@@ -128,12 +133,22 @@
             this.grdMicros.Size = new System.Drawing.Size(552, 98);
             this.grdMicros.TabIndex = 9;
             // 
+            // timeLLegada
+            // 
+            this.timeLLegada.CustomFormat = "HH:mm";
+            this.timeLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.timeLLegada.Location = new System.Drawing.Point(351, 30);
+            this.timeLLegada.Name = "timeLLegada";
+            this.timeLLegada.ShowUpDown = true;
+            this.timeLLegada.Size = new System.Drawing.Size(86, 20);
+            this.timeLLegada.TabIndex = 2;
+            // 
             // frmRegLLegada
             // 
-            this.AcceptButton = this.btnRegistrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 253);
+            this.Controls.Add(this.timeLLegada);
             this.Controls.Add(this.grdMicros);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -145,7 +160,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateLLegada);
             this.Name = "frmRegLLegada";
-            this.Text = "frmRegLLegada";
+            this.Text = "Registro de llegadas";
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,5 +179,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView grdMicros;
+        private System.Windows.Forms.DateTimePicker timeLLegada;
     }
 }

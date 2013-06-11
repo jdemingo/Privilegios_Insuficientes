@@ -90,7 +90,7 @@
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.btnIniciar);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,6 +17,7 @@ namespace FrbaBus.Canje_de_Ptos
         {
             InitializeComponent();
             cargarGridProductos();
+            this.ActiveControl = txtDNI;
         }
 
         internal void cargarGridProductos()
@@ -107,6 +108,8 @@ namespace FrbaBus.Canje_de_Ptos
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            
+            if(camposValidados()) {
             int premioId = (int)grdProductos.CurrentRow.Cells["stoc_id_premio"].Value;
             using (SqlConnection conn = Common.conectar())
                 try
@@ -123,14 +126,21 @@ namespace FrbaBus.Canje_de_Ptos
                     }
                     else
                     {
-                        SqlCommand command = new SqlCommand("INSERT INTO Premios_canjeados (prem_cliente, prem_id_premio, prem_fcanje) VALUES ((SELECT clie_id FROM Clientes WHERE clie_dni = " + txtDNI.Text + ")," + premioId + ",@value)", conn);
+                        SqlCommand command = new SqlCommand(
+                        "INSERT INTO Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) "+
+                        "VALUES ((SELECT clie_id "+
+                                 "FROM Clientes "+
+                                 "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + ","+txtCantidad.Text+",@value)", conn);
                         //DateTime.Parse("");
                         //String.Format("{0:DD MM YYYY}",dateTimePicker1);
                         command.Parameters.AddWithValue("@value", DateTime.Today);
                         command.ExecuteNonQuery();
-                        command.CommandText = "UPDATE Stock_premios SET stoc_cantidad = stoc_cantidad-"+txtCantidad.Text+" WHERE stoc_id_premio = "+premioId+"";
+                        command.CommandText = "UPDATE Stock_premios "+
+                        "SET stoc_cantidad = stoc_cantidad-"+txtCantidad.Text+" "+
+                        "WHERE stoc_id_premio = "+premioId+"";
                         //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
                         command.ExecuteNonQuery();
+                        MessageBox.Show("Canje registrado con éxito.");
                     }
 
                 }
@@ -143,12 +153,23 @@ namespace FrbaBus.Canje_de_Ptos
                     if (conn != null)
                         conn.Close();
                 }
+            }
         }
 
         private void grdProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             actualizarCantidadRequerida();
             
+        }
+
+        private bool camposValidados() 
+        {
+            if (txtDNI.Text.Equals(""))
+                MessageBox.Show("Falta llenar el campo DNI");
+            else if (txtCantidad.Text.Equals(""))
+                MessageBox.Show("Faltan llenar el campo Cantidad");
+            else return true;
+            return false;
         }
 
         private void grdProductos_CurrentCellChanged(object sender, EventArgs e)

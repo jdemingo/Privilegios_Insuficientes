@@ -15,6 +15,8 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         public frmConsultaPuntos()
         {
             InitializeComponent();
+            this.ActiveControl = txtDNI;
+            
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -25,36 +27,106 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             cargarGridDelDNI(txtDNI.Text);
+            cargarGridCanjesDelDNI(txtDNI.Text);
+            lblTotalPuntosDisp.Text = (decimal.Parse(lblTotalPuntos.Text) - decimal.Parse(lblTotalCanjes.Text)).ToString();
         }
 
-        internal void cargarGridDelDNI(string dni) 
+
+        private bool camposValidados()
+        {
+            if (txtDNI.Text.Equals(""))
+                MessageBox.Show("Falta llenar el campo DNI");
+            else return true;
+            return false;
+        }
+
+        internal void cargarGridDelDNI(string dni)
+        {
+            txtDNI.Text = dni;            
+            if (camposValidados())
+            {
+                using (SqlConnection conn = Common.conectar())
+                    try
+                    {
+                        //"mes, importe, puntos, canjes, total_puntos";
+                        SqlCommand cmd = new SqlCommand(
+                        "SELECT datepart(year,pasa_fcompra) Año, DATENAME(month,pasa_fcompra) Mes, SUM(pasa_puntos) Puntos, " +
+                        "SUM(pasa_precio) Importe " +
+                        "FROM Pasajes, Clientes " +
+                        "WHERE clie_dni =" + txtDNI.Text + " AND " +
+                        "clie_id = pasa_cliente " +
+                        "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
+                        "ORDER BY 1, datepart(month,pasa_fcompra)", conn);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        grdPuntos.DataSource = table;
+                        lblTotalPuntos.Text = table.Compute("SUM(Puntos)", "").ToString();
+
+                        if (lblTotalPuntos.Text.Equals(""))
+                            lblTotalPuntos.Text = "0";
+                        
+                        //double resul = grdPuntos.Rows.Cast<DataGridViewRow>().Sum(x => Convert.ToDouble(x.Cells["Puntos"].Value));
+                        //lblTotalPuntos.Text = resul.ToString();
+
+                        //double sumatoria = 0;
+                        //foreach (DataGridViewRow row in grdPuntos.Rows)
+                        //{
+                        //    sumatoria += Convert.ToDouble(row.Cells["Puntos"].Value);
+                        //}
+                        //lblTotalPuntos.Text = sumatoria.ToString();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                            conn.Close();
+                    }
+            }
+        }
+
+
+        internal void cargarGridCanjesDelDNI(string dni)
         {
             txtDNI.Text = dni;
-            if(!txtDNI.Text.Equals("")){
-            using (SqlConnection conn = Common.conectar())
-                try
-                {
-                    SqlCommand cmd = new SqlCommand(
-                    "SELECT pasa_puntos, pasa_precio, pasa_fcompra, pasa_cliente "+
-                    "FROM Pasajes, Clientes "+
-                    "WHERE clie_dni ='" + txtDNI.Text + "' AND "+
-                    "clie_id = pasa_cliente", conn);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    grdPuntos.DataSource = table;
-                    lblTotalPuntos.Text = table.Compute("SUM(pasa_puntos)", "").ToString();
+            lblTotalCanjes.Text = "0";
+            if (!txtDNI.Text.Equals(""))
+            {
+                using (SqlConnection conn = Common.conectar())
+                    try
+                    {
+                        //"mes, importe, puntos, canjes, total_puntos";
+                        SqlCommand cmd = new SqlCommand(
+                        "SELECT datepart(year,prem_fcanje) Año, DATENAME(month,prem_fcanje) Mes, SUM(stoc_puntos*prem_id_cantidad) Puntos " +
+                        "FROM Clientes, Stock_premios, Premios_canjeados " +
+                        "WHERE clie_dni =" + txtDNI.Text + " AND " +
+                        "prem_cliente = clie_id AND "+
+                        "prem_id_premio = stoc_id_premio "+
+                        "GROUP BY datepart(year,prem_fcanje), DATENAME(month,prem_fcanje),datepart(month,prem_fcanje) " +
+                        "ORDER BY 1,datepart(month,prem_fcanje)", conn);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        grdCanjes.DataSource = table;
+                        lblTotalCanjes.Text = table.Compute("SUM(Puntos)", "").ToString();
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+                        if (lblTotalCanjes.Text.Equals(""))
+                            lblTotalCanjes.Text = "0";
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                            conn.Close();
+                    }
             }
         }
 
@@ -74,6 +146,11 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
             frmLogin.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
     }

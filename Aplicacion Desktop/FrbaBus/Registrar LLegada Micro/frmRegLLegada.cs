@@ -16,6 +16,7 @@ namespace FrbaBus.Registrar_LLegada_Micro
         {
             InitializeComponent();
             cargarCombosOrigenYDestino();
+            this.ActiveControl = txtPatente;
         }
 
         internal void cargarGridDelMicro(string patente)
@@ -82,36 +83,52 @@ namespace FrbaBus.Registrar_LLegada_Micro
 
         }
 
+        private bool camposValidados()
+        {
+            if (txtPatente.Text.Equals(""))
+                MessageBox.Show("Falta llenar el campo Patente");
+            else return true;
+            return false;
+        }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = Common.conectar())
-                try
-                {
-                    SqlCommand cmd = new SqlCommand(
-                    "UPDATE destinos "+
-                    "SET dest_fecha_llegada = '"+dateLLegada.Value+"'"+
-                    "WHERE dest_id = (SELECT TOP (1) dest_id "+
-                                     "FROM Destinos, Micros, Precios "+
-                                     "WHERE micr_patente = '"+txtPatente.Text+"' AND "+
-                                     "micr_id = dest_id_micro AND "+
-                                     "dest_viaje = prec_viaje_codigo AND "+
-                                     "prec_id_destino = "+cmbDestino.SelectedValue.ToString()+" AND "+
-                                     "prec_id_origen = "+cmbOrigen.SelectedValue.ToString()+" AND "+
-                                     "dest_fecha_salida < '"+dateLLegada.Value+"' AND "+
-                                     "DATEDIFF(hh, dest_fecha_salida, '"+dateLLegada.Value+"') < 24 "+
-                                     "ORDER BY DATEDIFF(hh, dest_fecha_salida, '"+dateLLegada.Value+"'))", conn);
-                    if(cmd.ExecuteNonQuery()==0)
-                        MessageBox.Show("Los datos a ingresar no cumplen las restricciones del sistema");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+            if (camposValidados())
+            {
+                using (SqlConnection conn = Common.conectar())
+                    try
+                    {
+                        DateTime dtLLegada = new DateTime(dateLLegada.Value.Year, dateLLegada.Value.Month, dateLLegada.Value.Day, timeLLegada.Value.Hour, timeLLegada.Value.Minute, 0, 0);
+                        SqlCommand cmd = new SqlCommand(
+                        "UPDATE destinos " +
+                        "SET dest_fecha_llegada = '" + dtLLegada + "'" +
+                        "WHERE dest_id = (SELECT TOP (1) dest_id " +
+                                         "FROM Destinos, Micros, Precios " +
+                                         "WHERE micr_patente = '" + txtPatente.Text + "' AND " +
+                                         "micr_id = dest_id_micro AND " +
+                                         "dest_viaje = prec_viaje_codigo AND " +
+                                         "prec_id_destino = " + cmbDestino.SelectedValue.ToString() + " AND " +
+                                         "prec_id_origen = " + cmbOrigen.SelectedValue.ToString() + " AND " +
+                                         "dest_fecha_salida < '" + dtLLegada + "' AND " +
+                                         "DATEDIFF(hh, dest_fecha_salida, '" + dtLLegada + "') < 24 " +
+                                         "ORDER BY DATEDIFF(hh, dest_fecha_salida, '" + dtLLegada + "'))", conn);
+
+
+                        if (cmd.ExecuteNonQuery() == 0)
+                            MessageBox.Show("Los datos a ingresar no cumplen las restricciones del sistema");
+                        else
+                            MessageBox.Show("La llegada se ha registrado correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                            conn.Close();
+                    }
+            }
         }
 
     }

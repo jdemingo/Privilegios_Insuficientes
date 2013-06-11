@@ -36,8 +36,16 @@
             this.lblTotalPuntos = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.grdCanjes = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTotalCanjes = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalPuntosDisp = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdPuntos)).BeginInit();
             this.grpFiltros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCanjes)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDNI
@@ -59,9 +67,9 @@
             // grdPuntos
             // 
             this.grdPuntos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPuntos.Location = new System.Drawing.Point(12, 132);
+            this.grdPuntos.Location = new System.Drawing.Point(12, 140);
             this.grdPuntos.Name = "grdPuntos";
-            this.grdPuntos.Size = new System.Drawing.Size(538, 198);
+            this.grdPuntos.Size = new System.Drawing.Size(463, 198);
             this.grdPuntos.TabIndex = 2;
             // 
             // grpFiltros
@@ -70,7 +78,7 @@
             this.grpFiltros.Controls.Add(this.txtDNI);
             this.grpFiltros.Location = new System.Drawing.Point(15, 12);
             this.grpFiltros.Name = "grpFiltros";
-            this.grpFiltros.Size = new System.Drawing.Size(535, 67);
+            this.grpFiltros.Size = new System.Drawing.Size(836, 67);
             this.grpFiltros.TabIndex = 3;
             this.grpFiltros.TabStop = false;
             this.grpFiltros.Text = "Filtros de búsqueda";
@@ -78,7 +86,7 @@
             // lblInfoTotalPuntos
             // 
             this.lblInfoTotalPuntos.AutoSize = true;
-            this.lblInfoTotalPuntos.Location = new System.Drawing.Point(12, 337);
+            this.lblInfoTotalPuntos.Location = new System.Drawing.Point(12, 345);
             this.lblInfoTotalPuntos.Name = "lblInfoTotalPuntos";
             this.lblInfoTotalPuntos.Size = new System.Drawing.Size(84, 13);
             this.lblInfoTotalPuntos.TabIndex = 4;
@@ -87,11 +95,11 @@
             // lblTotalPuntos
             // 
             this.lblTotalPuntos.AutoSize = true;
-            this.lblTotalPuntos.Location = new System.Drawing.Point(102, 337);
+            this.lblTotalPuntos.Location = new System.Drawing.Point(102, 345);
             this.lblTotalPuntos.Name = "lblTotalPuntos";
-            this.lblTotalPuntos.Size = new System.Drawing.Size(37, 13);
+            this.lblTotalPuntos.Size = new System.Drawing.Size(13, 13);
             this.lblTotalPuntos.TabIndex = 5;
-            this.lblTotalPuntos.Text = "99999";
+            this.lblTotalPuntos.Text = "0";
             // 
             // btnLimpiar
             // 
@@ -105,7 +113,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(475, 85);
+            this.btnBuscar.Location = new System.Drawing.Point(776, 85);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 7;
@@ -113,12 +121,82 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // grdCanjes
+            // 
+            this.grdCanjes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdCanjes.Location = new System.Drawing.Point(490, 140);
+            this.grdCanjes.Name = "grdCanjes";
+            this.grdCanjes.Size = new System.Drawing.Size(361, 198);
+            this.grdCanjes.TabIndex = 8;
+            this.grdCanjes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(489, 345);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Total de canjes:";
+            // 
+            // lblTotalCanjes
+            // 
+            this.lblTotalCanjes.AutoSize = true;
+            this.lblTotalCanjes.Location = new System.Drawing.Point(579, 345);
+            this.lblTotalCanjes.Name = "lblTotalCanjes";
+            this.lblTotalCanjes.Size = new System.Drawing.Size(13, 13);
+            this.lblTotalCanjes.TabIndex = 10;
+            this.lblTotalCanjes.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 377);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(139, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Total de puntos disponibles:";
+            // 
+            // lblTotalPuntosDisp
+            // 
+            this.lblTotalPuntosDisp.AutoSize = true;
+            this.lblTotalPuntosDisp.Location = new System.Drawing.Point(158, 377);
+            this.lblTotalPuntosDisp.Name = "lblTotalPuntosDisp";
+            this.lblTotalPuntosDisp.Size = new System.Drawing.Size(13, 13);
+            this.lblTotalPuntosDisp.TabIndex = 12;
+            this.lblTotalPuntosDisp.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 121);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Listado de puntos";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(487, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Listado de canjes";
+            // 
             // frmConsultaPuntos
             // 
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 374);
+            this.ClientSize = new System.Drawing.Size(863, 402);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTotalPuntosDisp);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTotalCanjes);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.grdCanjes);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblTotalPuntos);
@@ -126,10 +204,11 @@
             this.Controls.Add(this.grdPuntos);
             this.Controls.Add(this.grpFiltros);
             this.Name = "frmConsultaPuntos";
-            this.Text = "frmConsultaPuntos";
+            this.Text = "Consulta de puntos";
             ((System.ComponentModel.ISupportInitialize)(this.grdPuntos)).EndInit();
             this.grpFiltros.ResumeLayout(false);
             this.grpFiltros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCanjes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +224,12 @@
         private System.Windows.Forms.Label lblTotalPuntos;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.DataGridView grdCanjes;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotalCanjes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalPuntosDisp;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
