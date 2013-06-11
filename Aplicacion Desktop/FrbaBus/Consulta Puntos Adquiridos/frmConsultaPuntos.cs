@@ -34,7 +34,11 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT pasa_puntos, pasa_precio, pasa_fcompra, pasa_cliente FROM Pasajes, Clientes WHERE clie_dni ='" + txtDNI.Text + "' AND clie_id = pasa_cliente", conn);
+                    SqlCommand cmd = new SqlCommand(
+                    "SELECT pasa_puntos, pasa_precio, pasa_fcompra, pasa_cliente "+
+                    "FROM Pasajes, Clientes "+
+                    "WHERE clie_dni ='" + txtDNI.Text + "' AND "+
+                    "clie_id = pasa_cliente", conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
@@ -64,6 +68,12 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             FrbaBus.Registrar_LLegada_Micro.frmRegLLegada frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
             frmRegLLegada.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
+            frmLogin.Show();
         }
 
     }

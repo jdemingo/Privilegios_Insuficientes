@@ -23,6 +23,7 @@ namespace FrbaBus
         public frmUtnBus()
         {
             InitializeComponent();
+            crearMenu(1);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,19 +32,42 @@ namespace FrbaBus
             frmMicros.Visible = true;
 
         }
-        private void crearMenu(int rol)
+        internal void crearMenu(int rol)
         {
             MainMenu mainMenu = new MainMenu();
             this.Menu = mainMenu;
+            MenuItem menuConsultaPuntos = new MenuItem("&Consulta de puntos");
+            MenuItem menuCompraPasajes = new MenuItem("&Compra de pasajes");
             MenuItem menuABM = new MenuItem("&ABMs");
             MenuItem menuABMMicros = new MenuItem("&Micros");
             MenuItem menuABMRecorridos = new MenuItem("&Recorridos");
-            mainMenu.MenuItems.Add(menuABM);
-            menuABM.MenuItems.Add(menuABMMicros);
-            menuABM.MenuItems.Add(menuABMRecorridos);
-            menuABMMicros.Click += new System.EventHandler(this.menuABMMicros_Click);
-            menuABMRecorridos.Click += new System.EventHandler(this.menuABMRecorridos_Click);
+            MenuItem menuCanjePuntos = new MenuItem("&Canje de puntos");
+            MenuItem menuRegLLegada = new MenuItem("&Registros de llegada");
+            MenuItem menuCancelarPasajes = new MenuItem("&Cancelar pasajes");
+            mainMenu.MenuItems.Add(menuCompraPasajes);
+            menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
+            mainMenu.MenuItems.Add(menuConsultaPuntos);
+            menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
+
+            // Opciones extras exclusivas del administrador
+            if (rol == 2)
+            {             
+                mainMenu.MenuItems.Add(menuABM);
+                menuABM.MenuItems.Add(menuABMMicros);
+                menuABM.MenuItems.Add(menuABMRecorridos);
+                menuABM.MenuItems.Add(menuCanjePuntos);
+                menuABM.MenuItems.Add(menuCancelarPasajes);
+                mainMenu.MenuItems.Add(menuRegLLegada);
+                menuCancelarPasajes.Click += new System.EventHandler(this.menuCancelarPasajes_Click);
+                menuRegLLegada.Click += new System.EventHandler(this.menuRegLLegada_Click);
+                menuABMMicros.Click += new System.EventHandler(this.menuABMMicros_Click);
+                menuABMRecorridos.Click += new System.EventHandler(this.menuABMRecorridos_Click);
+                menuCanjePuntos.Click += new System.EventHandler(this.menuCanjePuntos_Click);
+            }
+           
+
         }
+
         private void crearCombos()
         {
             using (SqlConnection conn = Common.conectar())
@@ -81,7 +105,7 @@ namespace FrbaBus
         private void frmUtnBus_Load(object sender, EventArgs e)
         {
             crearCombos();
-            crearMenu(1);
+            
         }
         private void menuABMMicros_Click(object sender, EventArgs e)
         {
@@ -96,10 +120,39 @@ namespace FrbaBus
             frmMicros.Visible = true;
         }
 
+        private void menuCanjePuntos_Click(object sender, EventArgs e)
+        {
+            Form frmCanjePuntos = new FrbaBus.Canje_de_Ptos.frmCanjePuntos();
+            frmCanjePuntos.Visible = true;
+        }
+        private void menuCancelarPasajes_Click(object sender, EventArgs e)
+        {
+            Form frmCancelarPasajes = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
+            frmCancelarPasajes.Visible = true;
+        }
+        private void menuCompraPasajes_Click(object sender, EventArgs e)
+        {
+            Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
+            frmCompraPasajes.Visible = true;
+        }
+        private void menuRegLLegada_Click(object sender, EventArgs e)
+        {
+            Form frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
+            frmRegLLegada.Visible = true;
+        }
+
+        private void menuConsultaPuntos_Click(object sender, EventArgs e)
+        {
+            Form frmConsultaPuntos = new FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos();
+            frmConsultaPuntos.Visible = true;
+        }
+
         private void cmdLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cuando presionan este boton debe pedir el login y Crea el Menu");
- 
+            //MessageBox.Show("Cuando presionan este boton debe pedir el login y Crea el Menu");
+            FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
+            frmLogin.Show();
+            this.Visible = false;
         }
 
         private static string buildConnectionURL(string user, string passwd, string server, string db) {

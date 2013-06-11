@@ -40,7 +40,7 @@
             this.btnIniciar.Location = new System.Drawing.Point(109, 157);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(75, 23);
-            this.btnIniciar.TabIndex = 0;
+            this.btnIniciar.TabIndex = 2;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
@@ -58,7 +58,7 @@
             this.txtUser.Location = new System.Drawing.Point(99, 49);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(100, 20);
-            this.txtUser.TabIndex = 2;
+            this.txtUser.TabIndex = 0;
             // 
             // label1
             // 
