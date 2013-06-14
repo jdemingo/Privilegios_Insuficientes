@@ -41,3 +41,21 @@ C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.frmCancelarPasajes.resources
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.frmComprarPasajes.resources
 D:\Documents and Settings\sa\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.Form2.resources
+<<<<<<< HEAD
+=======
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Micro.frmMicros.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.frmCancelarPasajes.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.frmComprarPasajes.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.Form2.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Login.frmLogin.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Properties.Resources.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Registrar_LLegada_Micro.frmRegLLegada.resources
+C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
+>>>>>>> Seleccionar viaje + autocompletar pasajeros

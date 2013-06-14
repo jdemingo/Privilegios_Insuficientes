@@ -45,7 +45,11 @@ namespace FrbaBus
             MenuItem menuRegLLegada = new MenuItem("&Registros de llegada");
             MenuItem menuCancelarPasajes = new MenuItem("&Cancelar pasajes");
             mainMenu.MenuItems.Add(menuCompraPasajes);
+<<<<<<< HEAD
             menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
+=======
+            //menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             mainMenu.MenuItems.Add(menuConsultaPuntos);
             menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
 
@@ -130,11 +134,19 @@ namespace FrbaBus
             Form frmCancelarPasajes = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
             frmCancelarPasajes.Visible = true;
         }
+<<<<<<< HEAD
         private void menuCompraPasajes_Click(object sender, EventArgs e)
         {
             Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
             frmCompraPasajes.Visible = true;
         }
+=======
+       // private void menuCompraPasajes_Click(object sender, EventArgs e)
+       // {
+       //     Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
+       //     frmCompraPasajes.Visible = true;
+       // }
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
         private void menuRegLLegada_Click(object sender, EventArgs e)
         {
             Form frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
@@ -192,20 +204,20 @@ namespace FrbaBus
             {
                 try
                 {
-                    string query = "SELECT dest_id,"
+                    string query = "SELECT dest_viaje,"
                                     + "       dest_fecha_llegada_estimada,"
                                     + "       dest_butacas_libres,"
                                     + "       dest_peso_libre,"
-                                    + "       micr_tipo_servicio "
+                                    + "       serv_servicio "
                                     + "FROM Destinos,"
-                                    + "     Precios,"
-                                    + "     Micros"
+                                    + "     Recorridos,"
+                                    + "     Servicios_Recorridos"
                         //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
                                     + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
-                                    +"  and dest_viaje          = prec_viaje_codigo"
-                                    +"  and prec_id_origen      = "+cmbOrigHide.Text
-                                    +"  and prec_id_destino     = "+cmbDestHide.Text
-                                    +"  and dest_id_micro       = micr_id";
+                                    +"  and dest_viaje          = reco_viaje_codigo"
+                                    +"  and reco_id_origen      = "+cmbOrigHide.Text
+                                    +"  and reco_id_destino     = "+cmbDestHide.Text
+                                    +"  and reco_viaje_codigo   = serv_viaje_codigo";
                     cmd = new SqlCommand(query, conn);
                     adapter = new SqlDataAdapter(cmd);
                     tablaPasajes = new DataTable();
@@ -231,7 +243,11 @@ namespace FrbaBus
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+           // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+            Form frmAbm_nuevos_pasajes;
+            frmAbm_nuevos_pasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes( dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() );
+            frmAbm_nuevos_pasajes.Visible = true;
         }
 
 

@@ -35,11 +35,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
+=======
+            this.textNombre = new System.Windows.Forms.TextBox();
+            this.textApellido = new System.Windows.Forms.TextBox();
+            this.textDirec = new System.Windows.Forms.TextBox();
+            this.textTel = new System.Windows.Forms.TextBox();
+            this.textEmail = new System.Windows.Forms.TextBox();
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,7 +55,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+<<<<<<< HEAD
             this.textBox3 = new System.Windows.Forms.TextBox();
+=======
+            this.textDni = new System.Windows.Forms.TextBox();
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +127,7 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Fecha de Nacimiento:";
             // 
+<<<<<<< HEAD
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(129, 276);
@@ -149,6 +162,42 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(301, 20);
             this.textBox7.TabIndex = 14;
+=======
+            // textNombre
+            // 
+            this.textNombre.Location = new System.Drawing.Point(129, 276);
+            this.textNombre.Name = "textNombre";
+            this.textNombre.Size = new System.Drawing.Size(301, 20);
+            this.textNombre.TabIndex = 8;
+            // 
+            // textApellido
+            // 
+            this.textApellido.Location = new System.Drawing.Point(129, 302);
+            this.textApellido.Name = "textApellido";
+            this.textApellido.Size = new System.Drawing.Size(301, 20);
+            this.textApellido.TabIndex = 9;
+            // 
+            // textDirec
+            // 
+            this.textDirec.Location = new System.Drawing.Point(129, 355);
+            this.textDirec.Name = "textDirec";
+            this.textDirec.Size = new System.Drawing.Size(301, 20);
+            this.textDirec.TabIndex = 12;
+            // 
+            // textTel
+            // 
+            this.textTel.Location = new System.Drawing.Point(129, 381);
+            this.textTel.Name = "textTel";
+            this.textTel.Size = new System.Drawing.Size(301, 20);
+            this.textTel.TabIndex = 13;
+            // 
+            // textEmail
+            // 
+            this.textEmail.Location = new System.Drawing.Point(129, 407);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(301, 20);
+            this.textEmail.TabIndex = 14;
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             // 
             // cmbSexo
             // 
@@ -169,7 +218,10 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 16;
+<<<<<<< HEAD
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+=======
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             // 
             // button1
             // 
@@ -196,6 +248,10 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(822, 230);
             this.dataGridView1.TabIndex = 20;
+<<<<<<< HEAD
+=======
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             // 
             // textBox4
             // 
@@ -214,12 +270,22 @@
             this.checkBox1.Text = "Discapacitado";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(129, 250);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(301, 20);
             this.textBox3.TabIndex = 25;
+=======
+            // textDni
+            // 
+            this.textDni.Location = new System.Drawing.Point(129, 250);
+            this.textDni.Name = "textDni";
+            this.textDni.Size = new System.Drawing.Size(301, 20);
+            this.textDni.TabIndex = 25;
+            this.textDni.LostFocus += new System.EventHandler(this.textBox3_LostFocus);
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             // 
             // label3
             // 
@@ -235,7 +301,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 489);
+<<<<<<< HEAD
             this.Controls.Add(this.textBox3);
+=======
+            this.Controls.Add(this.textDni);
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox4);
@@ -244,11 +314,19 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cmbSexo);
+<<<<<<< HEAD
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+=======
+            this.Controls.Add(this.textEmail);
+            this.Controls.Add(this.textTel);
+            this.Controls.Add(this.textDirec);
+            this.Controls.Add(this.textApellido);
+            this.Controls.Add(this.textNombre);
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -258,7 +336,10 @@
             this.Controls.Add(this.label1);
             this.Name = "frmComprarPasajes";
             this.Text = "Form1";
+<<<<<<< HEAD
             this.Load += new System.EventHandler(this.frmComprarPasajes_Load);
+=======
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -274,11 +355,19 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+<<<<<<< HEAD
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
+=======
+        private System.Windows.Forms.TextBox textNombre;
+        private System.Windows.Forms.TextBox textApellido;
+        private System.Windows.Forms.TextBox textDirec;
+        private System.Windows.Forms.TextBox textTel;
+        private System.Windows.Forms.TextBox textEmail;
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
@@ -286,7 +375,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.CheckBox checkBox1;
+<<<<<<< HEAD
         private System.Windows.Forms.TextBox textBox3;
+=======
+        private System.Windows.Forms.TextBox textDni;
+>>>>>>> Seleccionar viaje + autocompletar pasajeros
         private System.Windows.Forms.Label label3;
     }
 }
