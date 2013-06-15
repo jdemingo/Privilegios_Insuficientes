@@ -28,7 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMicros));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boxMicros = new System.Windows.Forms.GroupBox();
+            this.lblOpe = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAlta = new System.Windows.Forms.Button();
             this.dateAlta = new System.Windows.Forms.DateTimePicker();
             this.txtKilos = new System.Windows.Forms.TextBox();
             this.lblKilos = new System.Windows.Forms.Label();
@@ -55,6 +64,12 @@
             // 
             // boxMicros
             // 
+            this.boxMicros.Controls.Add(this.lblOpe);
+            this.boxMicros.Controls.Add(this.btnCancel);
+            this.boxMicros.Controls.Add(this.btnAceptar);
+            this.boxMicros.Controls.Add(this.btnDelete);
+            this.boxMicros.Controls.Add(this.btnUpdate);
+            this.boxMicros.Controls.Add(this.btnAlta);
             this.boxMicros.Controls.Add(this.dateAlta);
             this.boxMicros.Controls.Add(this.txtKilos);
             this.boxMicros.Controls.Add(this.lblKilos);
@@ -80,8 +95,75 @@
             this.boxMicros.TabIndex = 0;
             this.boxMicros.TabStop = false;
             // 
+            // lblOpe
+            // 
+            this.lblOpe.AutoSize = true;
+            this.lblOpe.Location = new System.Drawing.Point(443, 106);
+            this.lblOpe.Name = "lblOpe";
+            this.lblOpe.Size = new System.Drawing.Size(0, 13);
+            this.lblOpe.TabIndex = 25;
+            this.lblOpe.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(474, 138);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(48, 37);
+            this.btnCancel.TabIndex = 24;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.Location = new System.Drawing.Point(418, 138);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(50, 37);
+            this.btnAceptar.TabIndex = 23;
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Visible = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(614, 140);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(50, 37);
+            this.btnDelete.TabIndex = 22;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(558, 140);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(50, 37);
+            this.btnUpdate.TabIndex = 21;
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAlta.Image = ((System.Drawing.Image)(resources.GetObject("btnAlta.Image")));
+            this.btnAlta.Location = new System.Drawing.Point(504, 140);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(48, 37);
+            this.btnAlta.TabIndex = 20;
+            this.btnAlta.UseVisualStyleBackColor = false;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
             // dateAlta
             // 
+            this.dateAlta.Enabled = false;
             this.dateAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateAlta.Location = new System.Drawing.Point(134, 15);
             this.dateAlta.Name = "dateAlta";
@@ -91,6 +173,7 @@
             // 
             // txtKilos
             // 
+            this.txtKilos.Enabled = false;
             this.txtKilos.Location = new System.Drawing.Point(175, 155);
             this.txtKilos.Name = "txtKilos";
             this.txtKilos.Size = new System.Drawing.Size(62, 20);
@@ -108,15 +191,17 @@
             // 
             // btnDistri
             // 
-            this.btnDistri.Location = new System.Drawing.Point(420, 120);
+            this.btnDistri.Location = new System.Drawing.Point(291, 120);
             this.btnDistri.Name = "btnDistri";
-            this.btnDistri.Size = new System.Drawing.Size(102, 25);
+            this.btnDistri.Size = new System.Drawing.Size(96, 25);
             this.btnDistri.TabIndex = 16;
             this.btnDistri.Text = "Ver Distribucion";
             this.btnDistri.UseVisualStyleBackColor = true;
+            this.btnDistri.Click += new System.EventHandler(this.btnDistri_Click);
             // 
             // txtButacas
             // 
+            this.txtButacas.Enabled = false;
             this.txtButacas.Location = new System.Drawing.Point(175, 119);
             this.txtButacas.Name = "txtButacas";
             this.txtButacas.Size = new System.Drawing.Size(62, 20);
@@ -153,7 +238,11 @@
             // 
             // cmbServicios
             // 
+            this.cmbServicios.Enabled = false;
             this.cmbServicios.FormattingEnabled = true;
+            this.cmbServicios.Items.AddRange(new object[] {
+            "Normal",
+            "Premium"});
             this.cmbServicios.Location = new System.Drawing.Point(420, 77);
             this.cmbServicios.Name = "cmbServicios";
             this.cmbServicios.Size = new System.Drawing.Size(152, 21);
@@ -180,6 +269,7 @@
             // 
             // txtMicroId
             // 
+            this.txtMicroId.Enabled = false;
             this.txtMicroId.Location = new System.Drawing.Point(418, 11);
             this.txtMicroId.Name = "txtMicroId";
             this.txtMicroId.Size = new System.Drawing.Size(108, 20);
@@ -197,6 +287,7 @@
             // 
             // txtModelo
             // 
+            this.txtModelo.Enabled = false;
             this.txtModelo.Location = new System.Drawing.Point(120, 81);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(117, 20);
@@ -234,6 +325,7 @@
             // 
             // txtPatente
             // 
+            this.txtPatente.Enabled = false;
             this.txtPatente.Location = new System.Drawing.Point(120, 48);
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(117, 20);
@@ -241,6 +333,7 @@
             // 
             // cmbMarcas
             // 
+            this.cmbMarcas.Enabled = false;
             this.cmbMarcas.FormattingEnabled = true;
             this.cmbMarcas.Location = new System.Drawing.Point(420, 48);
             this.cmbMarcas.Name = "cmbMarcas";
@@ -249,11 +342,35 @@
             // 
             // grdMicros
             // 
+            this.grdMicros.AllowUserToAddRows = false;
+            this.grdMicros.AllowUserToDeleteRows = false;
+            this.grdMicros.AllowUserToResizeColumns = false;
+            this.grdMicros.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdMicros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdMicros.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdMicros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdMicros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.grdMicros.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grdMicros.Location = new System.Drawing.Point(34, 206);
+            this.grdMicros.MultiSelect = false;
             this.grdMicros.Name = "grdMicros";
+            this.grdMicros.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdMicros.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdMicros.RowHeadersVisible = false;
+            this.grdMicros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMicros.Size = new System.Drawing.Size(683, 237);
             this.grdMicros.TabIndex = 1;
+            this.grdMicros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMicros_CellDoubleClick);
+            this.grdMicros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMicros_CellContentClick);
             // 
             // frmMicros
             // 
@@ -295,5 +412,11 @@
         private System.Windows.Forms.ComboBox cmbServicios;
         private System.Windows.Forms.DataGridView grdMicros;
         private System.Windows.Forms.DateTimePicker dateAlta;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Label lblOpe;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAceptar;
     }
 }

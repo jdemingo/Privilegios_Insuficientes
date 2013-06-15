@@ -45,7 +45,7 @@ namespace FrbaBus
             MenuItem menuRegLLegada = new MenuItem("&Registros de llegada");
             MenuItem menuCancelarPasajes = new MenuItem("&Cancelar pasajes");
             mainMenu.MenuItems.Add(menuCompraPasajes);
-            //menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
+            menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
             mainMenu.MenuItems.Add(menuConsultaPuntos);
             menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
 
@@ -130,13 +130,11 @@ namespace FrbaBus
             Form frmCancelarPasajes = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
             frmCancelarPasajes.Visible = true;
         }
-
-       // private void menuCompraPasajes_Click(object sender, EventArgs e)
-       // {
-       //     Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
-       //     frmCompraPasajes.Visible = true;
-       // }
-
+        private void menuCompraPasajes_Click(object sender, EventArgs e)
+        {
+            Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
+            frmCompraPasajes.Visible = true;
+        }
         private void menuRegLLegada_Click(object sender, EventArgs e)
         {
             Form frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
@@ -155,25 +153,12 @@ namespace FrbaBus
             FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
             frmLogin.Show();
             this.Visible = false;
+
         }
 
         private static string buildConnectionURL(string user, string passwd, string server, string db) {
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";
         }
-
-        //private void Conectar()
-        //{
-
-        //    //Tomar de archivo !!
-        //    string user = "gd";
-        //    string passwd = "gd2013";
-        //    string server = "localhost\\SQLSERVER2008";
-        //    string db ="GD1C2013";
- 
-        //    SqlConnection conexion = new SqlConnection(buildConnectionURL(user, passwd, server, db));
-
-        //    conexion.Close();
-        //}
 
         private void dateSalida_ValueChanged(object sender, EventArgs e)
         {
@@ -204,10 +189,10 @@ namespace FrbaBus
                                     + "     Servicios_Recorridos"
                         //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
                                     + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
-                                    +"  and dest_viaje          = reco_viaje_codigo"
-                                    +"  and reco_id_origen      = "+cmbOrigHide.Text
-                                    +"  and reco_id_destino     = "+cmbDestHide.Text
-                                    +"  and reco_viaje_codigo   = serv_viaje_codigo";
+                                    + "  and dest_viaje          = reco_viaje_codigo"
+                                    + "  and reco_id_origen      = " + cmbOrigHide.Text
+                                    + "  and reco_id_destino     = " + cmbDestHide.Text
+                                    + "  and reco_viaje_codigo   = serv_viaje_codigo";
                     cmd = new SqlCommand(query, conn);
                     adapter = new SqlDataAdapter(cmd);
                     tablaPasajes = new DataTable();
@@ -233,11 +218,7 @@ namespace FrbaBus
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-
-            Form frmAbm_nuevos_pasajes;
-            frmAbm_nuevos_pasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes( dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() );
-            frmAbm_nuevos_pasajes.Visible = true;
+            MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
 
 

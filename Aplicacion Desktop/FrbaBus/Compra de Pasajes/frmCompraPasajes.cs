@@ -15,16 +15,15 @@ namespace FrbaBus.Compra_de_Pasajes
     public partial class frmComprarPasajes : Form
     {
 
-        
+
         DataTable tablaButacas;
         SqlCommand cmd;
         SqlDataAdapter adapter;
-
-        public frmComprarPasajes(string v_viaje)
+        public frmComprarPasajes()
         {
             InitializeComponent();
 
-            using (SqlConnection conn = Common.conectar())
+             using (SqlConnection conn = Common.conectar())
             {
                 try
                 {
@@ -45,7 +44,7 @@ namespace FrbaBus.Compra_de_Pasajes
                     tablaButacas = new DataTable();
                     adapter.Fill(tablaButacas);
 
-                    dataGridView1.DataSource = tablaButacas;
+                    grdButacas.DataSource = tablaButacas;
                 }
                 catch (Exception ex)
                 {
@@ -63,37 +62,48 @@ namespace FrbaBus.Compra_de_Pasajes
 
 
 
+
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox3_LostFocus(object sender, EventArgs e)
+        private void frmComprarPasajes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDNI_LostFocus(object sender, EventArgs e)
         {
 
 
- using (SqlConnection conn = Common.conectar())
+            using (SqlConnection conn = Common.conectar())
             {
                 try
                 {
-            string query = "select * from clientes where clie_dni = '"+ textDni.Text +"'";
-            cmd = new SqlCommand(query, conn);
+                    string query = "select * from clientes where clie_dni = '" + txtDNI.Text + "'";
+                    cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("DNI", textDni.Text);
+                    cmd.Parameters.AddWithValue("DNI", txtDNI.Text);
 
-               //    conn.Open();
+                    //    conn.Open();
 
-                   SqlDataReader reader = cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                    textNombre.Text = Convert.ToString(reader["clie_nombre"]);
-                    textApellido.Text = Convert.ToString(reader["clie_apellido"]);
-                    textDirec.Text = Convert.ToString(reader["clie_dir"]);
-                    textTel.Text = Convert.ToString(reader["clie_telefono"]);
-                    textEmail.Text = Convert.ToString(reader["clie_mail"]);
+                        txtNombre.Text = Convert.ToString(reader["clie_nombre"]);
+                        txtApe.Text = Convert.ToString(reader["clie_apellido"]);
+                        txtDir.Text = Convert.ToString(reader["clie_dir"]);
+                        txtTel.Text = Convert.ToString(reader["clie_telefono"]);
+                        txtMail.Text = Convert.ToString(reader["clie_mail"]);
                     }
 
                 }
@@ -108,17 +118,6 @@ namespace FrbaBus.Compra_de_Pasajes
                         conn.Close();
                 }
             }
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmComprarPasajes_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

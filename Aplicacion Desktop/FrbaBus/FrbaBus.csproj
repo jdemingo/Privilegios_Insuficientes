@@ -96,11 +96,11 @@
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="common.cs" />
-    <Compile Include="Compra de Pasajes\Form1.cs">
+    <Compile Include="Compra de Pasajes\frmCompraPasajes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compra de Pasajes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Compra de Pasajes\frmCompraPasajes.Designer.cs">
+      <DependentUpon>frmCompraPasajes.cs</DependentUpon>
     </Compile>
     <Compile Include="Compra de Pasajes\Form2.cs">
       <SubType>Form</SubType>
@@ -164,8 +164,8 @@
     <EmbeddedResource Include="Canje de Ptos\frmCanjePuntos.resx">
       <DependentUpon>frmCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compra de Pasajes\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Compra de Pasajes\frmCompraPasajes.resx">
+      <DependentUpon>frmCompraPasajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compra de Pasajes\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>

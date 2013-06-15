@@ -71,6 +71,7 @@
             this.grdPuntos.Name = "grdPuntos";
             this.grdPuntos.Size = new System.Drawing.Size(463, 198);
             this.grdPuntos.TabIndex = 2;
+            this.grdPuntos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPuntos_CellContentClick);
             // 
             // grpFiltros
             // 

@@ -153,5 +153,10 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
 
         }
 
+        private void grdPuntos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }
