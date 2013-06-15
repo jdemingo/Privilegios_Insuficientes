@@ -14,22 +14,17 @@ namespace FrbaBus.Compra_de_Pasajes
 {
     public partial class frmComprarPasajes : Form
     {
-<<<<<<< HEAD
-        public frmComprarPasajes()
-=======
 
+        
         DataTable tablaButacas;
         SqlCommand cmd;
         SqlDataAdapter adapter;
-        SqlConnection conn = Common.conectar();
-
 
         public frmComprarPasajes(string v_viaje)
->>>>>>> Seleccionar viaje + autocompletar pasajeros
         {
             InitializeComponent();
 
-            using (conn)
+            using (SqlConnection conn = Common.conectar())
             {
                 try
                 {

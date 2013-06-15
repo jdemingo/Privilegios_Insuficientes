@@ -45,11 +45,7 @@ namespace FrbaBus
             MenuItem menuRegLLegada = new MenuItem("&Registros de llegada");
             MenuItem menuCancelarPasajes = new MenuItem("&Cancelar pasajes");
             mainMenu.MenuItems.Add(menuCompraPasajes);
-<<<<<<< HEAD
-            menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
-=======
             //menuCompraPasajes.Click += new System.EventHandler(this.menuCompraPasajes_Click);
->>>>>>> Seleccionar viaje + autocompletar pasajeros
             mainMenu.MenuItems.Add(menuConsultaPuntos);
             menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
 
@@ -134,19 +130,13 @@ namespace FrbaBus
             Form frmCancelarPasajes = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
             frmCancelarPasajes.Visible = true;
         }
-<<<<<<< HEAD
-        private void menuCompraPasajes_Click(object sender, EventArgs e)
-        {
-            Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
-            frmCompraPasajes.Visible = true;
-        }
-=======
+
        // private void menuCompraPasajes_Click(object sender, EventArgs e)
        // {
        //     Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmComprarPasajes();
        //     frmCompraPasajes.Visible = true;
        // }
->>>>>>> Seleccionar viaje + autocompletar pasajeros
+
         private void menuRegLLegada_Click(object sender, EventArgs e)
         {
             Form frmRegLLegada = new FrbaBus.Registrar_LLegada_Micro.frmRegLLegada();
