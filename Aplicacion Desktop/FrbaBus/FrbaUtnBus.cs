@@ -278,6 +278,7 @@ namespace FrbaBus
                 try
                 {
                     string query = "SELECT dest_viaje,"
+                                    + "       dest_fecha_salida,"
                                     + "       dest_fecha_llegada_estimada,"
                                     + "       dest_butacas_libres,"
                                     + "       dest_peso_libre,"
@@ -298,11 +299,12 @@ namespace FrbaBus
                     adapter.Fill(tablaPasajes);
                     if (tablaPasajes.Rows.Count == 0)
                     {
-                        MessageBox.Show("No hay pasajes disponibles de " + cmbOrigen.Text + " a " + cmbDestino.Text);
+                        MessageBox.Show("No hay pasajes disponibles de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text);
                     }
                     else
                     {
                         grdPasajes.DataSource = tablaPasajes;
+                        grdPasajes.Columns["dest_viaje"].Visible = false;
                         grpPasajesDisponibles.Visible = true;
                     }
                 }
