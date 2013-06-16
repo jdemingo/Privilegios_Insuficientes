@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.grdMicros = new System.Windows.Forms.DataGridView();
             this.timeLLegada = new System.Windows.Forms.DateTimePicker();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,17 +144,28 @@
             this.timeLLegada.Size = new System.Drawing.Size(86, 20);
             this.timeLLegada.TabIndex = 2;
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(412, 220);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // frmRegLLegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 253);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.cmbOrigen);
             this.Controls.Add(this.timeLLegada);
             this.Controls.Add(this.grdMicros);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbDestino);
-            this.Controls.Add(this.cmbOrigen);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txtPatente);
             this.Controls.Add(this.label2);
@@ -180,5 +192,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView grdMicros;
         private System.Windows.Forms.DateTimePicker timeLLegada;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

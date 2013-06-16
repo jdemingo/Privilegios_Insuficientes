@@ -25,7 +25,7 @@ namespace FrbaBus.Canje_de_Ptos
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT stoc_id_premio, stoc_nombre, stoc_puntos FROM Stock_premios", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT stoc_id_premio, stoc_nombre, stoc_puntos FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios", conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
@@ -67,7 +67,9 @@ namespace FrbaBus.Canje_de_Ptos
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) FROM Pasajes, Clientes WHERE clie_dni ='" + dni + "' AND clie_id = pasa_cliente", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) "+
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes "+
+                        "WHERE clie_dni ='" + dni + "' AND clie_id = pasa_cliente", conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     puntosDisp = (decimal)cmd.ExecuteScalar();
                 }
@@ -89,7 +91,9 @@ namespace FrbaBus.Canje_de_Ptos
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad FROM Stock_premios WHERE stoc_id_premio =" + id_premio, conn);
+                    SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad "+
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
+                        "WHERE stoc_id_premio =" + id_premio, conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     cantStockDelPremio = (int)cmd.ExecuteScalar();
                 }
@@ -127,15 +131,15 @@ namespace FrbaBus.Canje_de_Ptos
                     else
                     {
                         SqlCommand command = new SqlCommand(
-                        "INSERT INTO Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) "+
+                        "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
                         "VALUES ((SELECT clie_id "+
-                                 "FROM Clientes "+
+                                 "FROM PRIVILEGIOS_INSUFICIENTES.Clientes " +
                                  "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + ","+txtCantidad.Text+",@value)", conn);
                         //DateTime.Parse("");
                         //String.Format("{0:DD MM YYYY}",dateTimePicker1);
                         command.Parameters.AddWithValue("@value", DateTime.Today);
                         command.ExecuteNonQuery();
-                        command.CommandText = "UPDATE Stock_premios "+
+                        command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
                         "SET stoc_cantidad = stoc_cantidad-"+txtCantidad.Text+" "+
                         "WHERE stoc_id_premio = "+premioId+"";
                         //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";

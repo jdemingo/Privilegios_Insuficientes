@@ -41,7 +41,7 @@ namespace FrbaBus.Login
 
                         SqlCommand cmd = new SqlCommand(
                         "SELECT usua_role " +
-                        "FROM Usuarios " +
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Usuarios " +
                         "WHERE usua_nombre ='" + txtUser.Text + "' AND " +
                         "usua_pass = '" + txtPass.Text + "'", conn);
                         using (var myReader = cmd.ExecuteReader())

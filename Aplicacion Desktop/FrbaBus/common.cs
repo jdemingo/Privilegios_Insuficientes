@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace FrbaBus
 {
@@ -24,5 +25,19 @@ namespace FrbaBus
             conn.Open();
             return conn;
         }
+
+        public static string fechaSQL(DateTimePicker dtp)
+        {
+            return String.Format("{0:yyyy-dd-MM}", dtp.Value);
+        }
+        public static string fechaytiempoSQL(DateTimePicker dtp)
+        {
+            return String.Format("{0:yyyy-dd-MM HH:mm:ss.000}", dtp.Value);
+        }
+        public static string tiempoSQL(DateTimePicker dtp)
+        {
+            return String.Format("{0:HH:mm:ss.000}", dtp.Value);
+        }
+
     }
 }
