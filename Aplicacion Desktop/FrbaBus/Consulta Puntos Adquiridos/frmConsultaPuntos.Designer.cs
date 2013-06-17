@@ -71,7 +71,6 @@
             this.grdPuntos.Name = "grdPuntos";
             this.grdPuntos.Size = new System.Drawing.Size(463, 198);
             this.grdPuntos.TabIndex = 2;
-            this.grdPuntos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPuntos_CellContentClick);
             // 
             // grpFiltros
             // 
@@ -129,7 +128,6 @@
             this.grdCanjes.Name = "grdCanjes";
             this.grdCanjes.Size = new System.Drawing.Size(361, 198);
             this.grdCanjes.TabIndex = 8;
-            this.grdCanjes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -205,6 +203,7 @@
             this.Controls.Add(this.grdPuntos);
             this.Controls.Add(this.grpFiltros);
             this.Name = "frmConsultaPuntos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta de puntos";
             ((System.ComponentModel.ISupportInitialize)(this.grdPuntos)).EndInit();
             this.grpFiltros.ResumeLayout(false);

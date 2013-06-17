@@ -128,6 +128,7 @@
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.grdProductos);
             this.Name = "frmCanjePuntos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Canje de puntos";
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).EndInit();
             this.ResumeLayout(false);

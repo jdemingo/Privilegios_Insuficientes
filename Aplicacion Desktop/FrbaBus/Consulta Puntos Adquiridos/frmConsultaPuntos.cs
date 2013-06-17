@@ -54,6 +54,7 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                         "SUM(pasa_precio) Importe " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                         "WHERE clie_dni =" + txtDNI.Text + " AND " +
+                        "DATEDIFF(DAY,pasa_fcompra,GETDATE())<365 AND "+
                         "clie_id = pasa_cliente " +
                         "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
                         "ORDER BY 1, datepart(month,pasa_fcompra)", conn);
@@ -142,21 +143,6 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
             frmRegLLegada.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
-            frmLogin.Show();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void grdPuntos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
     }
 }

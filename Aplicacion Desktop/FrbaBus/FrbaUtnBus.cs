@@ -250,8 +250,7 @@ namespace FrbaBus
 
         private void cmdLogin_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Cuando presionan este boton debe pedir el login y Crea el Menu");
-            FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin();
+            FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin(this);
             frmLogin.Show();
             this.Visible = false;
 
@@ -304,7 +303,7 @@ namespace FrbaBus
                     else
                     {
                         grdPasajes.DataSource = tablaPasajes;
-                        grdPasajes.Columns["dest_viaje"].Visible = false;
+                        //grdPasajes.Columns["dest_viaje"].Visible = false;
                         grpPasajesDisponibles.Visible = true;
                     }
                 }

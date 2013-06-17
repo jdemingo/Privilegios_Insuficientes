@@ -12,11 +12,13 @@ namespace FrbaBus.Login
 {
     public partial class frmLogin : Form
     {
-        int intentosFallidos = 0;
-        int userRole = 0;
-        public frmLogin()
+        private int intentosFallidos = 0;
+        private int userRole = 0;
+        private frmUtnBus frmUtnBus;
+        public frmLogin(Form frmUtnBus)
         {
             InitializeComponent();
+            this.frmUtnBus = (frmUtnBus) frmUtnBus;
         }
 
         private bool camposValidados()
@@ -81,10 +83,9 @@ namespace FrbaBus.Login
                 if (ingresoExitoso)
                 {
 
-                    frmUtnBus frmUtnBus = new frmUtnBus();
+                    this.Close();
                     frmUtnBus.crearMenu(userRole);
-                    frmUtnBus.Show();
-                    this.Visible = false;
+                    frmUtnBus.Visible = true;
                 }
             }
         }

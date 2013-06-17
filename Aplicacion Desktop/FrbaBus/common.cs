@@ -34,6 +34,16 @@ namespace FrbaBus
         {
             return String.Format("{0:yyyy-dd-MM HH:mm:ss.000}", dtp.Value);
         }
+        public static string fechaFuncionSQL(DateTimePicker dtp)
+        {
+            return String.Format("{0:yyyy-MM-dd}", dtp.Value);
+        }
+        public static string fechaytiempoFuncionSQL(DateTimePicker dtp)
+        {
+            return String.Format("{0:yyyy-MM-dd HH:mm:ss.000}", dtp.Value);
+        }
+
+
         public static string tiempoSQL(DateTimePicker dtp)
         {
             return String.Format("{0:HH:mm:ss.000}", dtp.Value);

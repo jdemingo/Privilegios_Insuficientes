@@ -172,6 +172,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateLLegada);
             this.Name = "frmRegLLegada";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de llegadas";
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).EndInit();
             this.ResumeLayout(false);

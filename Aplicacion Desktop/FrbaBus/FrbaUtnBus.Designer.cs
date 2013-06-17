@@ -235,6 +235,7 @@
             this.Controls.Add(this.grpPasajesDisponibles);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUtnBus";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UTN Bus";
             this.Load += new System.EventHandler(this.frmUtnBus_Load);
             this.groupBox1.ResumeLayout(false);

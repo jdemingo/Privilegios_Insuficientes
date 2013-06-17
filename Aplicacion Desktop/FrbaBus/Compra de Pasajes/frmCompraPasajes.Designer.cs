@@ -498,6 +498,7 @@
             this.Controls.Add(this.grdButacas);
             this.Controls.Add(this.btnSigPasaje);
             this.Name = "frmCompraPasajes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCompraPasajes";
             this.Load += new System.EventHandler(this.frmComprarPasajes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdButacas)).EndInit();
