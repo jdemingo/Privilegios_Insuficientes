@@ -178,6 +178,7 @@
             this.txtCantPasajes.Name = "txtCantPasajes";
             this.txtCantPasajes.Size = new System.Drawing.Size(87, 20);
             this.txtCantPasajes.TabIndex = 4;
+            this.txtCantPasajes.TextChanged += new System.EventHandler(this.txtCantPasajes_TextChanged);
             // 
             // label5
             // 

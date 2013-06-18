@@ -276,7 +276,7 @@ namespace FrbaBus
             {
                 try
                 {
-                    string query = "SELECT dest_viaje,"
+                    string query = "SELECT dest_id,"
                                     + "       dest_fecha_salida,"
                                     + "       dest_fecha_llegada_estimada,"
                                     + "       dest_butacas_libres,"
@@ -325,7 +325,11 @@ namespace FrbaBus
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
+           // MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+            Form frmAbm_compra;
+            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(decimal.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
+            frmAbm_compra.Visible = true;
         }
 
 
@@ -346,6 +350,11 @@ namespace FrbaBus
         }
 
         private void cmbOrigHide_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCantPasajes_TextChanged(object sender, EventArgs e)
         {
 
         }

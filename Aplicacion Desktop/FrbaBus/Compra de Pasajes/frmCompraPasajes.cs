@@ -27,7 +27,8 @@ namespace FrbaBus.Compra_de_Pasajes
             this.cant_pasajes = cant_pasajes.Equals("") ? 0 : int.Parse(cant_pasajes);
             this.kgs = kgs.Equals("") ? 0 : double.Parse(kgs);
             this.codigo_viaje = codigo_viaje;
-            cargarButacas();
+            cargarButacas2();
+            //cargarButacas();
             crearGridPasajeros();
             //MessageBox.Show(this.id_viaje + " - " + this.cant_pasajes + " - " + this.kgs);
         }
@@ -54,18 +55,20 @@ namespace FrbaBus.Compra_de_Pasajes
             {
                 try
                 {
-                    string query = "SELECT dest_id,"
-                                    + "       dest_fecha_llegada_estimada,"
-                                    + "       dest_butacas_libres,"
-                                    + "       dest_peso_libre,"
-                                    + "       serv_servicio "
-                                    + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
-                                    + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
-                                    + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
-                        //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
-                                    + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
-                                    + "  and dest_viaje          = reco_viaje_codigo"
-                                    + "  and reco_viaje_codigo   = serv_viaje_codigo";
+                    string query = "select buta_numero, buta_piso, buta_tipo"
+                                  + " from PRIVILEGIOS_INSUFICIENTES.Butacas,"
+                                  + "     PRIVILEGIOS_INSUFICIENTES.destinos d1"
+                                  + " where buta_numero not in("
+                                  + "                        select pers_butaca"
+                                  + "                        from PRIVILEGIOS_INSUFICIENTES.pasajes,"
+                                  + "                             PRIVILEGIOS_INSUFICIENTES.personas,"
+                                  + "                             PRIVILEGIOS_INSUFICIENTES.destinos"
+                                  + "                        where pasa_codigo = pers_codigo"
+                                  + "                            and pasa_dest_id = dest_id"
+                                  + "                            and dest_id = d1.dest_id)"
+                                  + " and buta_micro = dest_id_micro"
+                                  + " and dest_id    = '"+ codigo_viaje +"'";
+
                     cmd = new SqlCommand(query, conn);
                     adapter = new SqlDataAdapter(cmd);
                     tablaButacas = new DataTable();
@@ -235,6 +238,11 @@ namespace FrbaBus.Compra_de_Pasajes
         private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
         {
             groupPasajeros.Enabled = chkEncomienda.Checked ? false : true;
+        }
+
+        private void grdButacas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 

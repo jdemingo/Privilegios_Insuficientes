@@ -30,13 +30,10 @@
         {
             this.grdButacas = new System.Windows.Forms.DataGridView();
             this.groupPasajeros = new System.Windows.Forms.GroupBox();
-            this.btnPago = new System.Windows.Forms.Button();
-            this.chkEncomienda = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnSigPasaje = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiscapacitado = new System.Windows.Forms.CheckBox();
@@ -68,6 +65,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.chkEfectivo = new System.Windows.Forms.RadioButton();
             this.chkTarjeta = new System.Windows.Forms.RadioButton();
+            this.btnPago = new System.Windows.Forms.Button();
+            this.chkEncomienda = new System.Windows.Forms.CheckBox();
+            this.btnSigPasaje = new System.Windows.Forms.Button();
             this.grdPasajeros = new System.Windows.Forms.DataGridView();
             this.btnFinalizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdButacas)).BeginInit();
@@ -84,6 +84,7 @@
             this.grdButacas.Name = "grdButacas";
             this.grdButacas.Size = new System.Drawing.Size(334, 261);
             this.grdButacas.TabIndex = 20;
+            this.grdButacas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdButacas_CellContentClick);
             // 
             // groupPasajeros
             // 
@@ -114,27 +115,6 @@
             this.groupPasajeros.TabIndex = 26;
             this.groupPasajeros.TabStop = false;
             this.groupPasajeros.Text = "Pasajero";
-            // 
-            // btnPago
-            // 
-            this.btnPago.Location = new System.Drawing.Point(804, 242);
-            this.btnPago.Name = "btnPago";
-            this.btnPago.Size = new System.Drawing.Size(115, 23);
-            this.btnPago.TabIndex = 56;
-            this.btnPago.Text = "Efectuar pago";
-            this.btnPago.UseVisualStyleBackColor = true;
-            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
-            // 
-            // chkEncomienda
-            // 
-            this.chkEncomienda.AutoSize = true;
-            this.chkEncomienda.Location = new System.Drawing.Point(365, 246);
-            this.chkEncomienda.Name = "chkEncomienda";
-            this.chkEncomienda.Size = new System.Drawing.Size(85, 17);
-            this.chkEncomienda.TabIndex = 50;
-            this.chkEncomienda.Text = "Encomienda";
-            this.chkEncomienda.UseVisualStyleBackColor = true;
-            this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
             // 
             // label11
             // 
@@ -171,16 +151,6 @@
             this.label9.TabIndex = 46;
             this.label9.Text = "Sexo";
             this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // btnSigPasaje
-            // 
-            this.btnSigPasaje.Location = new System.Drawing.Point(619, 242);
-            this.btnSigPasaje.Name = "btnSigPasaje";
-            this.btnSigPasaje.Size = new System.Drawing.Size(120, 23);
-            this.btnSigPasaje.TabIndex = 45;
-            this.btnSigPasaje.Text = "Siguiente Pasaje";
-            this.btnSigPasaje.UseVisualStyleBackColor = true;
-            this.btnSigPasaje.Click += new System.EventHandler(this.btnSigPasaje_Click);
             // 
             // txtNombre
             // 
@@ -466,6 +436,37 @@
             this.chkTarjeta.Text = "Tarjeta de Credito";
             this.chkTarjeta.UseVisualStyleBackColor = true;
             this.chkTarjeta.CheckedChanged += new System.EventHandler(this.chkTarjeta_CheckedChanged);
+            // 
+            // btnPago
+            // 
+            this.btnPago.Location = new System.Drawing.Point(804, 242);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(115, 23);
+            this.btnPago.TabIndex = 56;
+            this.btnPago.Text = "Efectuar pago";
+            this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
+            // 
+            // chkEncomienda
+            // 
+            this.chkEncomienda.AutoSize = true;
+            this.chkEncomienda.Location = new System.Drawing.Point(365, 246);
+            this.chkEncomienda.Name = "chkEncomienda";
+            this.chkEncomienda.Size = new System.Drawing.Size(85, 17);
+            this.chkEncomienda.TabIndex = 50;
+            this.chkEncomienda.Text = "Encomienda";
+            this.chkEncomienda.UseVisualStyleBackColor = true;
+            this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
+            // 
+            // btnSigPasaje
+            // 
+            this.btnSigPasaje.Location = new System.Drawing.Point(619, 242);
+            this.btnSigPasaje.Name = "btnSigPasaje";
+            this.btnSigPasaje.Size = new System.Drawing.Size(120, 23);
+            this.btnSigPasaje.TabIndex = 45;
+            this.btnSigPasaje.Text = "Siguiente Pasaje";
+            this.btnSigPasaje.UseVisualStyleBackColor = true;
+            this.btnSigPasaje.Click += new System.EventHandler(this.btnSigPasaje_Click);
             // 
             // grdPasajeros
             // 
