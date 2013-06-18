@@ -52,13 +52,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupComprador = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.groupPago = new System.Windows.Forms.GroupBox();
+            this.groupTarjeta = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtTarjeta = new System.Windows.Forms.TextBox();
             this.txtCuotas = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtCodSeg = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,24 +66,27 @@
             this.chkEfectivo = new System.Windows.Forms.RadioButton();
             this.chkTarjeta = new System.Windows.Forms.RadioButton();
             this.btnPago = new System.Windows.Forms.Button();
-            this.chkEncomienda = new System.Windows.Forms.CheckBox();
             this.btnSigPasaje = new System.Windows.Forms.Button();
             this.grdPasajeros = new System.Windows.Forms.DataGridView();
             this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnAtras = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdButacas)).BeginInit();
             this.groupPasajeros.SuspendLayout();
             this.groupComprador.SuspendLayout();
-            this.groupPago.SuspendLayout();
+            this.groupTarjeta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPasajeros)).BeginInit();
             this.SuspendLayout();
             // 
             // grdButacas
             // 
+            this.grdButacas.AllowUserToAddRows = false;
+            this.grdButacas.AllowUserToDeleteRows = false;
             this.grdButacas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdButacas.Location = new System.Drawing.Point(12, 12);
+            this.grdButacas.Location = new System.Drawing.Point(297, 9);
             this.grdButacas.Name = "grdButacas";
-            this.grdButacas.Size = new System.Drawing.Size(334, 261);
-            this.grdButacas.TabIndex = 20;
+            this.grdButacas.ReadOnly = true;
+            this.grdButacas.Size = new System.Drawing.Size(351, 10);
+            this.grdButacas.TabIndex = 70;
             this.grdButacas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdButacas_CellContentClick);
             // 
             // groupPasajeros
@@ -108,10 +111,9 @@
             this.groupPasajeros.Controls.Add(this.label4);
             this.groupPasajeros.Controls.Add(this.label2);
             this.groupPasajeros.Controls.Add(this.label1);
-            this.groupPasajeros.Controls.Add(this.groupComprador);
-            this.groupPasajeros.Location = new System.Drawing.Point(352, 12);
+            this.groupPasajeros.Location = new System.Drawing.Point(12, 12);
             this.groupPasajeros.Name = "groupPasajeros";
-            this.groupPasajeros.Size = new System.Drawing.Size(567, 228);
+            this.groupPasajeros.Size = new System.Drawing.Size(274, 228);
             this.groupPasajeros.TabIndex = 26;
             this.groupPasajeros.TabStop = false;
             this.groupPasajeros.Text = "Pasajero";
@@ -150,7 +152,6 @@
             this.label9.Size = new System.Drawing.Size(31, 13);
             this.label9.TabIndex = 46;
             this.label9.Text = "Sexo";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txtNombre
             // 
@@ -292,12 +293,13 @@
             // groupComprador
             // 
             this.groupComprador.Controls.Add(this.label14);
-            this.groupComprador.Controls.Add(this.groupPago);
+            this.groupComprador.Controls.Add(this.btnPago);
             this.groupComprador.Controls.Add(this.chkEfectivo);
             this.groupComprador.Controls.Add(this.chkTarjeta);
-            this.groupComprador.Location = new System.Drawing.Point(267, 12);
+            this.groupComprador.Controls.Add(this.groupTarjeta);
+            this.groupComprador.Location = new System.Drawing.Point(297, 12);
             this.groupComprador.Name = "groupComprador";
-            this.groupComprador.Size = new System.Drawing.Size(293, 185);
+            this.groupComprador.Size = new System.Drawing.Size(301, 228);
             this.groupComprador.TabIndex = 55;
             this.groupComprador.TabStop = false;
             this.groupComprador.Visible = false;
@@ -311,23 +313,23 @@
             this.label14.TabIndex = 54;
             this.label14.Text = "Forma de pago:";
             // 
-            // groupPago
+            // groupTarjeta
             // 
-            this.groupPago.Controls.Add(this.dateTimePicker1);
-            this.groupPago.Controls.Add(this.txtTarjeta);
-            this.groupPago.Controls.Add(this.txtCuotas);
-            this.groupPago.Controls.Add(this.label12);
-            this.groupPago.Controls.Add(this.label13);
-            this.groupPago.Controls.Add(this.textBox8);
-            this.groupPago.Controls.Add(this.label15);
-            this.groupPago.Controls.Add(this.comboBox1);
-            this.groupPago.Controls.Add(this.label16);
-            this.groupPago.Controls.Add(this.label17);
-            this.groupPago.Location = new System.Drawing.Point(8, 27);
-            this.groupPago.Name = "groupPago";
-            this.groupPago.Size = new System.Drawing.Size(276, 150);
-            this.groupPago.TabIndex = 52;
-            this.groupPago.TabStop = false;
+            this.groupTarjeta.Controls.Add(this.dateTimePicker1);
+            this.groupTarjeta.Controls.Add(this.txtTarjeta);
+            this.groupTarjeta.Controls.Add(this.txtCuotas);
+            this.groupTarjeta.Controls.Add(this.label12);
+            this.groupTarjeta.Controls.Add(this.label13);
+            this.groupTarjeta.Controls.Add(this.txtCodSeg);
+            this.groupTarjeta.Controls.Add(this.label15);
+            this.groupTarjeta.Controls.Add(this.comboBox1);
+            this.groupTarjeta.Controls.Add(this.label16);
+            this.groupTarjeta.Controls.Add(this.label17);
+            this.groupTarjeta.Location = new System.Drawing.Point(8, 27);
+            this.groupTarjeta.Name = "groupTarjeta";
+            this.groupTarjeta.Size = new System.Drawing.Size(286, 150);
+            this.groupTarjeta.TabIndex = 40;
+            this.groupTarjeta.TabStop = false;
             // 
             // dateTimePicker1
             // 
@@ -342,14 +344,14 @@
             // 
             this.txtTarjeta.Location = new System.Drawing.Point(126, 14);
             this.txtTarjeta.Name = "txtTarjeta";
-            this.txtTarjeta.Size = new System.Drawing.Size(141, 20);
+            this.txtTarjeta.Size = new System.Drawing.Size(153, 20);
             this.txtTarjeta.TabIndex = 33;
             // 
             // txtCuotas
             // 
             this.txtCuotas.Location = new System.Drawing.Point(126, 122);
             this.txtCuotas.Name = "txtCuotas";
-            this.txtCuotas.Size = new System.Drawing.Size(54, 20);
+            this.txtCuotas.Size = new System.Drawing.Size(67, 20);
             this.txtCuotas.TabIndex = 42;
             // 
             // label12
@@ -370,12 +372,12 @@
             this.label13.TabIndex = 41;
             this.label13.Text = "Cantidad de cuotas:";
             // 
-            // textBox8
+            // txtCodSeg
             // 
-            this.textBox8.Location = new System.Drawing.Point(126, 43);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(141, 20);
-            this.textBox8.TabIndex = 35;
+            this.txtCodSeg.Location = new System.Drawing.Point(126, 43);
+            this.txtCodSeg.Name = "txtCodSeg";
+            this.txtCodSeg.Size = new System.Drawing.Size(153, 20);
+            this.txtCodSeg.TabIndex = 35;
             // 
             // label15
             // 
@@ -439,28 +441,18 @@
             // 
             // btnPago
             // 
-            this.btnPago.Location = new System.Drawing.Point(804, 242);
+            this.btnPago.Location = new System.Drawing.Point(181, 196);
             this.btnPago.Name = "btnPago";
             this.btnPago.Size = new System.Drawing.Size(115, 23);
             this.btnPago.TabIndex = 56;
             this.btnPago.Text = "Efectuar pago";
             this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Visible = false;
             this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
-            // 
-            // chkEncomienda
-            // 
-            this.chkEncomienda.AutoSize = true;
-            this.chkEncomienda.Location = new System.Drawing.Point(365, 246);
-            this.chkEncomienda.Name = "chkEncomienda";
-            this.chkEncomienda.Size = new System.Drawing.Size(85, 17);
-            this.chkEncomienda.TabIndex = 50;
-            this.chkEncomienda.Text = "Encomienda";
-            this.chkEncomienda.UseVisualStyleBackColor = true;
-            this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
             // 
             // btnSigPasaje
             // 
-            this.btnSigPasaje.Location = new System.Drawing.Point(619, 242);
+            this.btnSigPasaje.Location = new System.Drawing.Point(166, 246);
             this.btnSigPasaje.Name = "btnSigPasaje";
             this.btnSigPasaje.Size = new System.Drawing.Size(120, 23);
             this.btnSigPasaje.TabIndex = 45;
@@ -470,15 +462,18 @@
             // 
             // grdPasajeros
             // 
+            this.grdPasajeros.AllowUserToAddRows = false;
+            this.grdPasajeros.AllowUserToDeleteRows = false;
             this.grdPasajeros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPasajeros.Location = new System.Drawing.Point(12, 279);
             this.grdPasajeros.Name = "grdPasajeros";
-            this.grdPasajeros.Size = new System.Drawing.Size(907, 145);
+            this.grdPasajeros.ReadOnly = true;
+            this.grdPasajeros.Size = new System.Drawing.Size(636, 145);
             this.grdPasajeros.TabIndex = 27;
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(788, 430);
+            this.btnFinalizar.Location = new System.Drawing.Point(517, 430);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(131, 23);
             this.btnFinalizar.TabIndex = 46;
@@ -486,18 +481,29 @@
             this.btnFinalizar.UseVisualStyleBackColor = true;
             this.btnFinalizar.Visible = false;
             // 
+            // btnAtras
+            // 
+            this.btnAtras.Location = new System.Drawing.Point(12, 246);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(75, 23);
+            this.btnAtras.TabIndex = 57;
+            this.btnAtras.Text = "Atras";
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Visible = false;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
+            // 
             // frmCompraPasajes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 465);
-            this.Controls.Add(this.btnPago);
+            this.ClientSize = new System.Drawing.Size(664, 465);
+            this.Controls.Add(this.grdButacas);
+            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnFinalizar);
-            this.Controls.Add(this.chkEncomienda);
             this.Controls.Add(this.grdPasajeros);
             this.Controls.Add(this.groupPasajeros);
-            this.Controls.Add(this.grdButacas);
             this.Controls.Add(this.btnSigPasaje);
+            this.Controls.Add(this.groupComprador);
             this.Name = "frmCompraPasajes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCompraPasajes";
@@ -507,11 +513,10 @@
             this.groupPasajeros.PerformLayout();
             this.groupComprador.ResumeLayout(false);
             this.groupComprador.PerformLayout();
-            this.groupPago.ResumeLayout(false);
-            this.groupPago.PerformLayout();
+            this.groupTarjeta.ResumeLayout(false);
+            this.groupTarjeta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPasajeros)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -542,16 +547,15 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtDNI;
-        private System.Windows.Forms.CheckBox chkEncomienda;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton chkEfectivo;
         private System.Windows.Forms.RadioButton chkTarjeta;
-        private System.Windows.Forms.GroupBox groupPago;
+        private System.Windows.Forms.GroupBox groupTarjeta;
         private System.Windows.Forms.TextBox txtTarjeta;
         private System.Windows.Forms.TextBox txtCuotas;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtCodSeg;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label16;
@@ -559,5 +563,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupComprador;
         private System.Windows.Forms.Button btnPago;
+        private System.Windows.Forms.Button btnAtras;
     }
 }

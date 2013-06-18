@@ -85,7 +85,7 @@ namespace FrbaBus.Login
 
                     this.Close();
                     frmUtnBus.crearMenu(userRole);
-                    frmUtnBus.Visible = true;
+                    //frmUtnBus.Visible = true;
                 }
             }
         }

@@ -17,16 +17,22 @@ namespace FrbaBus.Compra_de_Pasajes
         private DataTable tablaButacas;
         private SqlCommand cmd;
         private SqlDataAdapter adapter;
-        private decimal codigo_viaje;
+        private int dest_id;
         private int cant_pasajes;
+        private int max_cant_pasajes;
         private double kgs;
+        private int lastRowIndex;
+        private SqlConnection globalConn;
 
-        public frmCompraPasajes(decimal codigo_viaje, string cant_pasajes, string kgs)
+        public frmCompraPasajes(SqlConnection globalConn, int dest_id, string cant_pasajes, string kgs)
         {
             InitializeComponent();
+            this.globalConn = globalConn;
             this.cant_pasajes = cant_pasajes.Equals("") ? 0 : int.Parse(cant_pasajes);
+            this.max_cant_pasajes = this.cant_pasajes;
             this.kgs = kgs.Equals("") ? 0 : double.Parse(kgs);
-            this.codigo_viaje = codigo_viaje;
+            this.dest_id = dest_id;
+            grdButacas.Size = new System.Drawing.Size(grdButacas.Size.Width, 260);
             cargarButacas2();
             //cargarButacas();
             crearGridPasajeros();
@@ -35,27 +41,34 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void crearGridPasajeros()
         {
-            grdPasajeros.Columns.Add("codigo_viaje", "Viaje");
-            grdPasajeros.Columns["codigo_viaje"].Visible = false;
-            grdPasajeros.Columns.Add("pers_butaca", "Butaca");
-            grdPasajeros.Columns.Add("pers_piso", "Piso");
-            grdPasajeros.Columns.Add("pers_posicion", "Posicion");
-            grdPasajeros.Columns.Add("clie_dni", "DNI Persona");
-            grdPasajeros.Columns.Add("enco_codigo", "Kg");
-            grdPasajeros.Columns.Add("pasa_precio", "Precio");
-            grdPasajeros.Columns.Add("vouc_dni", "DNI Comprador");
-            grdPasajeros.Columns.Add("vouc_id_tarjeta", "Tarjeta");
-            grdPasajeros.Columns.Add("vouc_cuotas", "Cuotas");
+            grdPasajeros.Columns.Add("proc_id_viaje", "Viaje");
+            //grdPasajeros.Columns["dest_viaje"].Visible = false;
+            grdPasajeros.Columns.Add("proc_butaca", "Butaca");
+            grdPasajeros.Columns.Add("proc_tipo", "Tipo");
+            grdPasajeros.Columns.Add("proc_piso", "Piso");
+            grdPasajeros.Columns.Add("proc_dni_pasajero", "DNI Pasajero");
+            grdPasajeros.Columns.Add("proc_kg_encomienda", "Encomienda (Kg)");
+            grdPasajeros.Columns.Add("proc_precio", "Precio");
+            grdPasajeros.Columns.Add("proc_dni_paga", "DNI Comprador");
+            grdPasajeros.Columns.Add("proc_nro_tarj", "Tarjeta");
+            grdPasajeros.Columns.Add("proc_nro_seg", "Codigo Seguridad");
+            grdPasajeros.Columns.Add("proc_cuotas", "Cuotas");
+            grdPasajeros.AutoResizeColumns();
+            grdPasajeros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            if (kgs > 0)
+            {
+                grdPasajeros.Rows.Add(dest_id, "NULL", "NULL", "NULL", "NULL", kgs, "NULL", "NULL", "NULL", "NULL", "NULL");
+            }
 
         }
 
         private void cargarButacas2()
         {
-            using (SqlConnection conn = Common.conectar())
-            {
+            //using (globalConn/*SqlConnection conn = Common.conectar()*/)
+            //{
                 try
                 {
-                    string query = "select buta_numero, buta_piso, buta_tipo"
+                    string query = "select buta_numero Butaca, buta_piso Piso, buta_tipo Tipo"
                                   + " from PRIVILEGIOS_INSUFICIENTES.Butacas,"
                                   + "     PRIVILEGIOS_INSUFICIENTES.destinos d1"
                                   + " where buta_numero not in("
@@ -67,9 +80,9 @@ namespace FrbaBus.Compra_de_Pasajes
                                   + "                            and pasa_dest_id = dest_id"
                                   + "                            and dest_id = d1.dest_id)"
                                   + " and buta_micro = dest_id_micro"
-                                  + " and dest_id    = '"+ codigo_viaje +"'";
+                                  + " and dest_id    = '" + dest_id + "'";
 
-                    cmd = new SqlCommand(query, conn);
+                    cmd = new SqlCommand(query, globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaButacas = new DataTable();
                     adapter.Fill(tablaButacas);
@@ -81,60 +94,18 @@ namespace FrbaBus.Compra_de_Pasajes
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+                //finally
+                //{
+                //    if (globalConn/*conn*/ != null)
+                //        globalConn/*conn*/.Close();
+                //}
 
 
-            }
-        }
-        private void cargarButacas()
-        {
-            using (SqlConnection conn = Common.conectar())
-            {
-                try
-                {
-                    string query = "SELECT pers_codigo,"
-                                    + "       pers_butaca,"
-                                    + "       pers_piso,"
-                                    + "       pers_posicion "
-                                    + "FROM PRIVILEGIOS_INSUFICIENTES.personas "
-                                    + "WHERE pers_codigo = " + codigo_viaje;
-                    cmd = new SqlCommand(query, conn);
-                    adapter = new SqlDataAdapter(cmd);
-                    tablaButacas = new DataTable();
-                    adapter.Fill(tablaButacas);
-
-                    grdButacas.DataSource = tablaButacas;
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
-
-
-            }
+            //}
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmComprarPasajes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
         {
 
         }
@@ -143,12 +114,12 @@ namespace FrbaBus.Compra_de_Pasajes
         {
             if (txtDNI.Text != "")
             {
-                using (SqlConnection conn = Common.conectar())
-                {
+                //using (globalConn/*SqlConnection conn = Common.conectar()*/)
+                //{
                     try
                     {
                         string query = "select * from PRIVILEGIOS_INSUFICIENTES.clientes where clie_dni = '" + txtDNI.Text + "'";
-                        cmd = new SqlCommand(query, conn);
+                        cmd = new SqlCommand(query, globalConn/*conn*/);
 
                         //cmd.Parameters.AddWithValue("DNI", txtDNI.Text);
 
@@ -165,6 +136,7 @@ namespace FrbaBus.Compra_de_Pasajes
                             txtMail.Text = Convert.ToString(reader["clie_mail"]);
                             dateNac.Value = Convert.ToDateTime(reader["clie_fnac"]);
                         }
+                        reader.Close();
 
                     }
                     catch (Exception ex)
@@ -172,36 +144,40 @@ namespace FrbaBus.Compra_de_Pasajes
                         Console.Write(ex.Message);
                         MessageBox.Show(ex.Message);
                     }
-                    finally
-                    {
-                        if (conn != null)
-                            conn.Close();
-                    }
-                }
+                    //finally
+                    //{
+                    //    if (conn != null)
+                    //        conn.Close();
+                    //}
+                //}
             }
         }
 
         private void btnSigPasaje_Click(object sender, EventArgs e)
         {
-
-            if (cant_pasajes > 0)
-            {         
-                cant_pasajes--;                
-                //decimal butaca = (decimal)grdButacas.CurrentRow.Cells["pers_butaca"].Value;            
-                grdPasajeros.Rows.Add(codigo_viaje, "-", "-", "-", txtDNI.Text, kgs, "-", "-", "-");
+            if (txtDNI.Text == "")
+                MessageBox.Show("Ingrese sus datos");
+            else if (grdButacas.CurrentRow == null)
+                MessageBox.Show("Elija una butaca");
+            else if (cant_pasajes > 0)
+            {
+                cant_pasajes--;
+                btnAtras.Visible = true;
+                grdPasajeros.Rows.Add(dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", "NULL", "NULL", "NULL", "NULL", "NULL");
+                lastRowIndex = grdButacas.CurrentRow.Index;
+                grdButacas.CurrentCell = null;
+                grdButacas.Rows[lastRowIndex].Visible = false;
                 limpiarCampos();
-                if (cant_pasajes == 1)
-                    groupPasajeros.Text = "Encomienda";
             }
-            if(cant_pasajes==0)
+            if (cant_pasajes == 0)
             {
                 groupPasajeros.Text = "Comprador";
+                //groupPasajeros.Left = 5;
                 groupComprador.Visible = true;
-                btnFinalizar.Visible = true;
+                btnPago.Visible = true;
                 btnSigPasaje.Visible = false;
                 chkDiscapacitado.Visible = false;
-                chkEncomienda.Visible = false;
-                grdButacas.Enabled = false;
+                grdButacas.Visible = false;
             }
         }
 
@@ -218,33 +194,63 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void btnPago_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < grdPasajeros.Rows.Count-1; i++)
+            if (txtDNI.Text == "")
+                MessageBox.Show("Ingrese sus datos");
+            else if ((txtTarjeta.Text == "" || txtCodSeg.Text == "" || txtCuotas.Text == "") && !chkEfectivo.Checked)
+                MessageBox.Show("Ingrese los datos de la tarjeta");
+            else
             {
-                grdPasajeros.Rows[i].Cells["vouc_dni"].Value = txtDNI.Text;
-                grdPasajeros.Rows[i].Cells["vouc_id_tarjeta"].Value = txtTarjeta.Text;
-                grdPasajeros.Rows[i].Cells["vouc_cuotas"].Value = txtCuotas.Text;
+                btnFinalizar.Visible = true;
+                for (int i = 0; i < grdPasajeros.Rows.Count; i++)
+                {
+                    grdPasajeros.Rows[i].Cells["proc_dni_paga"].Value = txtDNI.Text;
+                    if (groupTarjeta.Enabled)
+                    {
+                        grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value = txtTarjeta.Text;
+                        grdPasajeros.Rows[i].Cells["proc_nro_seg"].Value = txtCodSeg.Text;
+                        grdPasajeros.Rows[i].Cells["proc_cuotas"].Value = txtCuotas.Text;
+                    }
+                    else
+                    {
+                        grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value = "NULL";
+                        grdPasajeros.Rows[i].Cells["proc_nro_seg"].Value = "NULL";
+                        grdPasajeros.Rows[i].Cells["proc_cuotas"].Value = "NULL";
+                    }
+
+                }
             }
         }
 
         private void chkEfectivo_CheckedChanged(object sender, EventArgs e)
         {
-            groupPago.Enabled = false;
+            groupTarjeta.Enabled = false;
         }
         private void chkTarjeta_CheckedChanged(object sender, EventArgs e)
         {
-            groupPago.Enabled = true;
+            groupTarjeta.Enabled = true;
         }
 
-        private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
-        {
-            groupPasajeros.Enabled = chkEncomienda.Checked ? false : true;
-        }
 
         private void grdButacas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            if (cant_pasajes == 0)
+            {
+                groupComprador.Visible = false;
+                groupPasajeros.Text = "Pasajero";
+                //groupPasajeros.Left = 350;
+                btnPago.Visible = false;
+                btnSigPasaje.Visible = true;
+                grdButacas.Visible = true;
+            }
+            grdPasajeros.Rows.RemoveAt(grdPasajeros.Rows.Count - 1);
+            grdButacas.Rows[lastRowIndex].Visible = true;
+            if ((++cant_pasajes) == max_cant_pasajes)
+                btnAtras.Visible = false;
+        }
     }
 }

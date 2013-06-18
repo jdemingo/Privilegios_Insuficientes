@@ -21,8 +21,16 @@ namespace FrbaBus
             string server = "localhost\\SQLSERVER2008";
             string db = "GD1C2013";
 
-            SqlConnection conn = new SqlConnection(buildConnectionURL(user, passwd, server, db));
-            conn.Open();
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(buildConnectionURL(user, passwd, server, db)); 
+                conn.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             return conn;
         }
 

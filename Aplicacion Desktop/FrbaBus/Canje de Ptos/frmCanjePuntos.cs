@@ -69,10 +69,21 @@ namespace FrbaBus.Canje_de_Ptos
                 {
                     SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) "+
                         "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes "+
-                        "WHERE clie_dni ='" + dni + "' AND clie_id = pasa_cliente", conn);
+                        "WHERE clie_dni ='" + dni + "' AND "+
+                        "clie_id = pasa_cliente AND "+
+                        "DATEDIFF(DAY,pasa_fcompra,GETDATE()) < 365", conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     puntosDisp = (decimal)cmd.ExecuteScalar();
-                }
+
+                    cmd = new SqlCommand("SELECT SUM(stoc_puntos) " +
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados, PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                        "WHERE prem_cliente = clie_id AND " +
+                        "clie_dni = '"+dni+"' AND " +
+                        "DATEDIFF(DAY,prem_fcanje,GETDATE()) < 365 AND" +
+                        "prem_id_premio = stoc_id_premio", conn);
+                    // verificar los vencimientos de canjes y puntos ..
+                        
+                        }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);

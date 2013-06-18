@@ -20,11 +20,14 @@ namespace FrbaBus
         private DataTable tablaPasajes;
         private SqlCommand cmd;
         private SqlDataAdapter adapter;
+        public SqlConnection globalConn;
         public frmUtnBus()
         {
             InitializeComponent();
+            globalConn = Common.conectar();
             //crearMenu(1);
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form frmMicros;
@@ -37,14 +40,14 @@ namespace FrbaBus
             MainMenu mainMenu = new MainMenu();
             this.Menu = mainMenu;
 
-            using (SqlConnection conn = Common.conectar())
-            {
+            //using (globalConn/*SqlConnection conn = Common.conectar()*/)
+            //{
                 try
                 {
                     SqlCommand cmd = new SqlCommand(
                     "SELECT func_nombre " +
                     "FROM PRIVILEGIOS_INSUFICIENTES.funciones " +
-                    "WHERE func_role_id = " + rol, conn);
+                    "WHERE func_role_id = " + rol, globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     DataTable tablaFunciones = new DataTable();
                     adapter.Fill(tablaFunciones);
@@ -60,44 +63,12 @@ namespace FrbaBus
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
-            }
-
-
-
-
-
-            //MenuItem menuConsultaPuntos = new MenuItem("&Consulta de puntos");
-            //MenuItem menuABM = new MenuItem("&ABMs");
-            //MenuItem menuABMMicros = new MenuItem("&Micros");
-            //MenuItem menuABMRecorridos = new MenuItem("&Recorridos");
-            //MenuItem menuCanjePuntos = new MenuItem("&Canje de puntos");
-            //MenuItem menuRegLLegada = new MenuItem("&Registros de llegada");
-            //MenuItem menuCancelarPasajes = new MenuItem("&Cancelar pasajes");
-            //mainMenu.MenuItems.Add(menuConsultaPuntos);
-            //menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
-
-            //// Opciones extras exclusivas del administrador
-            //if (rol == 2)
-            //{
-            //    mainMenu.MenuItems.Add(menuABM);
-            //    menuABM.MenuItems.Add(menuABMMicros);
-            //    menuABM.MenuItems.Add(menuABMRecorridos);
-            //    menuABM.MenuItems.Add(menuCanjePuntos);
-            //    menuABM.MenuItems.Add(menuCancelarPasajes);
-            //    mainMenu.MenuItems.Add(menuRegLLegada);
-            //    menuCancelarPasajes.Click += new System.EventHandler(this.menuCancelarPasajes_Click);
-            //    menuRegLLegada.Click += new System.EventHandler(this.menuRegLLegada_Click);
-            //    menuABMMicros.Click += new System.EventHandler(this.menuABMMicros_Click);
-            //    menuABMRecorridos.Click += new System.EventHandler(this.menuABMRecorridos_Click);
-            //    menuCanjePuntos.Click += new System.EventHandler(this.menuCanjePuntos_Click);
+                //finally
+                //{
+                //    if (globalConn/*conn*/ != null)
+                //        globalConn/*conn*/.Close();
+                //}
             //}
-
-
         }
 
         private void mostrarMenus(MainMenu mainMenu, DataTable tablaFunciones)
@@ -156,21 +127,16 @@ namespace FrbaBus
                 menuTopCli.Click += new System.EventHandler(this.menuTopCli_Click);
             }
 
-
-
-
-
-
         }
 
         private void crearCombos()
         {
-            using (SqlConnection conn = Common.conectar())
-            {
+            //using (globalConn/*SqlConnection conn = Common.conectar()*/)
+            //{
                 try
                 {
                     string query = "select * from PRIVILEGIOS_INSUFICIENTES.ciudades";
-                    cmd = new SqlCommand(query, conn);
+                    cmd = new SqlCommand(query, globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaOrigen = new DataTable();
                     tablaDestino = new DataTable();
@@ -190,12 +156,12 @@ namespace FrbaBus
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
-            }
+                //finally
+                //{
+                //    if (globalConn/*conn*/ != null)
+                //        globalConn/*conn*/.Close();
+                //}
+            //}
         }
         private void frmUtnBus_Load(object sender, EventArgs e)
         {
@@ -252,7 +218,7 @@ namespace FrbaBus
         {
             FrbaBus.Login.frmLogin frmLogin = new FrbaBus.Login.frmLogin(this);
             frmLogin.Show();
-            this.Visible = false;
+            //this.Visible = false;
 
         }
 
@@ -272,16 +238,16 @@ namespace FrbaBus
 
         private void btnCargarPasajes_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = Common.conectar())
-            {
+            //using (globalConn/*SqlConnection conn = Common.conectar()*/)
+            //{
                 try
                 {
                     string query = "SELECT dest_id,"
-                                    + "       dest_fecha_salida,"
-                                    + "       dest_fecha_llegada_estimada,"
-                                    + "       dest_butacas_libres,"
-                                    + "       dest_peso_libre,"
-                                    + "       serv_servicio "
+                                    + "       dest_fecha_salida Salida,"
+                                    + "       dest_fecha_llegada_estimada LLegada,"
+                                    + "       dest_butacas_libres Butacas,"
+                                    + "       dest_peso_libre Kgs,"
+                                    + "       serv_servicio Servicio "
                                     + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
                                     + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
                                     + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
@@ -292,7 +258,7 @@ namespace FrbaBus
                                     + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
                                     + "  and reco_id_destino     = " + cmbDestino.SelectedValue
                                     + "  and reco_viaje_codigo   = serv_viaje_codigo";
-                    cmd = new SqlCommand(query, conn);
+                    cmd = new SqlCommand(query, globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaPasajes = new DataTable();
                     adapter.Fill(tablaPasajes);
@@ -302,8 +268,11 @@ namespace FrbaBus
                     }
                     else
                     {
+                        
                         grdPasajes.DataSource = tablaPasajes;
-                        //grdPasajes.Columns["dest_viaje"].Visible = false;
+                        grdPasajes.AutoResizeColumns();
+                        grdPasajes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        grdPasajes.Columns["dest_id"].Visible = false;
                         grpPasajesDisponibles.Visible = true;
                     }
                 }
@@ -312,23 +281,29 @@ namespace FrbaBus
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+                //finally
+                //{
+                //    if (globalConn/*conn*/ != null)
+                //        globalConn/*conn*/.Close();
+                //}
 
 
-            }
+            //}
 
         }
-
+        private void chkEncomienda_ChangeChecked(object sender, EventArgs e)
+        {
+            lblKgs.Enabled = chkEncomienda.Checked ? true : false;
+            //txtKg.Text = "";
+            txtKg.Enabled = chkEncomienda.Checked ? true : false;
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            // MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
 
             Form frmAbm_compra;
-            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(decimal.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
+            //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
+            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(globalConn,(int)grdPasajes.CurrentRow.Cells["dest_id"].Value, txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
             frmAbm_compra.Visible = true;
         }
 
@@ -341,14 +316,7 @@ namespace FrbaBus
 
             frmAbm_cancelar.Visible = true;
         }
-
-        private void btnComprar_Click(object sender, EventArgs e)
-        {
-            decimal codigo_viaje = (decimal)grdPasajes.CurrentRow.Cells["dest_viaje"].Value;
-            Form frmCompraPasajes = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(codigo_viaje, txtCantPasajes.Text, txtKg.Text);
-            frmCompraPasajes.Visible = true;
-        }
-
+ 
         private void cmbOrigHide_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -357,6 +325,12 @@ namespace FrbaBus
         private void txtCantPasajes_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmUtnBus_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            globalConn.Close();
+            MessageBox.Show("Sesión finalizada");
         }
 
 
