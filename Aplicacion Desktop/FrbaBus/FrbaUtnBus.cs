@@ -25,6 +25,7 @@ namespace FrbaBus
         {
             InitializeComponent();
             globalConn = Common.conectar();
+            Common.iniciarConexionGlobal();
             //crearMenu(1);
         }
 
@@ -47,7 +48,7 @@ namespace FrbaBus
                     SqlCommand cmd = new SqlCommand(
                     "SELECT func_nombre " +
                     "FROM PRIVILEGIOS_INSUFICIENTES.funciones " +
-                    "WHERE func_role_id = " + rol, globalConn/*conn*/);
+                    "WHERE func_role_id = " + rol, Common.globalConn/*globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     DataTable tablaFunciones = new DataTable();
                     adapter.Fill(tablaFunciones);
@@ -136,7 +137,7 @@ namespace FrbaBus
                 try
                 {
                     string query = "select * from PRIVILEGIOS_INSUFICIENTES.ciudades";
-                    cmd = new SqlCommand(query, globalConn/*conn*/);
+                    cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaOrigen = new DataTable();
                     tablaDestino = new DataTable();
@@ -258,7 +259,7 @@ namespace FrbaBus
                                     + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
                                     + "  and reco_id_destino     = " + cmbDestino.SelectedValue
                                     + "  and reco_viaje_codigo   = serv_viaje_codigo";
-                    cmd = new SqlCommand(query, globalConn/*conn*/);
+                    cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaPasajes = new DataTable();
                     adapter.Fill(tablaPasajes);
@@ -303,7 +304,7 @@ namespace FrbaBus
 
             Form frmAbm_compra;
             //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
-            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(globalConn,(int)grdPasajes.CurrentRow.Cells["dest_id"].Value, txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
+            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes((int)grdPasajes.CurrentRow.Cells["dest_id"].Value, grdPasajes.CurrentRow.Cells["Servicio"].Value.ToString(), txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
             frmAbm_compra.Visible = true;
         }
 
@@ -329,7 +330,7 @@ namespace FrbaBus
 
         private void frmUtnBus_FormClosing(object sender, FormClosingEventArgs e)
         {
-            globalConn.Close();
+            Common.globalConn/*globalConn*/.Close();
             MessageBox.Show("Sesión finalizada");
         }
 

@@ -9,6 +9,13 @@ namespace FrbaBus
 {
     public class Common
     {
+        public static SqlConnection globalConn;
+
+        public static void iniciarConexionGlobal()
+        {
+            globalConn = conectar();
+        }
+
         private static string buildConnectionURL(string user, string passwd, string server, string db)
         {
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";

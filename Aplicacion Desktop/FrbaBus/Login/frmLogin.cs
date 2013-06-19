@@ -37,7 +37,7 @@ namespace FrbaBus.Login
             if (camposValidados())
             {
                 bool ingresoExitoso = false;
-                using (SqlConnection conn = Common.conectar())
+                //using (SqlConnection conn = Common.conectar())
                     try
                     {
 
@@ -45,7 +45,7 @@ namespace FrbaBus.Login
                         "SELECT usua_role " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Usuarios " +
                         "WHERE usua_nombre ='" + txtUser.Text + "' AND " +
-                        "usua_pass = '" + txtPass.Text + "'", conn);
+                        "usua_pass = '" + txtPass.Text + "'", Common.globalConn/*conn*/);
                         using (var myReader = cmd.ExecuteReader())
                         {
                             if (myReader.Read())
@@ -75,11 +75,11 @@ namespace FrbaBus.Login
                     {
                         MessageBox.Show(ex.Message);
                     }
-                    finally
-                    {
-                        if (conn != null)
-                            conn.Close();
-                    }
+                    //finally
+                    //{
+                    //    if (conn != null)
+                    //        conn.Close();
+                    //}
                 if (ingresoExitoso)
                 {
 

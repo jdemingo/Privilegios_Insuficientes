@@ -52,6 +52,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupComprador = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.btnPago = new System.Windows.Forms.Button();
+            this.chkEfectivo = new System.Windows.Forms.RadioButton();
+            this.chkTarjeta = new System.Windows.Forms.RadioButton();
             this.groupTarjeta = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtTarjeta = new System.Windows.Forms.TextBox();
@@ -63,13 +66,20 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.chkEfectivo = new System.Windows.Forms.RadioButton();
-            this.chkTarjeta = new System.Windows.Forms.RadioButton();
-            this.btnPago = new System.Windows.Forms.Button();
             this.btnSigPasaje = new System.Windows.Forms.Button();
             this.grdPasajeros = new System.Windows.Forms.DataGridView();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
+            this.chkEncomienda = new System.Windows.Forms.CheckBox();
+            this.lblAtrasEnc = new System.Windows.Forms.Label();
+            this.lblCantPasajes = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblAntText = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblCantEnc = new System.Windows.Forms.Label();
+            this.lblEncText = new System.Windows.Forms.Label();
+            this.lblDisc = new System.Windows.Forms.Label();
+            this.lblDiscText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdButacas)).BeginInit();
             this.groupPasajeros.SuspendLayout();
             this.groupComprador.SuspendLayout();
@@ -113,10 +123,10 @@
             this.groupPasajeros.Controls.Add(this.label1);
             this.groupPasajeros.Location = new System.Drawing.Point(12, 12);
             this.groupPasajeros.Name = "groupPasajeros";
-            this.groupPasajeros.Size = new System.Drawing.Size(274, 228);
+            this.groupPasajeros.Size = new System.Drawing.Size(274, 262);
             this.groupPasajeros.TabIndex = 26;
             this.groupPasajeros.TabStop = false;
-            this.groupPasajeros.Text = "Pasajero";
+            this.groupPasajeros.Text = "Pasaje";
             // 
             // label11
             // 
@@ -313,6 +323,41 @@
             this.label14.TabIndex = 54;
             this.label14.Text = "Forma de pago:";
             // 
+            // btnPago
+            // 
+            this.btnPago.Location = new System.Drawing.Point(181, 196);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(115, 23);
+            this.btnPago.TabIndex = 56;
+            this.btnPago.Text = "Efectuar pago";
+            this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Visible = false;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
+            // 
+            // chkEfectivo
+            // 
+            this.chkEfectivo.AutoSize = true;
+            this.chkEfectivo.Location = new System.Drawing.Point(223, 10);
+            this.chkEfectivo.Name = "chkEfectivo";
+            this.chkEfectivo.Size = new System.Drawing.Size(64, 17);
+            this.chkEfectivo.TabIndex = 53;
+            this.chkEfectivo.Text = "Efectivo";
+            this.chkEfectivo.UseVisualStyleBackColor = true;
+            this.chkEfectivo.CheckedChanged += new System.EventHandler(this.chkEfectivo_CheckedChanged);
+            // 
+            // chkTarjeta
+            // 
+            this.chkTarjeta.AutoSize = true;
+            this.chkTarjeta.Checked = true;
+            this.chkTarjeta.Location = new System.Drawing.Point(115, 10);
+            this.chkTarjeta.Name = "chkTarjeta";
+            this.chkTarjeta.Size = new System.Drawing.Size(109, 17);
+            this.chkTarjeta.TabIndex = 51;
+            this.chkTarjeta.TabStop = true;
+            this.chkTarjeta.Text = "Tarjeta de Credito";
+            this.chkTarjeta.UseVisualStyleBackColor = true;
+            this.chkTarjeta.CheckedChanged += new System.EventHandler(this.chkTarjeta_CheckedChanged);
+            // 
             // groupTarjeta
             // 
             this.groupTarjeta.Controls.Add(this.dateTimePicker1);
@@ -415,44 +460,9 @@
             this.label17.TabIndex = 38;
             this.label17.Text = "Fecha de Vencimiento:";
             // 
-            // chkEfectivo
-            // 
-            this.chkEfectivo.AutoSize = true;
-            this.chkEfectivo.Location = new System.Drawing.Point(223, 10);
-            this.chkEfectivo.Name = "chkEfectivo";
-            this.chkEfectivo.Size = new System.Drawing.Size(64, 17);
-            this.chkEfectivo.TabIndex = 53;
-            this.chkEfectivo.Text = "Efectivo";
-            this.chkEfectivo.UseVisualStyleBackColor = true;
-            this.chkEfectivo.CheckedChanged += new System.EventHandler(this.chkEfectivo_CheckedChanged);
-            // 
-            // chkTarjeta
-            // 
-            this.chkTarjeta.AutoSize = true;
-            this.chkTarjeta.Checked = true;
-            this.chkTarjeta.Location = new System.Drawing.Point(115, 10);
-            this.chkTarjeta.Name = "chkTarjeta";
-            this.chkTarjeta.Size = new System.Drawing.Size(109, 17);
-            this.chkTarjeta.TabIndex = 51;
-            this.chkTarjeta.TabStop = true;
-            this.chkTarjeta.Text = "Tarjeta de Credito";
-            this.chkTarjeta.UseVisualStyleBackColor = true;
-            this.chkTarjeta.CheckedChanged += new System.EventHandler(this.chkTarjeta_CheckedChanged);
-            // 
-            // btnPago
-            // 
-            this.btnPago.Location = new System.Drawing.Point(181, 196);
-            this.btnPago.Name = "btnPago";
-            this.btnPago.Size = new System.Drawing.Size(115, 23);
-            this.btnPago.TabIndex = 56;
-            this.btnPago.Text = "Efectuar pago";
-            this.btnPago.UseVisualStyleBackColor = true;
-            this.btnPago.Visible = false;
-            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
-            // 
             // btnSigPasaje
             // 
-            this.btnSigPasaje.Location = new System.Drawing.Point(166, 246);
+            this.btnSigPasaje.Location = new System.Drawing.Point(166, 280);
             this.btnSigPasaje.Name = "btnSigPasaje";
             this.btnSigPasaje.Size = new System.Drawing.Size(120, 23);
             this.btnSigPasaje.TabIndex = 45;
@@ -465,7 +475,7 @@
             this.grdPasajeros.AllowUserToAddRows = false;
             this.grdPasajeros.AllowUserToDeleteRows = false;
             this.grdPasajeros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPasajeros.Location = new System.Drawing.Point(12, 279);
+            this.grdPasajeros.Location = new System.Drawing.Point(12, 333);
             this.grdPasajeros.Name = "grdPasajeros";
             this.grdPasajeros.ReadOnly = true;
             this.grdPasajeros.Size = new System.Drawing.Size(636, 145);
@@ -473,7 +483,7 @@
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(517, 430);
+            this.btnFinalizar.Location = new System.Drawing.Point(517, 484);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(131, 23);
             this.btnFinalizar.TabIndex = 46;
@@ -483,7 +493,7 @@
             // 
             // btnAtras
             // 
-            this.btnAtras.Location = new System.Drawing.Point(12, 246);
+            this.btnAtras.Location = new System.Drawing.Point(12, 280);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(75, 23);
             this.btnAtras.TabIndex = 57;
@@ -492,11 +502,112 @@
             this.btnAtras.Visible = false;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
+            // chkEncomienda
+            // 
+            this.chkEncomienda.AutoSize = true;
+            this.chkEncomienda.Location = new System.Drawing.Point(25, 247);
+            this.chkEncomienda.Name = "chkEncomienda";
+            this.chkEncomienda.Size = new System.Drawing.Size(85, 17);
+            this.chkEncomienda.TabIndex = 71;
+            this.chkEncomienda.Text = "Encomienda";
+            this.chkEncomienda.UseVisualStyleBackColor = true;
+            // 
+            // lblAtrasEnc
+            // 
+            this.lblAtrasEnc.AutoSize = true;
+            this.lblAtrasEnc.Location = new System.Drawing.Point(60, 310);
+            this.lblAtrasEnc.Name = "lblAtrasEnc";
+            this.lblAtrasEnc.Size = new System.Drawing.Size(10, 13);
+            this.lblAtrasEnc.TabIndex = 72;
+            this.lblAtrasEnc.Text = "-";
+            // 
+            // lblCantPasajes
+            // 
+            this.lblCantPasajes.AutoSize = true;
+            this.lblCantPasajes.Location = new System.Drawing.Point(216, 310);
+            this.lblCantPasajes.Name = "lblCantPasajes";
+            this.lblCantPasajes.Size = new System.Drawing.Size(13, 13);
+            this.lblCantPasajes.TabIndex = 73;
+            this.lblCantPasajes.Text = "0";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(160, 310);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(50, 13);
+            this.label18.TabIndex = 74;
+            this.label18.Text = "A cargar:";
+            // 
+            // lblAntText
+            // 
+            this.lblAntText.AutoSize = true;
+            this.lblAntText.Location = new System.Drawing.Point(13, 310);
+            this.lblAntText.Name = "lblAntText";
+            this.lblAntText.Size = new System.Drawing.Size(46, 13);
+            this.lblAntText.TabIndex = 75;
+            this.lblAntText.Text = "Anterior:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(230, 310);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 76;
+            this.label19.Text = "Pasajes";
+            // 
+            // lblCantEnc
+            // 
+            this.lblCantEnc.AutoSize = true;
+            this.lblCantEnc.Location = new System.Drawing.Point(280, 310);
+            this.lblCantEnc.Name = "lblCantEnc";
+            this.lblCantEnc.Size = new System.Drawing.Size(13, 13);
+            this.lblCantEnc.TabIndex = 77;
+            this.lblCantEnc.Text = "0";
+            // 
+            // lblEncText
+            // 
+            this.lblEncText.AutoSize = true;
+            this.lblEncText.Location = new System.Drawing.Point(294, 310);
+            this.lblEncText.Name = "lblEncText";
+            this.lblEncText.Size = new System.Drawing.Size(76, 13);
+            this.lblEncText.TabIndex = 78;
+            this.lblEncText.Text = "Encomienda/s";
+            // 
+            // lblDisc
+            // 
+            this.lblDisc.AutoSize = true;
+            this.lblDisc.Location = new System.Drawing.Point(635, 310);
+            this.lblDisc.Name = "lblDisc";
+            this.lblDisc.Size = new System.Drawing.Size(13, 13);
+            this.lblDisc.TabIndex = 79;
+            this.lblDisc.Text = "0";
+            // 
+            // lblDiscText
+            // 
+            this.lblDiscText.AutoSize = true;
+            this.lblDiscText.Location = new System.Drawing.Point(435, 310);
+            this.lblDiscText.Name = "lblDiscText";
+            this.lblDiscText.Size = new System.Drawing.Size(194, 13);
+            this.lblDiscText.TabIndex = 80;
+            this.lblDiscText.Text = "Cantidad de discapacitados agregados:";
+            // 
             // frmCompraPasajes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 465);
+            this.ClientSize = new System.Drawing.Size(664, 518);
+            this.Controls.Add(this.lblDiscText);
+            this.Controls.Add(this.lblDisc);
+            this.Controls.Add(this.lblEncText);
+            this.Controls.Add(this.lblCantEnc);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.lblAntText);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.lblCantPasajes);
+            this.Controls.Add(this.lblAtrasEnc);
+            this.Controls.Add(this.chkEncomienda);
             this.Controls.Add(this.grdButacas);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnFinalizar);
@@ -517,6 +628,7 @@
             this.groupTarjeta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPasajeros)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -564,5 +676,15 @@
         private System.Windows.Forms.GroupBox groupComprador;
         private System.Windows.Forms.Button btnPago;
         private System.Windows.Forms.Button btnAtras;
+        private System.Windows.Forms.CheckBox chkEncomienda;
+        private System.Windows.Forms.Label lblAtrasEnc;
+        private System.Windows.Forms.Label lblCantPasajes;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblAntText;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblCantEnc;
+        private System.Windows.Forms.Label lblEncText;
+        private System.Windows.Forms.Label lblDisc;
+        private System.Windows.Forms.Label lblDiscText;
     }
 }
