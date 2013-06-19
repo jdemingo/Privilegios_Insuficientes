@@ -51,6 +51,7 @@
             this.dateLLegada.Name = "dateLLegada";
             this.dateLLegada.Size = new System.Drawing.Size(108, 20);
             this.dateLLegada.TabIndex = 1;
+            this.dateLLegada.Value = new System.DateTime(2012, 7, 1, 0, 0, 0, 0);
             // 
             // label1
             // 
@@ -128,9 +129,12 @@
             // 
             // grdMicros
             // 
+            this.grdMicros.AllowUserToAddRows = false;
+            this.grdMicros.AllowUserToDeleteRows = false;
             this.grdMicros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMicros.Location = new System.Drawing.Point(16, 116);
             this.grdMicros.Name = "grdMicros";
+            this.grdMicros.ReadOnly = true;
             this.grdMicros.Size = new System.Drawing.Size(552, 98);
             this.grdMicros.TabIndex = 9;
             // 
@@ -143,6 +147,7 @@
             this.timeLLegada.ShowUpDown = true;
             this.timeLLegada.Size = new System.Drawing.Size(86, 20);
             this.timeLLegada.TabIndex = 2;
+            this.timeLLegada.Value = new System.DateTime(2013, 6, 19, 19, 1, 0, 0);
             // 
             // btnAgregar
             // 

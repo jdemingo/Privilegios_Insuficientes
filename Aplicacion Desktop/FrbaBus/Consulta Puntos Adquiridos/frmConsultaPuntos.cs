@@ -28,7 +28,10 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             cargarGridDelDNI(txtDNI.Text);
             cargarGridCanjesDelDNI(txtDNI.Text);
-            lblTotalPuntosDisp.Text = (decimal.Parse(lblTotalPuntos.Text) - decimal.Parse(lblTotalCanjes.Text)).ToString();
+            decimal puntosDisp = decimal.Parse(lblTotalPuntos.Text) - decimal.Parse(lblTotalCanjes.Text);
+            if(puntosDisp < 0)
+                puntosDisp = 0;
+            lblTotalPuntosDisp.Text = puntosDisp.ToString();
         }
 
 
@@ -105,6 +108,7 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                         "SELECT datepart(year,prem_fcanje) Año, DATENAME(month,prem_fcanje) Mes, SUM(stoc_puntos*prem_id_cantidad) Puntos " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados " +
                         "WHERE clie_dni =" + txtDNI.Text + " AND " +
+                        "DATEDIFF(DAY,prem_fcanje,GETDATE())<365 AND " +
                         "prem_cliente = clie_id AND "+
                         "prem_id_premio = stoc_id_premio "+
                         "GROUP BY datepart(year,prem_fcanje), DATENAME(month,prem_fcanje),datepart(month,prem_fcanje) " +

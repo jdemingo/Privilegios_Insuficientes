@@ -62,28 +62,30 @@ namespace FrbaBus.Canje_de_Ptos
             }
         }
 
-        private decimal puntosDisponibles(string dni) {
+        private decimal puntosDisponibles(string dni)
+        {
             decimal puntosDisp = -1;
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) "+
-                        "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes "+
-                        "WHERE clie_dni ='" + dni + "' AND "+
-                        "clie_id = pasa_cliente AND "+
+                    SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) " +
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                        "WHERE clie_dni ='" + dni + "' AND " +
+                        "clie_id = pasa_cliente AND " +
                         "DATEDIFF(DAY,pasa_fcompra,GETDATE()) < 365", conn);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    puntosDisp = (decimal)cmd.ExecuteScalar();
+                    decimal puntos = (decimal)cmd.ExecuteScalar();
 
                     cmd = new SqlCommand("SELECT SUM(stoc_puntos) " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                         "WHERE prem_cliente = clie_id AND " +
-                        "clie_dni = '"+dni+"' AND " +
-                        "DATEDIFF(DAY,prem_fcanje,GETDATE()) < 365 AND" +
+                        "clie_dni = '" + dni + "' AND " +
+                        "DATEDIFF(DAY,prem_fcanje,GETDATE()) < 365 AND " +
                         "prem_id_premio = stoc_id_premio", conn);
-                    // verificar los vencimientos de canjes y puntos ..
-                        
-                        }
+
+                    decimal canjes = (decimal)cmd.ExecuteScalar();
+                    puntosDisp = (puntos - canjes) < 0 ? 0 : (puntos - canjes);
+
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -102,7 +104,7 @@ namespace FrbaBus.Canje_de_Ptos
             using (SqlConnection conn = Common.conectar())
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad "+
+                    SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
                         "WHERE stoc_id_premio =" + id_premio, conn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -123,61 +125,62 @@ namespace FrbaBus.Canje_de_Ptos
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            
-            if(camposValidados()) {
-            int premioId = (int)grdProductos.CurrentRow.Cells["stoc_id_premio"].Value;
-            using (SqlConnection conn = Common.conectar())
-                try
-                {
-                    decimal ptsDisp;
-                    int cantStock;
-                    if ((ptsDisp = puntosDisponibles(txtDNI.Text)) < decimal.Parse(lblPuntosReq.Text))
-                    {
-                        MessageBox.Show("El cliente tiene " + ptsDisp.ToString() + " puntos, pero requiere " + lblPuntosReq.Text + " puntos");
-                    }
-                    else if((cantStock = cantStockDelPremio(premioId))<int.Parse(txtCantidad.Text))
-                    {
-                        MessageBox.Show("La cantidad en stock del premio elegido es " + cantStock.ToString() + " pero se desean " + txtCantidad.Text);
-                    }
-                    else
-                    {
-                        SqlCommand command = new SqlCommand(
-                        "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
-                        "VALUES ((SELECT clie_id "+
-                                 "FROM PRIVILEGIOS_INSUFICIENTES.Clientes " +
-                                 "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + ","+txtCantidad.Text+",@value)", conn);
-                        //DateTime.Parse("");
-                        //String.Format("{0:DD MM YYYY}",dateTimePicker1);
-                        command.Parameters.AddWithValue("@value", DateTime.Today);
-                        command.ExecuteNonQuery();
-                        command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
-                        "SET stoc_cantidad = stoc_cantidad-"+txtCantidad.Text+" "+
-                        "WHERE stoc_id_premio = "+premioId+"";
-                        //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Canje registrado con éxito.");
-                    }
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+            if (camposValidados())
+            {
+                int premioId = (int)grdProductos.CurrentRow.Cells["stoc_id_premio"].Value;
+                using (SqlConnection conn = Common.conectar())
+                    try
+                    {
+                        decimal ptsDisp;
+                        int cantStock;
+                        if ((ptsDisp = puntosDisponibles(txtDNI.Text)) < decimal.Parse(lblPuntosReq.Text))
+                        {
+                            MessageBox.Show("El cliente tiene " + ptsDisp.ToString() + " puntos, pero requiere " + lblPuntosReq.Text + " puntos");
+                        }
+                        else if ((cantStock = cantStockDelPremio(premioId)) < int.Parse(txtCantidad.Text))
+                        {
+                            MessageBox.Show("La cantidad en stock del premio elegido es " + cantStock.ToString() + " pero se desean " + txtCantidad.Text);
+                        }
+                        else
+                        {
+                            SqlCommand command = new SqlCommand(
+                            "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
+                            "VALUES ((SELECT clie_id " +
+                                     "FROM PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                                     "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + "," + txtCantidad.Text + ",@value)", conn);
+                            //DateTime.Parse("");
+                            //String.Format("{0:DD MM YYYY}",dateTimePicker1);
+                            command.Parameters.AddWithValue("@value", DateTime.Today);
+                            command.ExecuteNonQuery();
+                            command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
+                            "SET stoc_cantidad = stoc_cantidad-" + txtCantidad.Text + " " +
+                            "WHERE stoc_id_premio = " + premioId + "";
+                            //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Canje registrado con éxito.");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                            conn.Close();
+                    }
             }
         }
 
         private void grdProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             actualizarCantidadRequerida();
-            
+
         }
 
-        private bool camposValidados() 
+        private bool camposValidados()
         {
             if (txtDNI.Text.Equals(""))
                 MessageBox.Show("Falta llenar el campo DNI");
