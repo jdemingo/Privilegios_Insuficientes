@@ -553,19 +553,19 @@ namespace FrbaBus.Compra_de_Pasajes
                                "proc_cuotas," +
                                "proc_descuento)" +
                                "SELECT " +
-                                grdPasajeros.Rows[i].Cells["proc_fcompra"].Value + "," +
+                                "'"+grdPasajeros.Rows[i].Cells["proc_fcompra"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_id_viaje"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_butaca"].Value + "," +
-                                grdPasajeros.Rows[i].Cells["proc_tipo"].Value + "," +
+                                "'" + grdPasajeros.Rows[i].Cells["proc_tipo"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_piso"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_dni_pasajero"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_kg_encomienda"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_precio"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_dni_paga"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value + "," +
-                                grdPasajeros.Rows[i].Cells["proc_tipo_fvenc"].Value + "," +
+                                "'" + grdPasajeros.Rows[i].Cells["proc_tipo_fvenc"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_cuotas"].Value + "," +
-                                grdPasajeros.Rows[i].Cells["proc_descuento"].Value;
+                                "'" + grdPasajeros.Rows[i].Cells["proc_descuento"].Value + "'";
                 SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
                 cmd = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);

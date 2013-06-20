@@ -103,3 +103,22 @@ C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\F
 C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
 C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
 C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.exe
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.pdb
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmMicroDistri.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Micro.frmMicros.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.frmCancelarPasajes.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.frmCompraPasajes.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.Form2.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Login.frmLogin.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Properties.Resources.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Registrar_LLegada_Micro.frmRegLLegada.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
