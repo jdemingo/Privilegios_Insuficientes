@@ -76,3 +76,5 @@ C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBu
 C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.exe
 C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.pdb
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Compra_de_Pasajes.frmCompraPasajes.resources
+C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
+C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Abm_Roles.frmRoles.resources

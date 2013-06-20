@@ -56,14 +56,14 @@
             this.chkEfectivo = new System.Windows.Forms.RadioButton();
             this.chkTarjeta = new System.Windows.Forms.RadioButton();
             this.groupTarjeta = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmbCuotas = new System.Windows.Forms.ComboBox();
+            this.dateVenc = new System.Windows.Forms.DateTimePicker();
             this.txtTarjeta = new System.Windows.Forms.TextBox();
-            this.txtCuotas = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCodSeg = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbTipoTarj = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnSigPasaje = new System.Windows.Forms.Button();
@@ -360,14 +360,14 @@
             // 
             // groupTarjeta
             // 
-            this.groupTarjeta.Controls.Add(this.dateTimePicker1);
+            this.groupTarjeta.Controls.Add(this.cmbCuotas);
+            this.groupTarjeta.Controls.Add(this.dateVenc);
             this.groupTarjeta.Controls.Add(this.txtTarjeta);
-            this.groupTarjeta.Controls.Add(this.txtCuotas);
             this.groupTarjeta.Controls.Add(this.label12);
             this.groupTarjeta.Controls.Add(this.label13);
             this.groupTarjeta.Controls.Add(this.txtCodSeg);
             this.groupTarjeta.Controls.Add(this.label15);
-            this.groupTarjeta.Controls.Add(this.comboBox1);
+            this.groupTarjeta.Controls.Add(this.cmbTipoTarj);
             this.groupTarjeta.Controls.Add(this.label16);
             this.groupTarjeta.Controls.Add(this.label17);
             this.groupTarjeta.Location = new System.Drawing.Point(8, 27);
@@ -376,14 +376,22 @@
             this.groupTarjeta.TabIndex = 40;
             this.groupTarjeta.TabStop = false;
             // 
-            // dateTimePicker1
+            // cmbCuotas
             // 
-            this.dateTimePicker1.CustomFormat = "MM-yy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(126, 69);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(67, 20);
-            this.dateTimePicker1.TabIndex = 43;
+            this.cmbCuotas.FormattingEnabled = true;
+            this.cmbCuotas.Location = new System.Drawing.Point(126, 121);
+            this.cmbCuotas.Name = "cmbCuotas";
+            this.cmbCuotas.Size = new System.Drawing.Size(67, 21);
+            this.cmbCuotas.TabIndex = 44;
+            // 
+            // dateVenc
+            // 
+            this.dateVenc.CustomFormat = "MM-yy";
+            this.dateVenc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateVenc.Location = new System.Drawing.Point(126, 69);
+            this.dateVenc.Name = "dateVenc";
+            this.dateVenc.Size = new System.Drawing.Size(67, 20);
+            this.dateVenc.TabIndex = 43;
             // 
             // txtTarjeta
             // 
@@ -391,13 +399,6 @@
             this.txtTarjeta.Name = "txtTarjeta";
             this.txtTarjeta.Size = new System.Drawing.Size(153, 20);
             this.txtTarjeta.TabIndex = 33;
-            // 
-            // txtCuotas
-            // 
-            this.txtCuotas.Location = new System.Drawing.Point(126, 122);
-            this.txtCuotas.Name = "txtCuotas";
-            this.txtCuotas.Size = new System.Drawing.Size(67, 20);
-            this.txtCuotas.TabIndex = 42;
             // 
             // label12
             // 
@@ -433,14 +434,15 @@
             this.label15.TabIndex = 40;
             this.label15.Text = "Tipo de tarjeta:";
             // 
-            // comboBox1
+            // cmbTipoTarj
             // 
-            this.comboBox1.DisplayMember = "S";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 95);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(67, 21);
-            this.comboBox1.TabIndex = 39;
+            this.cmbTipoTarj.DisplayMember = "S";
+            this.cmbTipoTarj.FormattingEnabled = true;
+            this.cmbTipoTarj.Location = new System.Drawing.Point(126, 95);
+            this.cmbTipoTarj.Name = "cmbTipoTarj";
+            this.cmbTipoTarj.Size = new System.Drawing.Size(67, 21);
+            this.cmbTipoTarj.TabIndex = 39;
+            this.cmbTipoTarj.SelectedIndexChanged += new System.EventHandler(this.cmbTipoTarj_SelectedIndexChanged);
             // 
             // label16
             // 
@@ -490,6 +492,7 @@
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = true;
             this.btnFinalizar.Visible = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // btnAtras
             // 
@@ -665,15 +668,14 @@
         private System.Windows.Forms.RadioButton chkTarjeta;
         private System.Windows.Forms.GroupBox groupTarjeta;
         private System.Windows.Forms.TextBox txtTarjeta;
-        private System.Windows.Forms.TextBox txtCuotas;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCodSeg;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbTipoTarj;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateVenc;
         private System.Windows.Forms.GroupBox groupComprador;
         private System.Windows.Forms.Button btnPago;
         private System.Windows.Forms.Button btnAtras;
@@ -687,5 +689,6 @@
         private System.Windows.Forms.Label lblEncText;
         private System.Windows.Forms.Label lblDisc;
         private System.Windows.Forms.Label lblDiscText;
+        private System.Windows.Forms.ComboBox cmbCuotas;
     }
 }
