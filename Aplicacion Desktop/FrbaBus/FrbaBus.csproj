@@ -274,6 +274,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Abm Recorrido\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

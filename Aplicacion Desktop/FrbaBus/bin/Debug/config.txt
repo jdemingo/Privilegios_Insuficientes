@@ -1,0 +1,5 @@
+﻿user:gd
+bd:GD1C2013
+server:localhost\SQLSERVER2008
+pass:gd2013
+fecha:2013-19-06

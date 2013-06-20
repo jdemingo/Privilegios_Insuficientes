@@ -10,6 +10,10 @@ namespace FrbaBus
     public class Common
     {
         public static SqlConnection globalConn;
+        private static string user = "", bd = "", server = "", pass = "";
+        public static string fecha = "";
+        //public static string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+        public static string path = Application.StartupPath;
 
         public static void iniciarConexionGlobal()
         {
@@ -21,14 +25,15 @@ namespace FrbaBus
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";
         }
 
-        private void obtenerDatosfile()
+        private static void obtenerDatosfile()
         {
             int counter = 0;
             string line;
-            string user = "", bd = "", server = "", fecha = "", pass = "";
+            //string user = "", bd = "", server = "", fecha = "", pass = "";
             // Read the file and display it line by line.
+            string pathConfig = path+"\\config.txt";
             System.IO.StreamReader file =
-                new System.IO.StreamReader(@"c:\BD\test.txt");
+                new System.IO.StreamReader(@pathConfig);
             while ((line = file.ReadLine()) != null)
             {
                 string[] word = line.Split(':');
@@ -53,22 +58,26 @@ namespace FrbaBus
                 counter++;
             }
             file.Close();
-            MessageBox.Show("Usuario:" + user + " Bd:" + bd + " Server:" + server + " Pass:" + pass + " Fecha:" + fecha);
+            //MessageBox.Show("Usuario:" + user + " Bd:" + bd + " Server:" + server + " Pass:" + pass + " Fecha:" + fecha);
         }
 
 
         public static SqlConnection conectar()
         {
             //Tomar de archivo !!
-            string user = "gd";
-            string passwd = "gd2013";
-            string server = "localhost\\SQLSERVER2008";
-            string db = "GD1C2013";
+            //string user = "gd";
+            //string pass = "gd2013";
+            //string server = "localhost\\SQLSERVER2008";
+            //string bd = "GD1C2013";
+
+            obtenerDatosfile();
 
             SqlConnection conn = null;
             try
             {
-                conn = new SqlConnection(buildConnectionURL(user, passwd, server, db)); 
+                MessageBox.Show("info: "+user + " " + pass + " " + server + " " + bd);
+                //MessageBox.Show("info: " + Common.user + " " + Common.pass + " " + Common.server + " " + Common.bd);
+                conn = new SqlConnection(buildConnectionURL(user, pass, server, bd)); 
                 conn.Open();
             }
             catch (Exception e)
