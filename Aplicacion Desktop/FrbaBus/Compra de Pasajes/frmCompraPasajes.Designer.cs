@@ -511,6 +511,7 @@
             this.chkEncomienda.TabIndex = 71;
             this.chkEncomienda.Text = "Encomienda";
             this.chkEncomienda.UseVisualStyleBackColor = true;
+            this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
             // 
             // lblAtrasEnc
             // 

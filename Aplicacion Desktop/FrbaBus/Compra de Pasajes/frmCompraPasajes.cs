@@ -28,6 +28,8 @@ namespace FrbaBus.Compra_de_Pasajes
         private decimal persona_base = 0;
         private string servicio;
         private decimal tipo_porcentaje;
+        private decimal descJubilado = (decimal) 0.5;
+        private decimal descDiscapacitado = 0;
 
         public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes, string kgs)
         {
@@ -203,8 +205,8 @@ namespace FrbaBus.Compra_de_Pasajes
             try
             {
                 SqlCommand cmd = new SqlCommand("SELECT tipo_porcentaje " +
-                                                "FROM PRIVILEGIOS_INSUFICIENTES.tipos "+
-                                                "WHERE tipo_servicio = '"+servicio+"'", Common.globalConn);
+                                                "FROM PRIVILEGIOS_INSUFICIENTES.tipos " +
+                                                "WHERE tipo_servicio = '" + servicio + "'", Common.globalConn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                     tipo_porcentaje = Convert.ToDecimal(dr["tipo_porcentaje"]);
@@ -216,60 +218,76 @@ namespace FrbaBus.Compra_de_Pasajes
             }
         }
 
-
-        private void btnSigPasaje_Click(object sender, EventArgs e)
+        private bool validacion()
         {
             if (txtDNI.Text == "")
+            {
                 MessageBox.Show("Ingrese sus datos");
+                return false;
+            }
             else if (grdButacas.CurrentRow == null && !chkEncomienda.Checked)
+            {
                 MessageBox.Show("Elija una butaca");
-            // Es un pasaje
-            else if (cant_pasajes > 0 && !chkEncomienda.Checked)
+                return false;
+            }
+            return true;
+        }
+        private void btnSigPasaje_Click(object sender, EventArgs e)
+        {
+            if (validacion())
             {
-                cant_pasajes--;
-                btnAtras.Visible = true;
-                decimal precio = persona_base * tipo_porcentaje;
-                
-                string discJub = obtenerDiscJub();
-                if (discJub.Equals("Discapacitado"))
-                    precio = 0;
-                else if (discJub.Equals("Jubilado"))
-                    precio = precio * (decimal) 0.5;
-                grdPasajeros.Rows.Add(dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", precio, "NULL", "NULL", "NULL", "NULL", discJub);
-                // Oculto y guardo en rowIndexs la ultima butaca ocultada
-                rowIndexs.Add(grdButacas.CurrentRow.Index);
-                grdButacas.CurrentCell = null;
-                grdButacas.Rows[rowIndexs.Last()].Visible = false;
-                limpiarCampos();
-                // Actualiza posicion de encomienda
-                if (atrasEnc > 0)
+                // Es un pasaje
+                if (cant_pasajes > 0 && !chkEncomienda.Checked)
+                {
+                    cant_pasajes--;
+                    btnAtras.Visible = true;
+                    //decimal precio = persona_base * tipo_porcentaje;
+                    decimal precio = persona_base;
+
+                    string discJub = obtenerDiscJub();
+                    if (discJub.Equals("Discapacitado"))
+                        precio = precio * descDiscapacitado;
+                    else if (discJub.Equals("Jubilado"))
+                        precio = precio * descJubilado;
+                    grdPasajeros.Rows.Add(dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", precio, "NULL", "NULL", "NULL", "NULL", discJub);
+                    // Oculto y guardo en rowIndexs la ultima butaca ocultada
+                    rowIndexs.Add(grdButacas.CurrentRow.Index);
+                    grdButacas.CurrentCell = null;
+                    grdButacas.Rows[rowIndexs.Last()].Visible = false;
+                    limpiarCampos();
+                    // Actualiza posicion de encomienda
+                    if (atrasEnc > 0)
+                        atrasEnc++;
+                    // Es el ultimo pasaje
+                    if (cant_pasajes == 0 && kgs > 0)
+                        cambiarObligacionEnc();
+                }
+                // Es una encomienda
+                else if (chkEncomienda.Checked)
+                {
+                    btnAtras.Visible = true;
+                    grdPasajeros.Rows.Add(dest_id, "NULL", "NULL", "NULL", txtDNI.Text, kgs, kg_base * kgs, "NULL", "NULL", "NULL", "NULL", "NULL");
+                    limpiarCampos();
                     atrasEnc++;
-                // Es el ultimo pasaje
-                if (cant_pasajes == 0 && kgs > 0)
-                    cambiarObligacionEnc();
+                    if (atrasDisc > 0)
+                        atrasDisc++;
+                    cambiarVisibilidadEnc();
+                }
+                // Es el ultimo pasaje o encomienda
+                if ((cant_pasajes == 0 && atrasEnc > 0) || (cant_pasajes == 0 && kgs == 0))
+                {
+                    cambiarModo();
+                }
+                else if (atrasDisc == 0)
+                    chkDiscapacitado.Visible = true;
+                actualizarDetalles();
             }
-            // Es una encomienda
-            else if (chkEncomienda.Checked)
-            {
-                btnAtras.Visible = true;
-                grdPasajeros.Rows.Add(dest_id, "NULL", "NULL", "NULL", txtDNI.Text, kgs, kg_base*kgs, "NULL", "NULL", "NULL", "NULL", "NULL");
-                limpiarCampos();
-                atrasEnc++;
-                atrasDisc++;
-                cambiarVisibilidadEnc();
-            }
-            // Es el ultimo pasaje o encomienda
-            if ((cant_pasajes == 0 && atrasEnc > 0) || (cant_pasajes == 0 && kgs == 0))
-            {
-                cambiarModo();
-            }
-            actualizarDetalles();
         }
 
         private void cambiarVisibilidadEnc()
         {
-            chkEncomienda.Checked = chkEncomienda.Checked? false : true;
-            chkEncomienda.Visible = chkEncomienda.Visible? false : true;
+            chkEncomienda.Checked = chkEncomienda.Checked ? false : true;
+            chkEncomienda.Visible = chkEncomienda.Visible ? false : true;
         }
 
         private void cambiarObligacionEnc()
@@ -316,8 +334,7 @@ namespace FrbaBus.Compra_de_Pasajes
             lblCantPasajes.Text = cant_pasajes.ToString();
             lblDisc.Text = atrasDisc == 0 ? "0" : "1";
             //lblDisc.Text = atrasDisc.ToString();
-            if (cant_pasajes == max_cant_pasajes)
-                lblAtrasEnc.Text = "-";
+
         }
 
         private void cambiarModo()
@@ -344,6 +361,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void btnPago_Click(object sender, EventArgs e)
         {
+
             if (txtDNI.Text == "")
                 MessageBox.Show("Ingrese sus datos");
             else if ((txtTarjeta.Text == "" || txtCodSeg.Text == "" || txtCuotas.Text == "") && !chkEfectivo.Checked)
@@ -393,7 +411,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 cambiarModo();
             // Obligando a cargar encomienda
             else if (cant_pasajes == 0 && kgs > 0)
-                cambiarObligacionEnc();               
+                cambiarObligacionEnc();
 
             // Siempre que se pulsa atras, elimino una fila del grid pasajeros
             grdPasajeros.Rows.RemoveAt(grdPasajeros.Rows.Count - 1);
@@ -405,8 +423,8 @@ namespace FrbaBus.Compra_de_Pasajes
                 // Muestro la ultima butaca ocultada y la elimino de rowIndexs para que la ultima sea la anterior 
                 grdButacas.Rows[rowIndexs.Last()].Visible = true;
                 rowIndexs.RemoveAt(rowIndexs.Count - 1);
-                
-                if ((++cant_pasajes) == max_cant_pasajes)
+
+                if ((++cant_pasajes) >= max_cant_pasajes && atrasEnc == 0)
                     btnAtras.Visible = false;
             }
             // Si hay encomienda y se cargo
@@ -415,7 +433,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 // Si la encomienda es la anterior, vuelvo a mostrar el checkbox
                 if (atrasEnc == 1)
                 {
-                    cambiarVisibilidadEnc(); 
+                    cambiarVisibilidadEnc();
                     // Si no hay mas pasajes a cargar, obligo a cargar
                     if (cant_pasajes == 0)
                         chkEncomienda.AutoCheck = false;
@@ -423,6 +441,8 @@ namespace FrbaBus.Compra_de_Pasajes
                         chkEncomienda.AutoCheck = true;
                 }
                 atrasEnc--;
+                if (cant_pasajes >= max_cant_pasajes && atrasEnc == 0)
+                    btnAtras.Visible = false;
             }
             chkDiscapacitado.Checked = false;
             // Si se cargo un discapacitado
@@ -433,7 +453,23 @@ namespace FrbaBus.Compra_de_Pasajes
                     cambiarVisibilidadDisc();
                 atrasDisc--;
             }
-            actualizarDetalles();            
+            actualizarDetalles();
+            if (cant_pasajes >= max_cant_pasajes && atrasEnc == 0)
+                lblAtrasEnc.Text = "-";
+        }
+
+        private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
+        {
+            chkDiscapacitado.Checked = false;
+            if (chkEncomienda.Checked && atrasDisc == 0)
+            {
+
+                chkDiscapacitado.Visible = false;
+            }
+            else if (!chkEncomienda.Checked && atrasDisc == 0)
+            {
+                chkDiscapacitado.Visible = true;
+            }
         }
     }
 }
