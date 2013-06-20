@@ -20,6 +20,43 @@ namespace FrbaBus
         {
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";
         }
+
+        private void obtenerDatosfile()
+        {
+            int counter = 0;
+            string line;
+            string user = "", bd = "", server = "", fecha = "", pass = "";
+            // Read the file and display it line by line.
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(@"c:\BD\test.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] word = line.Split(':');
+                switch (counter)
+                {
+                    case 0:
+                        user = word[1];
+                        break;
+                    case 1:
+                        bd = word[1];
+                        break;
+                    case 2:
+                        server = word[1];
+                        break;
+                    case 3:
+                        pass = word[1];
+                        break;
+                    case 4:
+                        fecha = word[1];
+                        break;
+                }
+                counter++;
+            }
+            file.Close();
+            MessageBox.Show("Usuario:" + user + " Bd:" + bd + " Server:" + server + " Pass:" + pass + " Fecha:" + fecha);
+        }
+
+
         public static SqlConnection conectar()
         {
             //Tomar de archivo !!

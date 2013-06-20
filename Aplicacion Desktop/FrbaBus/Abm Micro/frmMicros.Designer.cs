@@ -58,8 +58,15 @@
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.cmbMarcas = new System.Windows.Forms.ComboBox();
             this.grdMicros = new System.Windows.Forms.DataGridView();
+            this.grpDelete = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnReempl = new System.Windows.Forms.Button();
+            this.txtMicroMsg = new System.Windows.Forms.TextBox();
+            this.cmbMicros = new System.Windows.Forms.ComboBox();
             this.boxMicros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
+            this.grpDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // boxMicros
@@ -193,7 +200,7 @@
             // 
             this.btnDistri.Location = new System.Drawing.Point(291, 120);
             this.btnDistri.Name = "btnDistri";
-            this.btnDistri.Size = new System.Drawing.Size(96, 25);
+            this.btnDistri.Size = new System.Drawing.Size(79, 34);
             this.btnDistri.TabIndex = 16;
             this.btnDistri.Text = "Ver Distribucion";
             this.btnDistri.UseVisualStyleBackColor = true;
@@ -238,6 +245,7 @@
             // 
             // cmbServicios
             // 
+            this.cmbServicios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServicios.Enabled = false;
             this.cmbServicios.FormattingEnabled = true;
             this.cmbServicios.Items.AddRange(new object[] {
@@ -333,6 +341,7 @@
             // 
             // cmbMarcas
             // 
+            this.cmbMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarcas.Enabled = false;
             this.cmbMarcas.FormattingEnabled = true;
             this.cmbMarcas.Location = new System.Drawing.Point(420, 48);
@@ -370,13 +379,86 @@
             this.grdMicros.Size = new System.Drawing.Size(683, 237);
             this.grdMicros.TabIndex = 1;
             this.grdMicros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMicros_CellDoubleClick);
-            this.grdMicros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMicros_CellContentClick);
+            // 
+            // grpDelete
+            // 
+            this.grpDelete.Controls.Add(this.label2);
+            this.grpDelete.Controls.Add(this.btnDel);
+            this.grpDelete.Controls.Add(this.btnReempl);
+            this.grpDelete.Controls.Add(this.txtMicroMsg);
+            this.grpDelete.Controls.Add(this.cmbMicros);
+            this.grpDelete.Location = new System.Drawing.Point(189, 217);
+            this.grpDelete.Name = "grpDelete";
+            this.grpDelete.Size = new System.Drawing.Size(350, 170);
+            this.grpDelete.TabIndex = 2;
+            this.grpDelete.TabStop = false;
+            this.grpDelete.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Micros Disponibles";
+            // 
+            // btnDel
+            // 
+            this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
+            this.btnDel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDel.Location = new System.Drawing.Point(253, 78);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(81, 70);
+            this.btnDel.TabIndex = 4;
+            this.btnDel.Text = "Eliminar";
+            this.btnDel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDel.UseVisualStyleBackColor = true;
+            // 
+            // btnReempl
+            // 
+            this.btnReempl.Image = ((System.Drawing.Image)(resources.GetObject("btnReempl.Image")));
+            this.btnReempl.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnReempl.Location = new System.Drawing.Point(172, 78);
+            this.btnReempl.Name = "btnReempl";
+            this.btnReempl.Size = new System.Drawing.Size(75, 70);
+            this.btnReempl.TabIndex = 3;
+            this.btnReempl.Text = "Reemplazar";
+            this.btnReempl.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnReempl.UseVisualStyleBackColor = true;
+            this.btnReempl.Click += new System.EventHandler(this.btnReempl_Click);
+            // 
+            // txtMicroMsg
+            // 
+            this.txtMicroMsg.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtMicroMsg.Enabled = false;
+            this.txtMicroMsg.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMicroMsg.ForeColor = System.Drawing.Color.Firebrick;
+            this.txtMicroMsg.Location = new System.Drawing.Point(6, 19);
+            this.txtMicroMsg.Multiline = true;
+            this.txtMicroMsg.Name = "txtMicroMsg";
+            this.txtMicroMsg.Size = new System.Drawing.Size(338, 53);
+            this.txtMicroMsg.TabIndex = 2;
+            this.txtMicroMsg.Text = "Este micro posee pasajes pendientes puede cancelarlos o reemplazar por otro micro" +
+                " con las mismas caracteristicas";
+            this.txtMicroMsg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cmbMicros
+            // 
+            this.cmbMicros.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMicros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMicros.FormattingEnabled = true;
+            this.cmbMicros.Location = new System.Drawing.Point(6, 114);
+            this.cmbMicros.Name = "cmbMicros";
+            this.cmbMicros.Size = new System.Drawing.Size(160, 24);
+            this.cmbMicros.TabIndex = 0;
             // 
             // frmMicros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 468);
+            this.Controls.Add(this.grpDelete);
             this.Controls.Add(this.grdMicros);
             this.Controls.Add(this.boxMicros);
             this.Name = "frmMicros";
@@ -385,6 +467,8 @@
             this.boxMicros.ResumeLayout(false);
             this.boxMicros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).EndInit();
+            this.grpDelete.ResumeLayout(false);
+            this.grpDelete.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -418,5 +502,11 @@
         private System.Windows.Forms.Label lblOpe;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.GroupBox grpDelete;
+        private System.Windows.Forms.ComboBox cmbMicros;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Button btnReempl;
+        private System.Windows.Forms.TextBox txtMicroMsg;
+        private System.Windows.Forms.Label label2;
     }
 }

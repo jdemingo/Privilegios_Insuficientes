@@ -334,6 +334,13 @@ namespace FrbaBus
             MessageBox.Show("Sesión finalizada");
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form frmMicros;
+            frmMicros = new FrbaBus.Abm_Micro.frmMicros();
+            frmMicros.Visible = true;
+        }
+
 
 
 
