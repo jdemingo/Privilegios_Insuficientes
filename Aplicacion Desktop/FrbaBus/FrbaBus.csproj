@@ -76,6 +76,18 @@
     <Compile Include="Abm Permisos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Recorrido\frmRecorridos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Recorrido\frmRecorridos.Designer.cs">
+      <DependentUpon>frmRecorridos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Roles\frmRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Roles\frmRoles.designer.cs">
+      <DependentUpon>frmRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cancelar Viaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +169,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Micro\frmMicros.resx">
       <DependentUpon>frmMicros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Recorrido\frmRecorridos.resx">
+      <DependentUpon>frmRecorridos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Roles\frmRoles.resx">
+      <DependentUpon>frmRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cancelar Viaje\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -275,9 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abm Recorrido\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
