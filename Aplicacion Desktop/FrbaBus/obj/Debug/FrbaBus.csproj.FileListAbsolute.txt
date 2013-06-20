@@ -112,10 +112,8 @@ C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insufi
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Micro.frmMicros.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources
-C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Cancelar_Viaje.frmCancelarPasajes.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Canje_de_Ptos.frmCanjePuntos.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.frmCompraPasajes.resources
-C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Compra_de_Pasajes.Form2.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Consulta_Puntos_Adquiridos.frmConsultaPuntos.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.frmUtnBus.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Login.frmLogin.resources

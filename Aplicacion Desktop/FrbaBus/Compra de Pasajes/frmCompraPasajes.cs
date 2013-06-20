@@ -62,7 +62,7 @@ namespace FrbaBus.Compra_de_Pasajes
         private void crearGridPasajeros()
         {
 
-            grdPasajeros.Columns.Add("proc_fcompra", "Viaje");
+            grdPasajeros.Columns.Add("proc_fcompra", "Fecha de compra");
             grdPasajeros.Columns.Add("proc_id_viaje", "Viaje");
             //grdPasajeros.Columns["dest_viaje"].Visible = false;
             grdPasajeros.Columns.Add("proc_butaca", "Butaca");
@@ -559,10 +559,11 @@ namespace FrbaBus.Compra_de_Pasajes
                                 "'" + grdPasajeros.Rows[i].Cells["proc_tipo"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_piso"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_dni_pasajero"].Value + "," +
-                                grdPasajeros.Rows[i].Cells["proc_kg_encomienda"].Value + "," +
-                                grdPasajeros.Rows[i].Cells["proc_precio"].Value + "," +
+                                grdPasajeros.Rows[i].Cells["proc_kg_encomienda"].Value.ToString().Replace(',', '.') + "," +
+                                grdPasajeros.Rows[i].Cells["proc_precio"].Value.ToString().Replace(',', '.') + "," +
                                 grdPasajeros.Rows[i].Cells["proc_dni_paga"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value + "," +
+                                "'"+grdPasajeros.Rows[i].Cells["proc_tipo_tarj"].Value + "'," +
                                 "'" + grdPasajeros.Rows[i].Cells["proc_tipo_fvenc"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_cuotas"].Value + "," +
                                 "'" + grdPasajeros.Rows[i].Cells["proc_descuento"].Value + "'";

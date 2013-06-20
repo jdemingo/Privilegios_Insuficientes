@@ -77,9 +77,9 @@ namespace FrbaBus
             MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest, menuTopCli;
             MenuItem menuABM = new MenuItem("&ABMs");
 
-            if (tablaFunciones.Rows.Contains("ABM de roles"))
+            if (tablaFunciones.Rows.Contains("Roles"))
             {
-                menuABM.MenuItems.Add(menuRoles = new MenuItem("&ABM de roles"));
+                menuABM.MenuItems.Add(menuRoles = new MenuItem("&Roles"));
                 menuRoles.Click += new System.EventHandler(this.menuABMRoles_Click);
             }
             if (tablaFunciones.Rows.Contains("Micros"))
@@ -201,8 +201,8 @@ namespace FrbaBus
         }
         private void menuCancelarPasajes_Click(object sender, EventArgs e)
         {
-            Form frmCancelarPasajes = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
-            frmCancelarPasajes.Visible = true;
+            Form frmCancelarPasaje = new FrbaBus.Cancelar_Viaje.frmCancelarPasaje();
+            frmCancelarPasaje.Visible = true;
         }
 
         private void menuRegLLegada_Click(object sender, EventArgs e)
@@ -220,6 +220,8 @@ namespace FrbaBus
 
         private void menuTopDest_Click(object sender, EventArgs e)
         {
+            Form frmStats = new FrbaBus.Top_Destinos.frmStats();
+            frmStats.Visible = true;
         }
 
 
@@ -320,15 +322,6 @@ namespace FrbaBus
             frmAbm_compra.Visible = true;
         }
 
-
-
-        private void btnCancelarPasajes_Click(object sender, EventArgs e)
-        {
-            Form frmAbm_cancelar;
-            frmAbm_cancelar = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
-
-            frmAbm_cancelar.Visible = true;
-        }
  
         private void cmbOrigHide_SelectedIndexChanged(object sender, EventArgs e)
         {

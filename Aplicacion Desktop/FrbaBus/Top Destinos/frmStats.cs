@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FrbaBus.Login
+namespace FrbaBus.Top_Destinos
 {
-    public partial class Form1 : Form
+    public partial class frmStats : Form
     {
-        public Form1()
+        public frmStats()
         {
             InitializeComponent();
         }
