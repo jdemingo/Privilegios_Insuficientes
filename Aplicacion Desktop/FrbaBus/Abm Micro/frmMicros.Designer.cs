@@ -29,9 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMicros));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.boxMicros = new System.Windows.Forms.GroupBox();
+            this.grdRepair = new System.Windows.Forms.GroupBox();
+            this.btnCancelRepair = new System.Windows.Forms.Button();
+            this.btnRepairOk = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Desde = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.datFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.datFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.cmbRepair = new System.Windows.Forms.Button();
             this.lblOpe = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -44,10 +54,8 @@
             this.btnDistri = new System.Windows.Forms.Button();
             this.txtButacas = new System.Windows.Forms.TextBox();
             this.lblButacas = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.lblTipoServicio = new System.Windows.Forms.Label();
             this.cmbServicios = new System.Windows.Forms.ComboBox();
-            this.btnMarcas = new System.Windows.Forms.Button();
             this.lblFechaAlta = new System.Windows.Forms.Label();
             this.txtMicroId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,18 +67,22 @@
             this.cmbMarcas = new System.Windows.Forms.ComboBox();
             this.grdMicros = new System.Windows.Forms.DataGridView();
             this.grpDelete = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
             this.btnReempl = new System.Windows.Forms.Button();
             this.txtMicroMsg = new System.Windows.Forms.TextBox();
             this.cmbMicros = new System.Windows.Forms.ComboBox();
             this.boxMicros.SuspendLayout();
+            this.grdRepair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
             this.grpDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // boxMicros
             // 
+            this.boxMicros.Controls.Add(this.grdRepair);
+            this.boxMicros.Controls.Add(this.cmbRepair);
             this.boxMicros.Controls.Add(this.lblOpe);
             this.boxMicros.Controls.Add(this.btnCancel);
             this.boxMicros.Controls.Add(this.btnAceptar);
@@ -83,10 +95,8 @@
             this.boxMicros.Controls.Add(this.btnDistri);
             this.boxMicros.Controls.Add(this.txtButacas);
             this.boxMicros.Controls.Add(this.lblButacas);
-            this.boxMicros.Controls.Add(this.button1);
             this.boxMicros.Controls.Add(this.lblTipoServicio);
             this.boxMicros.Controls.Add(this.cmbServicios);
-            this.boxMicros.Controls.Add(this.btnMarcas);
             this.boxMicros.Controls.Add(this.lblFechaAlta);
             this.boxMicros.Controls.Add(this.txtMicroId);
             this.boxMicros.Controls.Add(this.label1);
@@ -101,6 +111,106 @@
             this.boxMicros.Size = new System.Drawing.Size(688, 188);
             this.boxMicros.TabIndex = 0;
             this.boxMicros.TabStop = false;
+            // 
+            // grdRepair
+            // 
+            this.grdRepair.Controls.Add(this.btnCancelRepair);
+            this.grdRepair.Controls.Add(this.btnRepairOk);
+            this.grdRepair.Controls.Add(this.label5);
+            this.grdRepair.Controls.Add(this.Desde);
+            this.grdRepair.Controls.Add(this.label4);
+            this.grdRepair.Controls.Add(this.label3);
+            this.grdRepair.Controls.Add(this.datFechaFin);
+            this.grdRepair.Controls.Add(this.datFechaInicio);
+            this.grdRepair.Location = new System.Drawing.Point(155, 97);
+            this.grdRepair.Name = "grdRepair";
+            this.grdRepair.Size = new System.Drawing.Size(411, 71);
+            this.grdRepair.TabIndex = 12;
+            this.grdRepair.TabStop = false;
+            this.grdRepair.Visible = false;
+            // 
+            // btnCancelRepair
+            // 
+            this.btnCancelRepair.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelRepair.Image")));
+            this.btnCancelRepair.Location = new System.Drawing.Point(360, 35);
+            this.btnCancelRepair.Name = "btnCancelRepair";
+            this.btnCancelRepair.Size = new System.Drawing.Size(45, 25);
+            this.btnCancelRepair.TabIndex = 18;
+            this.btnCancelRepair.UseVisualStyleBackColor = true;
+            this.btnCancelRepair.Click += new System.EventHandler(this.btnCancelRepair_Click);
+            // 
+            // btnRepairOk
+            // 
+            this.btnRepairOk.Image = ((System.Drawing.Image)(resources.GetObject("btnRepairOk.Image")));
+            this.btnRepairOk.Location = new System.Drawing.Point(316, 35);
+            this.btnRepairOk.Name = "btnRepairOk";
+            this.btnRepairOk.Size = new System.Drawing.Size(45, 24);
+            this.btnRepairOk.TabIndex = 17;
+            this.btnRepairOk.UseVisualStyleBackColor = true;
+            this.btnRepairOk.Click += new System.EventHandler(this.btnRepairOk_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(119, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(184, 14);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Programar una Reparación";
+            // 
+            // Desde
+            // 
+            this.Desde.AutoSize = true;
+            this.Desde.Location = new System.Drawing.Point(11, 39);
+            this.Desde.Name = "Desde";
+            this.Desde.Size = new System.Drawing.Size(38, 13);
+            this.Desde.TabIndex = 15;
+            this.Desde.Text = "Desde";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(157, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Hasta";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(-79, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Desde";
+            // 
+            // datFechaFin
+            // 
+            this.datFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datFechaFin.Location = new System.Drawing.Point(196, 38);
+            this.datFechaFin.Name = "datFechaFin";
+            this.datFechaFin.Size = new System.Drawing.Size(111, 20);
+            this.datFechaFin.TabIndex = 12;
+            // 
+            // datFechaInicio
+            // 
+            this.datFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datFechaInicio.Location = new System.Drawing.Point(55, 39);
+            this.datFechaInicio.Name = "datFechaInicio";
+            this.datFechaInicio.Size = new System.Drawing.Size(96, 20);
+            this.datFechaInicio.TabIndex = 11;
+            // 
+            // cmbRepair
+            // 
+            this.cmbRepair.Image = ((System.Drawing.Image)(resources.GetObject("cmbRepair.Image")));
+            this.cmbRepair.Location = new System.Drawing.Point(628, 11);
+            this.cmbRepair.Name = "cmbRepair";
+            this.cmbRepair.Size = new System.Drawing.Size(54, 41);
+            this.cmbRepair.TabIndex = 26;
+            this.cmbRepair.UseVisualStyleBackColor = true;
+            this.cmbRepair.Click += new System.EventHandler(this.cmbRepair_Click);
             // 
             // lblOpe
             // 
@@ -175,7 +285,7 @@
             this.dateAlta.Location = new System.Drawing.Point(134, 15);
             this.dateAlta.Name = "dateAlta";
             this.dateAlta.Size = new System.Drawing.Size(103, 20);
-            this.dateAlta.TabIndex = 19;
+            this.dateAlta.TabIndex = 1;
             this.dateAlta.Value = new System.DateTime(2013, 5, 21, 0, 0, 0, 0);
             // 
             // txtKilos
@@ -184,7 +294,7 @@
             this.txtKilos.Location = new System.Drawing.Point(175, 155);
             this.txtKilos.Name = "txtKilos";
             this.txtKilos.Size = new System.Drawing.Size(62, 20);
-            this.txtKilos.TabIndex = 18;
+            this.txtKilos.TabIndex = 7;
             // 
             // lblKilos
             // 
@@ -198,7 +308,7 @@
             // 
             // btnDistri
             // 
-            this.btnDistri.Location = new System.Drawing.Point(291, 120);
+            this.btnDistri.Location = new System.Drawing.Point(291, 137);
             this.btnDistri.Name = "btnDistri";
             this.btnDistri.Size = new System.Drawing.Size(79, 34);
             this.btnDistri.TabIndex = 16;
@@ -212,7 +322,7 @@
             this.txtButacas.Location = new System.Drawing.Point(175, 119);
             this.txtButacas.Name = "txtButacas";
             this.txtButacas.Size = new System.Drawing.Size(62, 20);
-            this.txtButacas.TabIndex = 15;
+            this.txtButacas.TabIndex = 6;
             // 
             // lblButacas
             // 
@@ -223,15 +333,6 @@
             this.lblButacas.Size = new System.Drawing.Size(102, 16);
             this.lblButacas.TabIndex = 14;
             this.lblButacas.Text = "Cant. Butacas";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(578, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 18);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // lblTipoServicio
             // 
@@ -254,16 +355,7 @@
             this.cmbServicios.Location = new System.Drawing.Point(420, 77);
             this.cmbServicios.Name = "cmbServicios";
             this.cmbServicios.Size = new System.Drawing.Size(152, 21);
-            this.cmbServicios.TabIndex = 11;
-            // 
-            // btnMarcas
-            // 
-            this.btnMarcas.Location = new System.Drawing.Point(578, 51);
-            this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(32, 18);
-            this.btnMarcas.TabIndex = 10;
-            this.btnMarcas.Text = "button1";
-            this.btnMarcas.UseVisualStyleBackColor = true;
+            this.cmbServicios.TabIndex = 5;
             // 
             // lblFechaAlta
             // 
@@ -282,6 +374,7 @@
             this.txtMicroId.Name = "txtMicroId";
             this.txtMicroId.Size = new System.Drawing.Size(108, 20);
             this.txtMicroId.TabIndex = 7;
+            this.txtMicroId.TextChanged += new System.EventHandler(this.txtMicroId_TextChanged);
             // 
             // label1
             // 
@@ -299,7 +392,7 @@
             this.txtModelo.Location = new System.Drawing.Point(120, 81);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(117, 20);
-            this.txtModelo.TabIndex = 5;
+            this.txtModelo.TabIndex = 3;
             // 
             // lblModelo
             // 
@@ -337,7 +430,7 @@
             this.txtPatente.Location = new System.Drawing.Point(120, 48);
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(117, 20);
-            this.txtPatente.TabIndex = 1;
+            this.txtPatente.TabIndex = 2;
             // 
             // cmbMarcas
             // 
@@ -347,7 +440,7 @@
             this.cmbMarcas.Location = new System.Drawing.Point(420, 48);
             this.cmbMarcas.Name = "cmbMarcas";
             this.cmbMarcas.Size = new System.Drawing.Size(152, 21);
-            this.cmbMarcas.TabIndex = 0;
+            this.cmbMarcas.TabIndex = 4;
             // 
             // grdMicros
             // 
@@ -355,9 +448,9 @@
             this.grdMicros.AllowUserToDeleteRows = false;
             this.grdMicros.AllowUserToResizeColumns = false;
             this.grdMicros.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.grdMicros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grdMicros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdMicros.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdMicros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMicros.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -366,14 +459,14 @@
             this.grdMicros.MultiSelect = false;
             this.grdMicros.Name = "grdMicros";
             this.grdMicros.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdMicros.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdMicros.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdMicros.RowHeadersVisible = false;
             this.grdMicros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMicros.Size = new System.Drawing.Size(683, 237);
@@ -382,6 +475,7 @@
             // 
             // grpDelete
             // 
+            this.grpDelete.Controls.Add(this.btnCancelar);
             this.grpDelete.Controls.Add(this.label2);
             this.grpDelete.Controls.Add(this.btnDel);
             this.grpDelete.Controls.Add(this.btnReempl);
@@ -389,15 +483,28 @@
             this.grpDelete.Controls.Add(this.cmbMicros);
             this.grpDelete.Location = new System.Drawing.Point(189, 217);
             this.grpDelete.Name = "grpDelete";
-            this.grpDelete.Size = new System.Drawing.Size(350, 170);
+            this.grpDelete.Size = new System.Drawing.Size(417, 189);
             this.grpDelete.TabIndex = 2;
             this.grpDelete.TabStop = false;
             this.grpDelete.Visible = false;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelar.Location = new System.Drawing.Point(332, 108);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(70, 70);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 89);
+            this.label2.Location = new System.Drawing.Point(41, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 5;
@@ -407,19 +514,20 @@
             // 
             this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
             this.btnDel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDel.Location = new System.Drawing.Point(253, 78);
+            this.btnDel.Location = new System.Drawing.Point(256, 108);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(81, 70);
+            this.btnDel.Size = new System.Drawing.Size(70, 70);
             this.btnDel.TabIndex = 4;
             this.btnDel.Text = "Eliminar";
             this.btnDel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnReempl
             // 
             this.btnReempl.Image = ((System.Drawing.Image)(resources.GetObject("btnReempl.Image")));
             this.btnReempl.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnReempl.Location = new System.Drawing.Point(172, 78);
+            this.btnReempl.Location = new System.Drawing.Point(175, 108);
             this.btnReempl.Name = "btnReempl";
             this.btnReempl.Size = new System.Drawing.Size(75, 70);
             this.btnReempl.TabIndex = 3;
@@ -434,10 +542,10 @@
             this.txtMicroMsg.Enabled = false;
             this.txtMicroMsg.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMicroMsg.ForeColor = System.Drawing.Color.Firebrick;
-            this.txtMicroMsg.Location = new System.Drawing.Point(6, 19);
+            this.txtMicroMsg.Location = new System.Drawing.Point(6, 10);
             this.txtMicroMsg.Multiline = true;
             this.txtMicroMsg.Name = "txtMicroMsg";
-            this.txtMicroMsg.Size = new System.Drawing.Size(338, 53);
+            this.txtMicroMsg.Size = new System.Drawing.Size(405, 72);
             this.txtMicroMsg.TabIndex = 2;
             this.txtMicroMsg.Text = "Este micro posee pasajes pendientes puede cancelarlos o reemplazar por otro micro" +
                 " con las mismas caracteristicas";
@@ -448,7 +556,7 @@
             this.cmbMicros.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMicros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMicros.FormattingEnabled = true;
-            this.cmbMicros.Location = new System.Drawing.Point(6, 114);
+            this.cmbMicros.Location = new System.Drawing.Point(9, 139);
             this.cmbMicros.Name = "cmbMicros";
             this.cmbMicros.Size = new System.Drawing.Size(160, 24);
             this.cmbMicros.TabIndex = 0;
@@ -457,15 +565,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 468);
+            this.ClientSize = new System.Drawing.Size(726, 468);
             this.Controls.Add(this.grpDelete);
             this.Controls.Add(this.grdMicros);
             this.Controls.Add(this.boxMicros);
             this.Name = "frmMicros";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta Modificacion y Consulta de Micros";
             this.Load += new System.EventHandler(this.frmMicros_Load);
             this.boxMicros.ResumeLayout(false);
             this.boxMicros.PerformLayout();
+            this.grdRepair.ResumeLayout(false);
+            this.grdRepair.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).EndInit();
             this.grpDelete.ResumeLayout(false);
             this.grpDelete.PerformLayout();
@@ -485,13 +596,11 @@
         private System.Windows.Forms.TextBox txtMicroId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblFechaAlta;
-        private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.TextBox txtKilos;
         private System.Windows.Forms.Label lblKilos;
         private System.Windows.Forms.Button btnDistri;
         private System.Windows.Forms.TextBox txtButacas;
         private System.Windows.Forms.Label lblButacas;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTipoServicio;
         private System.Windows.Forms.ComboBox cmbServicios;
         private System.Windows.Forms.DataGridView grdMicros;
@@ -508,5 +617,16 @@
         private System.Windows.Forms.Button btnReempl;
         private System.Windows.Forms.TextBox txtMicroMsg;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button cmbRepair;
+        private System.Windows.Forms.GroupBox grdRepair;
+        private System.Windows.Forms.Button btnRepairOk;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Desde;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker datFechaFin;
+        private System.Windows.Forms.DateTimePicker datFechaInicio;
+        private System.Windows.Forms.Button btnCancelRepair;
     }
 }

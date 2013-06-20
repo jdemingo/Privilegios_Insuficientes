@@ -75,6 +75,7 @@
             // 
             // cmbPiso
             // 
+            this.cmbPiso.DisplayMember = "id";
             this.cmbPiso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPiso.FormattingEnabled = true;
             this.cmbPiso.Items.AddRange(new object[] {
@@ -84,6 +85,7 @@
             this.cmbPiso.Name = "cmbPiso";
             this.cmbPiso.Size = new System.Drawing.Size(42, 21);
             this.cmbPiso.TabIndex = 9;
+            this.cmbPiso.ValueMember = "id";
             // 
             // label3
             // 
@@ -140,13 +142,12 @@
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
-            "Ventana",
+            "Ventanilla",
             "Pasillo"});
             this.cmbTipo.Location = new System.Drawing.Point(88, 290);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(141, 21);
             this.cmbTipo.TabIndex = 2;
-            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // grdPiso1
             // 
@@ -172,6 +173,7 @@
             this.ClientSize = new System.Drawing.Size(389, 335);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMicroDistri";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMicroDistri";
             this.Load += new System.EventHandler(this.frmMicroDistri_Load);
             this.groupBox1.ResumeLayout(false);

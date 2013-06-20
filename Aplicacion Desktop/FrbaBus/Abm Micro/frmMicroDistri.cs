@@ -22,37 +22,28 @@ namespace FrbaBus
         SqlCommand cmd;
         SqlDataAdapter adapter;
         SqlConnection conn = Common.conectar();
-        
+
 
         public void llenarGrilla(int microId, int piso, DataGridView grilla)
         {
-            using (SqlConnection conn = Common.conectar())
+            try
             {
-                try
-                {
-                    string query = "select buta_numero as Butaca, buta_piso as Piso, buta_tipo as Tipo ";
-                    query += " from PRIVILEGIOS_INSUFICIENTES.butacas";
-                    query += " where buta_piso=" + piso + "and buta_micro = " + microId;
-                    query += " order by buta_numero";
-                    cmd = new SqlCommand(query, conn);
-                    adapter = new SqlDataAdapter(cmd);
-                    tabla = new DataTable();
-                    adapter.Fill(tabla);
-                    grilla.DataSource = tabla;
-                    grilla.Columns[0].Width = 50;
-                    grilla.Columns[1].Width = 30;
-                    grilla.Columns[2].Width = 70;
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+                string query = "select buta_numero as Butaca, buta_piso as Piso, buta_tipo as Tipo ";
+                query += " from PRIVILEGIOS_INSUFICIENTES.butacas";
+                query += " where buta_piso=" + piso + "and buta_micro = " + microId;
+                query += " order by buta_numero";
+                cmd = new SqlCommand(query, Common.globalConn);
+                adapter = new SqlDataAdapter(cmd);
+                tabla = new DataTable();
+                adapter.Fill(tabla);
+                grilla.DataSource = tabla;
+                grilla.Columns[0].Width = 50;
+                grilla.Columns[1].Width = 30;
+                grilla.Columns[2].Width = 70;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -62,16 +53,12 @@ namespace FrbaBus
             llenarGrilla(microId, 2, grdPiso2);
         }
 
-        private void grdPiso2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void traerDatos(DataGridView grilla)
         {
             txtButaca.Text = Convert.ToString(grilla.CurrentRow.Cells[0].Value);
             cmbPiso.Text = Convert.ToString(grilla.CurrentRow.Cells[1].Value);
-            cmbTipo.Text = (string)grilla.CurrentRow.Cells[2].Value;
-         }
+            cmbTipo.Text = Convert.ToString(grilla.CurrentRow.Cells[2].Value);
+        }
         private void grdPiso1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             traerDatos(grdPiso1);
@@ -80,17 +67,26 @@ namespace FrbaBus
         {
             traerDatos(grdPiso2);
         }
-        private void updButaca(int butaca, int piso, int microId) {
-            MessageBox.Show("Actualizar butaca tener en cuenta si cambia de piso");
-        }
-        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void updButaca()
         {
-            llenarGrilla(microId, 1, grdPiso1);
-            llenarGrilla(microId, 2, grdPiso2);
+            try
+            {
+                string query = "UPDATE PRIVILEGIOS_INSUFICIENTES.butacas SET buta_piso=" + cmbPiso.Text + ", buta_tipo='" + cmbTipo.Text+"' ";
+                query += "WHERE buta_numero=" + txtButaca.Text + " AND buta_micro=" + microId;
+                cmd = new SqlCommand(query, Common.globalConn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
         private void cmdUpd_Click(object sender, EventArgs e)
         {
-            updButaca(Convert.ToInt16(txtButaca.Text), Convert.ToInt16(cmbPiso.Text), microId);
+            updButaca();
+            llenarGrilla(microId, 1, grdPiso1);
+            llenarGrilla(microId, 2, grdPiso2);
         }
 
     }
