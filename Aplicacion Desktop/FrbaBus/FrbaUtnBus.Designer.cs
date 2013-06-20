@@ -45,7 +45,6 @@
             this.grpPasajesDisponibles = new System.Windows.Forms.GroupBox();
             this.grdPasajes = new System.Windows.Forms.DataGridView();
             this.cmdLogin = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpPasajesDisponibles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPasajes)).BeginInit();
@@ -231,22 +230,11 @@
             this.cmdLogin.UseVisualStyleBackColor = true;
             this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(246, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // frmUtnBus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 378);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.grpPasajesDisponibles);
             this.Controls.Add(this.cmdLogin);
             this.Controls.Add(this.groupBox1);
@@ -282,7 +270,6 @@
         private System.Windows.Forms.Label lblKgs;
         private System.Windows.Forms.CheckBox chkEncomienda;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
 
     }
 }

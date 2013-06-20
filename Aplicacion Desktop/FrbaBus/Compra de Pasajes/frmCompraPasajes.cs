@@ -236,6 +236,16 @@ namespace FrbaBus.Compra_de_Pasajes
         {
             if (validacion())
             {
+                try
+                {
+                    string query = "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Clientes (clie_dni, clie_sexo, clie_nombre, clie_apellido, clie_dir, clie_telefono, clie_mail, clie_fnac)" +
+                                     "VALUES (" + txtDNI.Text + ",'" + cmbSexo.Text.Substring(0,1) + "','" + txtNombre.Text + "','" + txtApe.Text + "','" + txtDir.Text + "'," + txtTel.Text + ",'" + txtMail.Text + "','" + Common.fechaytiempoSQL(dateNac) + "')";
+                    cmd = new SqlCommand(query, Common.globalConn);
+                }
+                catch (Exception b)
+                {
+                    MessageBox.Show(b.Message);
+                }
                 // Es un pasaje
                 if (cant_pasajes > 0 && !chkEncomienda.Checked)
                 {
@@ -281,6 +291,8 @@ namespace FrbaBus.Compra_de_Pasajes
                 else if (atrasDisc == 0)
                     chkDiscapacitado.Visible = true;
                 actualizarDetalles();
+                
+                
             }
         }
 

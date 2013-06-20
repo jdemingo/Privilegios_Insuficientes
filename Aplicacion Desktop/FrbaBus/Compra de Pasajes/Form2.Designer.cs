@@ -74,9 +74,6 @@
             // 
             this.cmbSexo.DisplayMember = "S";
             this.cmbSexo.FormattingEnabled = true;
-            this.cmbSexo.Items.AddRange(new object[] {
-            "Masculino",
-            "Femenino"});
             this.cmbSexo.Location = new System.Drawing.Point(153, 90);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(121, 21);

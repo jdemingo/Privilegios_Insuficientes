@@ -74,9 +74,14 @@ namespace FrbaBus
 
         private void mostrarMenus(MainMenu mainMenu, DataTable tablaFunciones)
         {
-            MenuItem menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest, menuTopCli;
+            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest, menuTopCli;
             MenuItem menuABM = new MenuItem("&ABMs");
 
+            if (tablaFunciones.Rows.Contains("ABM de roles"))
+            {
+                menuABM.MenuItems.Add(menuRoles = new MenuItem("&ABM de roles"));
+                menuRoles.Click += new System.EventHandler(this.menuABMRoles_Click);
+            }
             if (tablaFunciones.Rows.Contains("Micros"))
             {
                 menuABM.MenuItems.Add(menuMicros = new MenuItem("&Micros"));
@@ -175,11 +180,18 @@ namespace FrbaBus
             frmMicros = new FrbaBus.Abm_Micro.frmMicros();
             frmMicros.Visible = true;
         }
+
+        private void menuABMRoles_Click(object sender, EventArgs e)
+        {
+            Form frmRoles;
+            frmRoles = new FrbaBus.Abm_Roles.frmRoles();
+            frmRoles.Visible = true;
+        }
         private void menuABMRecorridos_Click(object sender, EventArgs e)
         {
-            Form frmMicros;
-            frmMicros = new FrbaBus.Abm_Micro.frmMicros();
-            frmMicros.Visible = true;
+            Form frmRecorridos;
+            frmRecorridos = new FrbaBus.Abm_Recorrido.frmAbm_reco();
+            frmRecorridos.Visible = true;
         }
 
         private void menuCanjePuntos_Click(object sender, EventArgs e)

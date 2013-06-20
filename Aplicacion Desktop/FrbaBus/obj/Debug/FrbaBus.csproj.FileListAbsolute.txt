@@ -101,3 +101,5 @@ C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\F
 C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Properties.Resources.resources
 C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Registrar_LLegada_Micro.frmRegLLegada.resources
 C:\Users\Maurice\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
+C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
+C:\Users\sa\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources

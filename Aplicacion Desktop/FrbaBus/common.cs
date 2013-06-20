@@ -75,7 +75,7 @@ namespace FrbaBus
             SqlConnection conn = null;
             try
             {
-                MessageBox.Show("info: "+user + " " + pass + " " + server + " " + bd);
+                //MessageBox.Show("info: "+user + " " + pass + " " + server + " " + bd);
                 //MessageBox.Show("info: " + Common.user + " " + Common.pass + " " + Common.server + " " + Common.bd);
                 conn = new SqlConnection(buildConnectionURL(user, pass, server, bd)); 
                 conn.Open();
