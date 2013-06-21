@@ -25,6 +25,18 @@ namespace FrbaBus
             return "user id=" + user + ";password=" + passwd + ";server=" + server + ";database=" + db + "; ";
         }
 
+        public static bool validacionNumerica(TextBox txt)
+        {
+            long Dft = 0;
+            bool EsNumerico = long.TryParse(txt.Text, out Dft);
+            if (!EsNumerico && !txt.Text.Equals(""))
+            {
+                MessageBox.Show("Este campo debe ser numerico");
+                txt.Text = "";
+            }
+            return EsNumerico;
+        }
+
         private static void obtenerDatosfile()
         {
             int counter = 0;

@@ -39,8 +39,6 @@
             this.grdCanjes = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalCanjes = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTotalPuntosDisp = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdPuntos)).BeginInit();
@@ -89,14 +87,14 @@
             this.lblInfoTotalPuntos.AutoSize = true;
             this.lblInfoTotalPuntos.Location = new System.Drawing.Point(12, 345);
             this.lblInfoTotalPuntos.Name = "lblInfoTotalPuntos";
-            this.lblInfoTotalPuntos.Size = new System.Drawing.Size(84, 13);
+            this.lblInfoTotalPuntos.Size = new System.Drawing.Size(139, 13);
             this.lblInfoTotalPuntos.TabIndex = 4;
-            this.lblInfoTotalPuntos.Text = "Total de puntos:";
+            this.lblInfoTotalPuntos.Text = "Total de puntos disponibles:";
             // 
             // lblTotalPuntos
             // 
             this.lblTotalPuntos.AutoSize = true;
-            this.lblTotalPuntos.Location = new System.Drawing.Point(102, 345);
+            this.lblTotalPuntos.Location = new System.Drawing.Point(157, 345);
             this.lblTotalPuntos.Name = "lblTotalPuntos";
             this.lblTotalPuntos.Size = new System.Drawing.Size(13, 13);
             this.lblTotalPuntos.TabIndex = 5;
@@ -148,24 +146,6 @@
             this.lblTotalCanjes.TabIndex = 10;
             this.lblTotalCanjes.Text = "0";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 377);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Total de puntos disponibles:";
-            // 
-            // lblTotalPuntosDisp
-            // 
-            this.lblTotalPuntosDisp.AutoSize = true;
-            this.lblTotalPuntosDisp.Location = new System.Drawing.Point(158, 377);
-            this.lblTotalPuntosDisp.Name = "lblTotalPuntosDisp";
-            this.lblTotalPuntosDisp.Size = new System.Drawing.Size(13, 13);
-            this.lblTotalPuntosDisp.TabIndex = 12;
-            this.lblTotalPuntosDisp.Text = "0";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -192,8 +172,6 @@
             this.ClientSize = new System.Drawing.Size(863, 402);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblTotalPuntosDisp);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTotalCanjes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grdCanjes);
@@ -228,8 +206,6 @@
         private System.Windows.Forms.DataGridView grdCanjes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalCanjes;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblTotalPuntosDisp;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
     }

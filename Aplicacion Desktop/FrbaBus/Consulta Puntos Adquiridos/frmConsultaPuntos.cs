@@ -35,7 +35,8 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             if (txtDNI.Text.Equals(""))
                 MessageBox.Show("Falta llenar el campo DNI");
-            else return true;
+            else if (Common.validacionNumerica(txtDNI)) return true;
+            //else return true;
             return false;
         }
 

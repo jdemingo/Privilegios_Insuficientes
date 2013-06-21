@@ -199,7 +199,7 @@
             // 
             // cmbSexo
             // 
-            this.cmbSexo.DisplayMember = "S";
+            this.cmbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSexo.FormattingEnabled = true;
             this.cmbSexo.Items.AddRange(new object[] {
             "Masculino",
@@ -222,6 +222,7 @@
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(180, 20);
             this.txtTel.TabIndex = 35;
+            this.txtTel.Leave += new System.EventHandler(this.txtTel_LostFocus);
             // 
             // txtDir
             // 
@@ -378,6 +379,7 @@
             // 
             // cmbCuotas
             // 
+            this.cmbCuotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCuotas.FormattingEnabled = true;
             this.cmbCuotas.Location = new System.Drawing.Point(126, 121);
             this.cmbCuotas.Name = "cmbCuotas";
@@ -399,6 +401,7 @@
             this.txtTarjeta.Name = "txtTarjeta";
             this.txtTarjeta.Size = new System.Drawing.Size(153, 20);
             this.txtTarjeta.TabIndex = 33;
+            this.txtTarjeta.Leave += new System.EventHandler(this.txtTarjeta_LostFocus);
             // 
             // label12
             // 
@@ -424,6 +427,7 @@
             this.txtCodSeg.Name = "txtCodSeg";
             this.txtCodSeg.Size = new System.Drawing.Size(153, 20);
             this.txtCodSeg.TabIndex = 35;
+            this.txtCodSeg.Leave += new System.EventHandler(this.txtCodSeg_LostFocus);
             // 
             // label15
             // 
@@ -437,10 +441,11 @@
             // cmbTipoTarj
             // 
             this.cmbTipoTarj.DisplayMember = "S";
+            this.cmbTipoTarj.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoTarj.FormattingEnabled = true;
             this.cmbTipoTarj.Location = new System.Drawing.Point(126, 95);
             this.cmbTipoTarj.Name = "cmbTipoTarj";
-            this.cmbTipoTarj.Size = new System.Drawing.Size(67, 21);
+            this.cmbTipoTarj.Size = new System.Drawing.Size(153, 21);
             this.cmbTipoTarj.TabIndex = 39;
             this.cmbTipoTarj.SelectedIndexChanged += new System.EventHandler(this.cmbTipoTarj_SelectedIndexChanged);
             // 
@@ -480,6 +485,7 @@
             this.grdPasajeros.Location = new System.Drawing.Point(12, 333);
             this.grdPasajeros.Name = "grdPasajeros";
             this.grdPasajeros.ReadOnly = true;
+            this.grdPasajeros.RowHeadersVisible = false;
             this.grdPasajeros.Size = new System.Drawing.Size(636, 145);
             this.grdPasajeros.TabIndex = 27;
             // 

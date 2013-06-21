@@ -75,7 +75,7 @@ namespace FrbaBus
         private void mostrarMenus(MainMenu mainMenu, DataTable tablaFunciones)
         {
             MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest;
-            MenuItem menuABM = new MenuItem("&ABMs");
+            MenuItem menuABM = new MenuItem("&Administrativo");
 
             if (tablaFunciones.Rows.Contains("Roles"))
             {
@@ -249,6 +249,7 @@ namespace FrbaBus
         {
             //using (globalConn/*SqlConnection conn = Common.conectar()*/)
             //{
+            grdPasajes.DataSource = null;
                 try
                 {
                     string query = "SELECT dest_id,"
@@ -267,13 +268,17 @@ namespace FrbaBus
                                     + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
                                     + "  and reco_id_destino     = " + cmbDestino.SelectedValue
                                     + "  and reco_viaje_codigo   = serv_viaje_codigo";
+                    if (!txtKg.Equals("") && chkEncomienda.Checked)
+                    {
+                        query += "  and dest_peso_libre >= " + txtKg.Text;
+                    }
                     cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
                     adapter = new SqlDataAdapter(cmd);
                     tablaPasajes = new DataTable();
                     adapter.Fill(tablaPasajes);
                     if (tablaPasajes.Rows.Count == 0)
                     {
-                        MessageBox.Show("No hay pasajes disponibles de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text);
+                        MessageBox.Show("No hay disponible/s "+txtCantPasajes.Text+" pasaje/s de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text + " que tenga/n "+txtKg.Text+" kg disponible/s para encomienda." );
                     }
                     else
                     {

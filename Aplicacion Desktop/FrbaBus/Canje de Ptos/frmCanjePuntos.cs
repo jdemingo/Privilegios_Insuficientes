@@ -164,5 +164,10 @@ namespace FrbaBus.Canje_de_Ptos
             actualizarCantidadRequerida();
         }
 
+        private void txtDNI_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtDNI);
+        }
+
     }
 }

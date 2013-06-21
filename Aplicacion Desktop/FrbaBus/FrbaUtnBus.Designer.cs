@@ -54,6 +54,7 @@
             // 
             this.cmbOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrigen.FormattingEnabled = true;
             this.cmbOrigen.Location = new System.Drawing.Point(16, 27);
             this.cmbOrigen.Name = "cmbOrigen";
@@ -64,6 +65,7 @@
             // 
             this.cmbDestino.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbDestino.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDestino.FormattingEnabled = true;
             this.cmbDestino.Items.AddRange(new object[] {
             "Buenos Aires",
@@ -148,7 +150,7 @@
             this.dateSalida.Location = new System.Drawing.Point(233, 28);
             this.dateSalida.Name = "dateSalida";
             this.dateSalida.Size = new System.Drawing.Size(222, 20);
-            this.dateSalida.TabIndex = 5;
+            this.dateSalida.TabIndex = 2;
             this.dateSalida.Value = new System.DateTime(2012, 2, 15, 0, 0, 0, 0);
             this.dateSalida.ValueChanged += new System.EventHandler(this.dateSalida_ValueChanged);
             // 
@@ -158,7 +160,7 @@
             this.chkEncomienda.Location = new System.Drawing.Point(355, 80);
             this.chkEncomienda.Name = "chkEncomienda";
             this.chkEncomienda.Size = new System.Drawing.Size(15, 14);
-            this.chkEncomienda.TabIndex = 3;
+            this.chkEncomienda.TabIndex = 4;
             this.chkEncomienda.UseVisualStyleBackColor = true;
             this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_ChangeChecked);
             // 
@@ -168,14 +170,14 @@
             this.txtKg.Location = new System.Drawing.Point(376, 77);
             this.txtKg.Name = "txtKg";
             this.txtKg.Size = new System.Drawing.Size(54, 20);
-            this.txtKg.TabIndex = 4;
+            this.txtKg.TabIndex = 5;
             // 
             // txtCantPasajes
             // 
             this.txtCantPasajes.Location = new System.Drawing.Point(233, 77);
             this.txtCantPasajes.Name = "txtCantPasajes";
             this.txtCantPasajes.Size = new System.Drawing.Size(101, 20);
-            this.txtCantPasajes.TabIndex = 2;
+            this.txtCantPasajes.TabIndex = 3;
             this.txtCantPasajes.TextChanged += new System.EventHandler(this.txtCantPasajes_TextChanged);
             // 
             // btnCargarPasajes

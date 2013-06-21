@@ -37,8 +37,9 @@ namespace FrbaBus.Compra_de_Pasajes
             this.cant_pasajes = cant_pasajes.Equals("") ? 0 : int.Parse(cant_pasajes);
             this.max_cant_pasajes = this.cant_pasajes;
             this.kgs = kgs.Equals("") ? 0 : decimal.Parse(kgs);
-            lblCantEnc.Text = "1";
+            lblCantEnc.Text = "1";            
             lblCantPasajes.Text = cant_pasajes;
+            cmbSexo.SelectedIndex = 0;
             if (this.kgs == 0)
             {
                 lblCantEnc.Visible = false;
@@ -138,8 +139,9 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void txtDNI_LostFocus(object sender, EventArgs e)
         {
-            if (txtDNI.Text != "")
-            {
+
+            if (txtDNI.Text != "" && Common.validacionNumerica(txtDNI))
+            {                
                 //using (globalConn/*SqlConnection conn = Common.conectar()*/)
                 //{
                 try
@@ -454,7 +456,11 @@ namespace FrbaBus.Compra_de_Pasajes
         {
             // Pasajes y encomienda cargado (modo comprador)
             if ((cant_pasajes == 0 && atrasEnc > 0) || (cant_pasajes == 0 && kgs == 0))
+            {
                 cambiarModo();
+                if (atrasDisc == 0)
+                    chkDiscapacitado.Visible = true;
+            }
             // Obligando a cargar encomienda
             else if (cant_pasajes == 0 && kgs > 0)
                 cambiarObligacionEnc();
@@ -509,7 +515,7 @@ namespace FrbaBus.Compra_de_Pasajes
             chkDiscapacitado.Checked = false;
             if (chkEncomienda.Checked && atrasDisc == 0)
             {
-
+                grdButacas.ReadOnly = true;
                 chkDiscapacitado.Visible = false;
             }
             else if (!chkEncomienda.Checked && atrasDisc == 0)
@@ -530,6 +536,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 {
                     cmbCuotas.Items.Add(i);
                 }
+                cmbCuotas.SelectedIndex = 0;
             }
         }
 
@@ -574,5 +581,21 @@ namespace FrbaBus.Compra_de_Pasajes
             cmd2 = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);
             cmd2.ExecuteNonQuery();
         }
+
+        private void txtTel_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtTel);
+        }
+        
+        private void txtTarjeta_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtTarjeta);
+        }
+        private void txtCodSeg_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtCodSeg);
+        }
+
+        
     }
 }
