@@ -77,7 +77,7 @@
             // 
             // btnBuscar
             // 
-           // this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(196, 170);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(43, 40);
@@ -125,9 +125,9 @@
             this.radioButton5.AutoSize = true;
             this.radioButton5.Location = new System.Drawing.Point(22, 170);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 17);
+            this.radioButton5.Size = new System.Drawing.Size(142, 17);
             this.radioButton5.TabIndex = 7;
-            this.radioButton5.Text = "radioButton5";
+            this.radioButton5.Text = "Micros Fuera de Servicio";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -135,9 +135,9 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(22, 147);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(69, 17);
+            this.radioButton4.Size = new System.Drawing.Size(165, 17);
             this.radioButton4.TabIndex = 6;
-            this.radioButton4.Text = "Destinos ";
+            this.radioButton4.Text = "Destinos Pasajes Cancelados";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton3

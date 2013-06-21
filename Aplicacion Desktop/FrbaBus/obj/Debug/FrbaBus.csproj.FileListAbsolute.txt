@@ -120,3 +120,4 @@ C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insufi
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.csproj.GenerateResource.Cache
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.frmAbm_reco.resources
 C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources
+C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Top_Destinos.frmStats.resources

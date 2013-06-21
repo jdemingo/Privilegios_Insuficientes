@@ -75,15 +75,15 @@ namespace FrbaBus.Top_Destinos
                     lstStats.DataSource = tabla;
                     break;
                 case 3:
-                    query = "SELECT TOP 5 c.ciud_nombre as CIUDAD, SUM(d.dest_butacas_libres) as CANTIDAD FROM PRIVILEGIOS_INSUFICIENTES.destinos d, PRIVILEGIOS_INSUFICIENTES.recorridos r, PRIVILEGIOS_INSUFICIENTES.ciudades c ";
-                    query += "WHERE r.reco_id_destino = c.ciud_id and d.dest_viaje = r.reco_viaje_codigo AND ";
-                    query += "YEAR(dest_fecha_salida)=" + cmbAno.Text + " AND MONTH(dest_fecha_salida)<=" + semMax + " AND MONTH(dest_fecha_salida)>=" + semMin;
-                    query += "GROUP BY c.ciud_nombre ORDER BY COUNT(*) desc";
+                    query = "SELECT TOP 5 (clie_nombre+' '+clie_apellido) as Nombre FROM PRIVILEGIOS_INSUFICIENTES.pasajes p, PRIVILEGIOS_INSUFICIENTES.clientes c ";
+                    query += "WHERE pasa_cliente=clie_id AND ";
+                    query += "YEAR(pasa_fcompra)=" + cmbAno.Text + " AND MONTH(pasa_fcompra)<=" + semMax + " AND MONTH(pasa_fcompra)>=" + semMin;
+                    query += " GROUP BY (clie_nombre+' '+clie_apellido) ORDER BY sum(pasa_puntos) desc";
                     cmd = new SqlCommand(query, Common.globalConn);
                     adapter = new SqlDataAdapter(cmd);
                     tabla = new DataTable();
                     adapter.Fill(tabla);
-                    lstStats.DisplayMember = "CIUDAD";
+                    lstStats.DisplayMember = "Nombre";
                     lstStats.DataSource = tabla;
                     break;
                 case 4:
@@ -120,8 +120,6 @@ namespace FrbaBus.Top_Destinos
             if (radioButton3.Checked) genStats(3);
             if (radioButton4.Checked) genStats(4);
             if (radioButton5.Checked) genStats(5);
-
-
         }
     }
 }
