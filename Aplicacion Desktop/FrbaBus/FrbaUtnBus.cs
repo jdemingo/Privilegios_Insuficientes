@@ -105,7 +105,7 @@ namespace FrbaBus
             if (tablaFunciones.Rows.Contains("Generar viaje"))
             {
                 menuABM.MenuItems.Add(menuGenerarViaje = new MenuItem("&Generar viaje"));
-                menuGenerarViaje.Click += new System.EventHandler(this.menuCancelarPasajes_Click);
+                menuGenerarViaje.Click += new System.EventHandler(this.menuGenerarViaje_Click);
             }
 
             if (menuABM.MenuItems.Count > 0)
@@ -197,6 +197,11 @@ namespace FrbaBus
         {
             Form frmCancelarPasaje = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
             frmCancelarPasaje.Visible = true;
+        }
+        private void menuGenerarViaje_Click(object sender, EventArgs e)
+        {
+            Form frmGenerarViaje = new FrbaBus.GenerarViaje.frmGenerarViaje();
+            frmGenerarViaje.Visible = true;
         }
 
         private void menuRegLLegada_Click(object sender, EventArgs e)
