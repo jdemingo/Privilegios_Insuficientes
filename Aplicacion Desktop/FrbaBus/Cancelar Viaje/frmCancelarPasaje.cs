@@ -92,6 +92,26 @@ namespace FrbaBus.Cancelar_Viaje
             }
             ;
 
+            //////delete
+
+            try
+            {
+
+                string query = "delete from privilegios_insuficientes.pasajes "
+                                + "where pasa_codigo in ( select canc_cod_pasaje "
+                                + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
+
+                cmd = new SqlCommand(query, Common.globalConn);
+                adapter = new SqlDataAdapter(cmd);
+                cmd.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
 
 
         }
