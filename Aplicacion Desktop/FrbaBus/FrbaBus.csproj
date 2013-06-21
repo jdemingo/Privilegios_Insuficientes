@@ -120,6 +120,12 @@
     <Compile Include="Abm Micro\frmMicroDistri.Designer.cs">
       <DependentUpon>frmMicroDistri.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarViaje\frmGenerarViaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarViaje\frmGenerarViaje.Designer.cs">
+      <DependentUpon>frmGenerarViaje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrbaUtnBus.resx">
       <DependentUpon>FrbaUtnBus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarViaje\frmGenerarViaje.resx">
+      <DependentUpon>frmGenerarViaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -230,7 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abm Permisos\" />
-    <Folder Include="GenerarViaje\" />
     <Folder Include="Top Clientes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

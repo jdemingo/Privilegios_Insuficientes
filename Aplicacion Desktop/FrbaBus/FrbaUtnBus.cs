@@ -195,7 +195,7 @@ namespace FrbaBus
         }
         private void menuCancelarPasajes_Click(object sender, EventArgs e)
         {
-            Form frmCancelarPasaje = new FrbaBus.Cancelar_Viaje.frmCancelarPasaje();
+            Form frmCancelarPasaje = new FrbaBus.Cancelar_Viaje.frmCancelarPasajes();
             frmCancelarPasaje.Visible = true;
         }
 
