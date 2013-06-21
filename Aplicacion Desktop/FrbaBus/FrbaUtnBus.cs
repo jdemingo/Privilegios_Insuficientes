@@ -74,7 +74,7 @@ namespace FrbaBus
 
         private void mostrarMenus(MainMenu mainMenu, DataTable tablaFunciones)
         {
-            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest, menuTopCli;
+            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest;
             MenuItem menuABM = new MenuItem("&ABMs");
 
             if (tablaFunciones.Rows.Contains("Roles"))
@@ -125,12 +125,6 @@ namespace FrbaBus
             {
                 mainMenu.MenuItems.Add(menuTopDest = new MenuItem("&Top destinos"));
                 menuTopDest.Click += new System.EventHandler(this.menuTopDest_Click);
-            }
-
-            if (tablaFunciones.Rows.Contains("Top clientes"))
-            {
-                mainMenu.MenuItems.Add(menuTopCli = new MenuItem("&Top clientes"));
-                menuTopCli.Click += new System.EventHandler(this.menuTopCli_Click);
             }
 
         }

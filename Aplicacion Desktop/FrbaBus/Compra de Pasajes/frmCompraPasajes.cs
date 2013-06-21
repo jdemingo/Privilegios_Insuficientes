@@ -72,7 +72,7 @@ namespace FrbaBus.Compra_de_Pasajes
             grdPasajeros.Columns.Add("proc_kg_encomienda", "Encomienda (Kg)");
             grdPasajeros.Columns.Add("proc_precio", "Precio");
             grdPasajeros.Columns.Add("proc_dni_paga", "DNI Comprador");
-            grdPasajeros.Columns.Add("proc_nro_tarj", "Tarjeta");            
+            grdPasajeros.Columns.Add("proc_nro_tarj", "Tarjeta");
             grdPasajeros.Columns.Add("proc_tipo_fvenc", "Fecha Vencimiento");
             //grdPasajeros.Columns.Add("proc_nro_seg", "Codigo Seguridad");
             grdPasajeros.Columns.Add("proc_cuotas", "Cuotas");
@@ -209,7 +209,7 @@ namespace FrbaBus.Compra_de_Pasajes
             try
             {
                 SqlCommand cmd = new SqlCommand("SELECT desc_descuento " +
-                                                "FROM PRIVILEGIOS_INSUFICIENTES.descuentos "+
+                                                "FROM PRIVILEGIOS_INSUFICIENTES.descuentos " +
                                                 "WHERE desc_tipo = 'Jubilado'", Common.globalConn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -248,7 +248,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void cargarTiposTarjeta()
         {
-            SqlCommand cmd = new SqlCommand("SELECT ttar_tipo, ttar_cuotas_max "+
+            SqlCommand cmd = new SqlCommand("SELECT ttar_tipo, ttar_cuotas_max " +
                                             "FROM PRIVILEGIOS_INSUFICIENTES.Tipos_Tarjeta ", Common.globalConn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable tablaTarjetas = new DataTable();
@@ -257,7 +257,7 @@ namespace FrbaBus.Compra_de_Pasajes
             cmbTipoTarj.DisplayMember = "ttar_tipo";
             cmbTipoTarj.DataSource = tablaTarjetas;
             cmbTipoTarj.ValueMember = "ttar_cuotas_max";
-            
+
         }
 
         private void btnSigPasaje_Click(object sender, EventArgs e)
@@ -305,7 +305,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 else if (chkEncomienda.Checked)
                 {
                     btnAtras.Visible = true;
-                    grdPasajeros.Rows.Add("NULL",dest_id, "NULL", "NULL", "NULL", txtDNI.Text, kgs, kg_base * kgs, "NULL", "NULL", "NULL", "NULL", "NULL", "NULL");
+                    grdPasajeros.Rows.Add("NULL", dest_id, "NULL", "NULL", "NULL", txtDNI.Text, kgs, kg_base * kgs, "NULL", "NULL", "NULL", "NULL", "NULL", "NULL");
                     limpiarCampos();
                     atrasEnc++;
                     if (atrasDisc > 0)
@@ -520,7 +520,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void cmbTipoTarj_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (cmbTipoTarj.ValueMember != null)
             {
                 cmbCuotas.Items.Clear();
@@ -553,7 +553,7 @@ namespace FrbaBus.Compra_de_Pasajes
                                "proc_cuotas," +
                                "proc_descuento)" +
                                "SELECT " +
-                                "'"+grdPasajeros.Rows[i].Cells["proc_fcompra"].Value + "'," +
+                                "'" + grdPasajeros.Rows[i].Cells["proc_fcompra"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_id_viaje"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_butaca"].Value + "," +
                                 "'" + grdPasajeros.Rows[i].Cells["proc_tipo"].Value + "'," +
@@ -563,15 +563,16 @@ namespace FrbaBus.Compra_de_Pasajes
                                 grdPasajeros.Rows[i].Cells["proc_precio"].Value.ToString().Replace(',', '.') + "," +
                                 grdPasajeros.Rows[i].Cells["proc_dni_paga"].Value + "," +
                                 grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value + "," +
-                                "'"+grdPasajeros.Rows[i].Cells["proc_tipo_tarj"].Value + "'," +
+                                "'" + grdPasajeros.Rows[i].Cells["proc_tipo_tarj"].Value + "'," +
                                 "'" + grdPasajeros.Rows[i].Cells["proc_tipo_fvenc"].Value + "'," +
                                 grdPasajeros.Rows[i].Cells["proc_cuotas"].Value + "," +
                                 "'" + grdPasajeros.Rows[i].Cells["proc_descuento"].Value + "'";
                 SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
-                cmd = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);
-                cmd.ExecuteNonQuery();
             }
+            SqlCommand cmd2;
+            cmd2 = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);
+            cmd2.ExecuteNonQuery();
         }
     }
 }
