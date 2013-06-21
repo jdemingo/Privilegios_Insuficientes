@@ -216,6 +216,8 @@
             this.grdPasajes.Location = new System.Drawing.Point(6, 19);
             this.grdPasajes.Name = "grdPasajes";
             this.grdPasajes.ReadOnly = true;
+            this.grdPasajes.RowHeadersVisible = false;
+            this.grdPasajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPasajes.Size = new System.Drawing.Size(458, 125);
             this.grdPasajes.TabIndex = 22;
             this.grdPasajes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);

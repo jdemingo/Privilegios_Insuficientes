@@ -22,27 +22,21 @@ namespace FrbaBus.Canje_de_Ptos
 
         internal void cargarGridProductos()
         {
-            using (SqlConnection conn = Common.conectar())
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT stoc_id_premio, stoc_nombre, stoc_puntos FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios", conn);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    grdProductos.DataSource = table;
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
-                }
+            try
+            {
+                string query = "SELECT stoc_id_premio, stoc_nombre, stoc_puntos FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios";
+                SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                grdProductos.DataSource = table;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
+ 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
             actualizarCantidadRequerida();
@@ -52,7 +46,7 @@ namespace FrbaBus.Canje_de_Ptos
         {
             if (!txtCantidad.Text.Equals(""))
             {
-                decimal currentRow_puntos = (decimal)grdProductos.CurrentRow.Cells["stoc_puntos"].Value;
+                int currentRow_puntos = Convert.ToInt16(grdProductos.CurrentRow.Cells["stoc_puntos"].Value);
                 int cantidad = int.Parse(txtCantidad.Text);
                 lblPuntosReq.Text = (currentRow_puntos * cantidad).ToString();
             }
@@ -62,62 +56,40 @@ namespace FrbaBus.Canje_de_Ptos
             }
         }
 
-        private decimal puntosDisponibles(string dni)
+        private int puntosDisponibles(string dni)
         {
-            decimal puntosDisp = -1;
-            using (SqlConnection conn = Common.conectar())
+            int puntosDisp = 0;
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT SUM(pasa_puntos) " +
+                    string query = "SELECT SUM(pasa_puntos) " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                         "WHERE clie_dni ='" + dni + "' AND " +
                         "clie_id = pasa_cliente AND " +
-                        "DATEDIFF(DAY,pasa_fcompra,GETDATE()) < 365", conn);
-                    decimal puntos = (decimal)cmd.ExecuteScalar();
-
-                    cmd = new SqlCommand("SELECT SUM(stoc_puntos) " +
-                        "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados, PRIVILEGIOS_INSUFICIENTES.Clientes " +
-                        "WHERE prem_cliente = clie_id AND " +
-                        "clie_dni = '" + dni + "' AND " +
-                        "DATEDIFF(DAY,prem_fcanje,GETDATE()) < 365 AND " +
-                        "prem_id_premio = stoc_id_premio", conn);
-
-                    decimal canjes = (decimal)cmd.ExecuteScalar();
-                    puntosDisp = (puntos - canjes) < 0 ? 0 : (puntos - canjes);
-
+                        "DATEDIFF(DAY,pasa_fcompra,GETDATE()) < 365";
+                    SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                    puntosDisp = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
                 }
             return puntosDisp;
         }
 
         private int cantStockDelPremio(int id_premio)
         {
-            int cantStockDelPremio = -1;
-            using (SqlConnection conn = Common.conectar())
+            int cantStockDelPremio = 0;
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
-                        "WHERE stoc_id_premio =" + id_premio, conn);
+                        "WHERE stoc_id_premio =" + id_premio, Common.globalConn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     cantStockDelPremio = (int)cmd.ExecuteScalar();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    if (conn != null)
-                        conn.Close();
                 }
             return cantStockDelPremio;
         }
@@ -132,9 +104,9 @@ namespace FrbaBus.Canje_de_Ptos
                 using (SqlConnection conn = Common.conectar())
                     try
                     {
-                        decimal ptsDisp;
+                        int ptsDisp;
                         int cantStock;
-                        if ((ptsDisp = puntosDisponibles(txtDNI.Text)) < decimal.Parse(lblPuntosReq.Text))
+                        if ((ptsDisp = puntosDisponibles(txtDNI.Text)) < int.Parse(lblPuntosReq.Text))
                         {
                             MessageBox.Show("El cliente tiene " + ptsDisp.ToString() + " puntos, pero requiere " + lblPuntosReq.Text + " puntos");
                         }
@@ -144,20 +116,22 @@ namespace FrbaBus.Canje_de_Ptos
                         }
                         else
                         {
-                            SqlCommand command = new SqlCommand(
-                            "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
-                            "VALUES ((SELECT clie_id " +
-                                     "FROM PRIVILEGIOS_INSUFICIENTES.Clientes " +
-                                     "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + "," + txtCantidad.Text + ",@value)", conn);
-                            //DateTime.Parse("");
-                            //String.Format("{0:DD MM YYYY}",dateTimePicker1);
-                            command.Parameters.AddWithValue("@value", DateTime.Today);
-                            command.ExecuteNonQuery();
-                            command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
-                            "SET stoc_cantidad = stoc_cantidad-" + txtCantidad.Text + " " +
-                            "WHERE stoc_id_premio = " + premioId + "";
-                            //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
-                            command.ExecuteNonQuery();
+                            string query="EXECUTE PRIVILEGIOS_INSUFICIENTES.canjearPremios(" + premioId + "," + txtDNI.Text + "," + txtCantidad.Text + ",'" + Common.fecha + "')";
+                            SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                            cmd.ExecuteNonQuery();
+                            /*                "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
+                                            "VALUES ((SELECT clie_id " +
+                                                     "FROM PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                                                     "WHERE clie_dni = " + txtDNI.Text + ")," + premioId + "," + txtCantidad.Text + ",@value)", conn);
+                                            //DateTime.Parse("");
+                                            //String.Format("{0:DD MM YYYY}",dateTimePicker1);
+                                            command.Parameters.AddWithValue("@value", DateTime.Today);
+                                            command.ExecuteNonQuery();
+                                            command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
+                                            "SET stoc_cantidad = stoc_cantidad-" + txtCantidad.Text + " " +
+                                            "WHERE stoc_id_premio = " + premioId + "";
+                                            //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
+                                            command.ExecuteNonQuery();*/
                             MessageBox.Show("Canje registrado con éxito.");
                         }
 
@@ -165,11 +139,6 @@ namespace FrbaBus.Canje_de_Ptos
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        if (conn != null)
-                            conn.Close();
                     }
             }
         }

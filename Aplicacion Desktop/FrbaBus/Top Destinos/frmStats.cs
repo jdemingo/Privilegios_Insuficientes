@@ -86,6 +86,30 @@ namespace FrbaBus.Top_Destinos
                     lstStats.DisplayMember = "CIUDAD";
                     lstStats.DataSource = tabla;
                     break;
+                case 4:
+                    query = "select top 5 count(*) cant , dfg.ciud_nombre as CIUDAD from privilegios_insuficientes.viajes_cancelados asd , privilegios_insuficientes.destinos qwe , privilegios_insuficientes.recorridos rty , privilegios_insuficientes.ciudades dfg ";
+                    query += "where dfg.ciud_id = rty.reco_id_destino and rty.reco_viaje_codigo = qwe.dest_viaje and  qwe.dest_id = asd.viaj_dest_id and ";
+                    query += "YEAR(viaj_fcompra)=" + cmbAno.Text + " AND MONTH(viaj_fcompra)<=" + semMax + " AND MONTH(viaj_fcompra)>=" + semMin;
+                    query += "group by ciud_nombre order by count(*) desc";
+                    cmd = new SqlCommand(query, Common.globalConn);
+                    adapter = new SqlDataAdapter(cmd);
+                    tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    lstStats.DisplayMember = "CIUDAD";
+                    lstStats.DataSource = tabla;
+                    break;
+                case 5:
+                    query = "select top 5 micr_id, sum(DATEDIFF(Day, fall_finicio, fall_ffin) ) dias from privilegios_insuficientes.fallas , privilegios_insuficientes.micros ";
+                    query += "where micr_id = fall_id_micro and fall_ffin is not null and ";
+                    query += "YEAR(fall_finicio)=" + cmbAno.Text + " AND MONTH(fall_finicio)<=" + semMax + " AND MONTH(fall_finicio)>=" + semMin;
+                    query += "group by micr_id order by sum(DATEDIFF(Day, fall_finicio, fall_ffin)) desc";
+                    cmd = new SqlCommand(query, Common.globalConn);
+                    adapter = new SqlDataAdapter(cmd);
+                    tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    lstStats.DisplayMember = "CIUDAD";
+                    lstStats.DataSource = tabla;
+                    break;
             }
         }
 
@@ -93,6 +117,11 @@ namespace FrbaBus.Top_Destinos
         {
             if (radioButton1.Checked) genStats(1);
             if (radioButton2.Checked) genStats(2);
+            if (radioButton3.Checked) genStats(3);
+            if (radioButton4.Checked) genStats(4);
+            if (radioButton5.Checked) genStats(5);
+
+
         }
     }
 }

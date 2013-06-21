@@ -16,7 +16,7 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             InitializeComponent();
             this.ActiveControl = txtDNI;
-            
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -28,10 +28,6 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
         {
             cargarGridDelDNI(txtDNI.Text);
             cargarGridCanjesDelDNI(txtDNI.Text);
-            decimal puntosDisp = decimal.Parse(lblTotalPuntos.Text) - decimal.Parse(lblTotalCanjes.Text);
-            if(puntosDisp < 0)
-                puntosDisp = 0;
-            lblTotalPuntosDisp.Text = puntosDisp.ToString();
         }
 
 
@@ -45,51 +41,45 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
 
         internal void cargarGridDelDNI(string dni)
         {
-            txtDNI.Text = dni;            
+            txtDNI.Text = dni;
             if (camposValidados())
             {
-                using (SqlConnection conn = Common.conectar())
-                    try
-                    {
-                        //"mes, importe, puntos, canjes, total_puntos";
-                        SqlCommand cmd = new SqlCommand(
-                        "SELECT datepart(year,pasa_fcompra) Año, DATENAME(month,pasa_fcompra) Mes, SUM(pasa_puntos) Puntos, " +
-                        "SUM(pasa_precio) Importe " +
-                        "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
-                        "WHERE clie_dni =" + txtDNI.Text + " AND " +
-                        "DATEDIFF(DAY,pasa_fcompra,GETDATE())<365 AND "+
-                        "clie_id = pasa_cliente " +
-                        "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
-                        "ORDER BY 1, datepart(month,pasa_fcompra)", conn);
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable table = new DataTable();
-                        adapter.Fill(table);
-                        grdPuntos.DataSource = table;
-                        lblTotalPuntos.Text = table.Compute("SUM(Puntos)", "").ToString();
+                try
+                {
+                    //"mes, importe, puntos, canjes, total_puntos";
+                    SqlCommand cmd = new SqlCommand(
+                    "SELECT datepart(year,pasa_fcompra) Año, DATENAME(month,pasa_fcompra) Mes, SUM(pasa_puntos) Puntos, " +
+                    "SUM(pasa_precio) Importe " +
+                    "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                    "WHERE clie_dni =" + txtDNI.Text + " AND " +
+                    "DATEDIFF(DAY,pasa_fcompra,GETDATE())<365 AND " +
+                    "clie_id = pasa_cliente " +
+                    "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
+                    "ORDER BY 1, datepart(month,pasa_fcompra)", Common.globalConn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    grdPuntos.DataSource = table;
+                    lblTotalPuntos.Text = table.Compute("SUM(Puntos)", "").ToString();
 
-                        if (lblTotalPuntos.Text.Equals(""))
-                            lblTotalPuntos.Text = "0";
-                        
-                        //double resul = grdPuntos.Rows.Cast<DataGridViewRow>().Sum(x => Convert.ToDouble(x.Cells["Puntos"].Value));
-                        //lblTotalPuntos.Text = resul.ToString();
+                    if (lblTotalPuntos.Text.Equals(""))
+                        lblTotalPuntos.Text = "0";
 
-                        //double sumatoria = 0;
-                        //foreach (DataGridViewRow row in grdPuntos.Rows)
-                        //{
-                        //    sumatoria += Convert.ToDouble(row.Cells["Puntos"].Value);
-                        //}
-                        //lblTotalPuntos.Text = sumatoria.ToString();
+                    //double resul = grdPuntos.Rows.Cast<DataGridViewRow>().Sum(x => Convert.ToDouble(x.Cells["Puntos"].Value));
+                    //lblTotalPuntos.Text = resul.ToString();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        if (conn != null)
-                            conn.Close();
-                    }
+                    //double sumatoria = 0;
+                    //foreach (DataGridViewRow row in grdPuntos.Rows)
+                    //{
+                    //    sumatoria += Convert.ToDouble(row.Cells["Puntos"].Value);
+                    //}
+                    //lblTotalPuntos.Text = sumatoria.ToString();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -109,8 +99,8 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                         "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados " +
                         "WHERE clie_dni =" + txtDNI.Text + " AND " +
                         "DATEDIFF(DAY,prem_fcanje,GETDATE())<365 AND " +
-                        "prem_cliente = clie_id AND "+
-                        "prem_id_premio = stoc_id_premio "+
+                        "prem_cliente = clie_id AND " +
+                        "prem_id_premio = stoc_id_premio " +
                         "GROUP BY datepart(year,prem_fcanje), DATENAME(month,prem_fcanje),datepart(month,prem_fcanje) " +
                         "ORDER BY 1,datepart(month,prem_fcanje)", conn);
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);

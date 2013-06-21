@@ -69,6 +69,7 @@
             this.grdPuntos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPuntos.Location = new System.Drawing.Point(12, 140);
             this.grdPuntos.Name = "grdPuntos";
+            this.grdPuntos.RowHeadersVisible = false;
             this.grdPuntos.Size = new System.Drawing.Size(463, 198);
             this.grdPuntos.TabIndex = 2;
             // 
