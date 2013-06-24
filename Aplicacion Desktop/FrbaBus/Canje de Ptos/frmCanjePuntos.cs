@@ -81,9 +81,10 @@ namespace FrbaBus.Canje_de_Ptos
             int cantStockDelPremio = 0;
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT stoc_cantidad " +
+                    string query = "SELECT stoc_cantidad " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
-                        "WHERE stoc_id_premio =" + id_premio, Common.globalConn);
+                        "WHERE stoc_id_premio =" + id_premio;
+                    SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     cantStockDelPremio = (int)cmd.ExecuteScalar();
                 }

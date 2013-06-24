@@ -109,7 +109,7 @@ namespace FrbaBus.Login
                 {
 
                     this.Close();
-                    frmUtnBus.crearMenu(userRole);
+                    frmUtnBus.crearMenusAdmin(userRole);
                     //frmUtnBus.Visible = true;
                 }
             }

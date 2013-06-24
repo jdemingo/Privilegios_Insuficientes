@@ -172,9 +172,9 @@ namespace FrbaBus.Registrar_LLegada_Micro
                 "dest_viaje = reco_viaje_codigo AND " +
                 "reco_id_destino = " + cmbDestino.SelectedValue.ToString() + " AND " +
                 "reco_id_origen = " + cmbOrigen.SelectedValue.ToString() + " AND " +
-                "dest_fecha_salida < '" + Common.fechaytiempoSQL(dateLLegada) + "' AND " +
-                "DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaytiempoSQL(dateLLegada) + "') < 24 " +
-                "ORDER BY DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaytiempoSQL(dateLLegada) + "')", conn);
+                "dest_fecha_salida < '" + Common.fechaSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "' AND " +
+                "DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaFuncionSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "') < 24 " +
+                "ORDER BY DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaFuncionSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "')", conn);
                         DataTable dt = new DataTable();
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         adapter.Fill(dt);

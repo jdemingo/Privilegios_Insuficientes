@@ -21,11 +21,14 @@ namespace FrbaBus
         private SqlCommand cmd;
         private SqlDataAdapter adapter;
         public SqlConnection globalConn;
+        MainMenu mainMenu;
+
         public frmUtnBus()
         {
             InitializeComponent();
             globalConn = Common.conectar();
             Common.iniciarConexionGlobal();
+            inicializarMenus();
             //crearMenu(1);
         }
 
@@ -36,45 +39,44 @@ namespace FrbaBus
             frmMicros.Visible = true;
 
         }
-        internal void crearMenu(int rol)
+        internal void crearMenusAdmin(int rol)
         {
-            MainMenu mainMenu = new MainMenu();
-            this.Menu = mainMenu;
+
 
             //using (globalConn/*SqlConnection conn = Common.conectar()*/)
             //{
-                try
-                {
-                    SqlCommand cmd = new SqlCommand(
-                    "SELECT func_nombre " +
-                    "FROM PRIVILEGIOS_INSUFICIENTES.funciones " +
-                    "WHERE func_role_id = " + rol, Common.globalConn/*globalConn/*conn*/);
-                    adapter = new SqlDataAdapter(cmd);
-                    DataTable tablaFunciones = new DataTable();
-                    adapter.Fill(tablaFunciones);
-                    DataColumn[] columns = new DataColumn[1];
-                    columns[0] = tablaFunciones.Columns["func_nombre"];
-                    tablaFunciones.PrimaryKey = columns;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                "SELECT func_nombre " +
+                "FROM PRIVILEGIOS_INSUFICIENTES.funciones " +
+                "WHERE func_role_id = " + rol, Common.globalConn/*globalConn/*conn*/);
+                adapter = new SqlDataAdapter(cmd);
+                DataTable tablaFunciones = new DataTable();
+                adapter.Fill(tablaFunciones);
+                DataColumn[] columns = new DataColumn[1];
+                columns[0] = tablaFunciones.Columns["func_nombre"];
+                tablaFunciones.PrimaryKey = columns;
 
-                    mostrarMenus(mainMenu, tablaFunciones);
+                mostrarMenusAdmin(mainMenu, tablaFunciones);
 
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                    MessageBox.Show(ex.Message);
-                }
-                //finally
-                //{
-                //    if (globalConn/*conn*/ != null)
-                //        globalConn/*conn*/.Close();
-                //}
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+            //finally
+            //{
+            //    if (globalConn/*conn*/ != null)
+            //        globalConn/*conn*/.Close();
+            //}
             //}
         }
 
-        private void mostrarMenus(MainMenu mainMenu, DataTable tablaFunciones)
+        private void mostrarMenusAdmin(MainMenu mainMenu, DataTable tablaFunciones)
         {
-            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuConsultaPuntos, menuRegLLegadas, menuGenerarViaje, menuTopDest;
+            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuRegLLegadas, menuGenerarViaje;
             MenuItem menuABM = new MenuItem("&Administrativo");
 
             if (tablaFunciones.Rows.Contains("Roles"))
@@ -107,60 +109,67 @@ namespace FrbaBus
                 menuABM.MenuItems.Add(menuGenerarViaje = new MenuItem("&Generar viaje"));
                 menuGenerarViaje.Click += new System.EventHandler(this.menuGenerarViaje_Click);
             }
+            if (tablaFunciones.Rows.Contains("Registro de llegadas"))
+            {
+                menuABM.MenuItems.Add(menuRegLLegadas = new MenuItem("&Registro de llegadas"));
+                menuRegLLegadas.Click += new System.EventHandler(this.menuRegLLegada_Click);
+            }
 
             if (menuABM.MenuItems.Count > 0)
                 mainMenu.MenuItems.Add(menuABM);
+        }
 
-            if (tablaFunciones.Rows.Contains("Consulta de puntos"))
-            {
-                mainMenu.MenuItems.Add(menuConsultaPuntos = new MenuItem("&Consulta de puntos"));
-                menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
-            }
-            if (tablaFunciones.Rows.Contains("Registro de llegadas"))
-            {
-                mainMenu.MenuItems.Add(menuRegLLegadas = new MenuItem("&Registro de llegadas"));
-                menuRegLLegadas.Click += new System.EventHandler(this.menuRegLLegada_Click);
-            }
-            if (tablaFunciones.Rows.Contains("Top destinos"))
-            {
-                mainMenu.MenuItems.Add(menuTopDest = new MenuItem("&Top destinos"));
-                menuTopDest.Click += new System.EventHandler(this.menuTopDest_Click);
-            }
+        private void inicializarMenus()
+        {
+            mainMenu = new MainMenu();
+            this.Menu = mainMenu;
 
+            MenuItem menuConsultaPuntos, menuTopDest;
+            //if (tablaFunciones.Rows.Contains("Consulta de puntos"))
+            //{
+            mainMenu.MenuItems.Add(menuConsultaPuntos = new MenuItem("&Consulta de puntos"));
+            menuConsultaPuntos.Click += new System.EventHandler(this.menuConsultaPuntos_Click);
+            //}
+
+            //if (tablaFunciones.Rows.Contains("Top destinos"))
+            //{
+            mainMenu.MenuItems.Add(menuTopDest = new MenuItem("&Top destinos"));
+            menuTopDest.Click += new System.EventHandler(this.menuTopDest_Click);
+            //}
         }
 
         private void crearCombos()
         {
             //using (globalConn/*SqlConnection conn = Common.conectar()*/)
             //{
-                try
-                {
-                    string query = "select * from PRIVILEGIOS_INSUFICIENTES.ciudades";
-                    cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
-                    adapter = new SqlDataAdapter(cmd);
-                    tablaOrigen = new DataTable();
-                    tablaDestino = new DataTable();
-                    adapter.Fill(tablaOrigen);
-                    adapter.Fill(tablaDestino);
+            try
+            {
+                string query = "select * from PRIVILEGIOS_INSUFICIENTES.ciudades";
+                cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
+                adapter = new SqlDataAdapter(cmd);
+                tablaOrigen = new DataTable();
+                tablaDestino = new DataTable();
+                adapter.Fill(tablaOrigen);
+                adapter.Fill(tablaDestino);
 
-                    cmbOrigen.DisplayMember = "ciud_nombre";
-                    cmbOrigen.DataSource = tablaOrigen;
-                    cmbOrigen.ValueMember = "ciud_id";
+                cmbOrigen.DisplayMember = "ciud_nombre";
+                cmbOrigen.DataSource = tablaOrigen;
+                cmbOrigen.ValueMember = "ciud_id";
 
-                    cmbDestino.DisplayMember = "ciud_nombre";
-                    cmbDestino.DataSource = tablaDestino;
-                    cmbDestino.ValueMember = "ciud_id";
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                    MessageBox.Show(ex.Message);
-                }
-                //finally
-                //{
-                //    if (globalConn/*conn*/ != null)
-                //        globalConn/*conn*/.Close();
-                //}
+                cmbDestino.DisplayMember = "ciud_nombre";
+                cmbDestino.DataSource = tablaDestino;
+                cmbDestino.ValueMember = "ciud_id";
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+            //finally
+            //{
+            //    if (globalConn/*conn*/ != null)
+            //        globalConn/*conn*/.Close();
+            //}
             //}
         }
         private void frmUtnBus_Load(object sender, EventArgs e)
@@ -255,56 +264,56 @@ namespace FrbaBus
             //using (globalConn/*SqlConnection conn = Common.conectar()*/)
             //{
             grdPasajes.DataSource = null;
-                try
+            try
+            {
+                string query = "SELECT dest_id,"
+                                + "       dest_fecha_salida Salida,"
+                                + "       dest_fecha_llegada_estimada LLegada,"
+                                + "       dest_butacas_libres Butacas,"
+                                + "       dest_peso_libre Kgs,"
+                                + "       serv_servicio Servicio "
+                                + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
+                                + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
+                                + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
+                                + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
+                    //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
+                                + " and DATEADD(dd, 0, DATEDIFF(dd, 0, dest_fecha_salida)) = '" + Common.fechaSQL(dateSalida) + "'"
+                                + "  and dest_viaje          = reco_viaje_codigo"
+                                + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
+                                + "  and reco_id_destino     = " + cmbDestino.SelectedValue
+                                + "  and reco_viaje_codigo   = serv_viaje_codigo";
+                if (!txtKg.Equals("") && chkEncomienda.Checked)
                 {
-                    string query = "SELECT dest_id,"
-                                    + "       dest_fecha_salida Salida,"
-                                    + "       dest_fecha_llegada_estimada LLegada,"
-                                    + "       dest_butacas_libres Butacas,"
-                                    + "       dest_peso_libre Kgs,"
-                                    + "       serv_servicio Servicio "
-                                    + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
-                                    + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
-                                    + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
-                                    + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
-                        //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
-                                    + " and DATEADD(dd, 0, DATEDIFF(dd, 0, dest_fecha_salida)) = '" + Common.fechaSQL(dateSalida) + "'"
-                                    + "  and dest_viaje          = reco_viaje_codigo"
-                                    + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
-                                    + "  and reco_id_destino     = " + cmbDestino.SelectedValue
-                                    + "  and reco_viaje_codigo   = serv_viaje_codigo";
-                    if (!txtKg.Equals("") && chkEncomienda.Checked)
-                    {
-                        query += "  and dest_peso_libre >= " + txtKg.Text;
-                    }
-                    cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
-                    adapter = new SqlDataAdapter(cmd);
-                    tablaPasajes = new DataTable();
-                    adapter.Fill(tablaPasajes);
-                    if (tablaPasajes.Rows.Count == 0)
-                    {
-                        MessageBox.Show("No hay disponible/s "+txtCantPasajes.Text+" pasaje/s de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text + " que tenga/n "+txtKg.Text+" kg disponible/s para encomienda." );
-                    }
-                    else
-                    {
-                        
-                        grdPasajes.DataSource = tablaPasajes;
-                        grdPasajes.AutoResizeColumns();
-                        grdPasajes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                        grdPasajes.Columns["dest_id"].Visible = false;
-                        grpPasajesDisponibles.Visible = true;
-                    }
+                    query += "  and dest_peso_libre >= " + txtKg.Text;
                 }
-                catch (Exception ex)
+                cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
+                adapter = new SqlDataAdapter(cmd);
+                tablaPasajes = new DataTable();
+                adapter.Fill(tablaPasajes);
+                if (tablaPasajes.Rows.Count == 0)
                 {
-                    Console.Write(ex.Message);
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("No hay disponible/s " + txtCantPasajes.Text + " pasaje/s de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text + " que tenga/n " + txtKg.Text + " kg disponible/s para encomienda.");
                 }
-                //finally
-                //{
-                //    if (globalConn/*conn*/ != null)
-                //        globalConn/*conn*/.Close();
-                //}
+                else
+                {
+
+                    grdPasajes.DataSource = tablaPasajes;
+                    grdPasajes.AutoResizeColumns();
+                    grdPasajes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    grdPasajes.Columns["dest_id"].Visible = false;
+                    grpPasajesDisponibles.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+            //finally
+            //{
+            //    if (globalConn/*conn*/ != null)
+            //        globalConn/*conn*/.Close();
+            //}
 
 
             //}
@@ -318,7 +327,7 @@ namespace FrbaBus
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           // MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
+            // MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
 
             Form frmAbm_compra;
             //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
@@ -326,7 +335,7 @@ namespace FrbaBus
             frmAbm_compra.Visible = true;
         }
 
- 
+
         private void cmbOrigHide_SelectedIndexChanged(object sender, EventArgs e)
         {
 

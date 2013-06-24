@@ -30,6 +30,7 @@ namespace FrbaBus.Compra_de_Pasajes
         private decimal tipo_porcentaje;
         private decimal descJubilado = (decimal)0.5;
         private decimal descDiscapacitado = 0;
+        private IList<int> dnisAgregados;
 
         public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes, string kgs)
         {
@@ -37,9 +38,10 @@ namespace FrbaBus.Compra_de_Pasajes
             this.cant_pasajes = cant_pasajes.Equals("") ? 0 : int.Parse(cant_pasajes);
             this.max_cant_pasajes = this.cant_pasajes;
             this.kgs = kgs.Equals("") ? 0 : decimal.Parse(kgs);
-            lblCantEnc.Text = "1";            
+            lblCantEnc.Text = "1";
             lblCantPasajes.Text = cant_pasajes;
             cmbSexo.SelectedIndex = 0;
+            dnisAgregados = new List<int>();
             if (this.kgs == 0)
             {
                 lblCantEnc.Visible = false;
@@ -137,11 +139,23 @@ namespace FrbaBus.Compra_de_Pasajes
 
         }
 
+        private bool dniPasajeroRepetido()
+        {
+
+            if (dnisAgregados.Contains(int.Parse(txtDNI.Text)) && grdButacas.Visible && !chkEncomienda.Checked)
+            {
+                MessageBox.Show("Este DNI ya fue ingresado como pasaje");
+                limpiarCampos();
+                return true;
+            }
+            return false;
+        }
+
         private void txtDNI_LostFocus(object sender, EventArgs e)
         {
 
-            if (txtDNI.Text != "" && Common.validacionNumerica(txtDNI))
-            {                
+            if (txtDNI.Text != "" && Common.validacionNumerica(txtDNI) && !dniPasajeroRepetido())
+            {
                 //using (globalConn/*SqlConnection conn = Common.conectar()*/)
                 //{
                 try
@@ -264,7 +278,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void btnSigPasaje_Click(object sender, EventArgs e)
         {
-            if (validacion())
+            if (validacion() && !dniPasajeroRepetido())
             {
                 try
                 {
@@ -291,6 +305,7 @@ namespace FrbaBus.Compra_de_Pasajes
                     else if (discJub.Equals("Jubilado"))
                         precio = precio * descJubilado;
                     grdPasajeros.Rows.Add("NULL", dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", precio, "NULL", "NULL", "NULL", "NULL", discJub, "NULL");
+                    dnisAgregados.Add(int.Parse(txtDNI.Text));
                     // Oculto y guardo en rowIndexs la ultima butaca ocultada
                     rowIndexs.Add(grdButacas.CurrentRow.Index);
                     grdButacas.CurrentCell = null;
@@ -475,6 +490,10 @@ namespace FrbaBus.Compra_de_Pasajes
                 // Muestro la ultima butaca ocultada y la elimino de rowIndexs para que la ultima sea la anterior 
                 grdButacas.Rows[rowIndexs.Last()].Visible = true;
                 rowIndexs.RemoveAt(rowIndexs.Count - 1);
+                // Elimino el ultimo DNI agregado
+                limpiarCampos();
+                MessageBox.Show("Se limpiaron los datos del pasaje anterior del DNI: " + dnisAgregados.Last<int>() + ". Ahora puede volver a ingresar datos para este pasaje.");
+                dnisAgregados.RemoveAt(dnisAgregados.Count - 1);
 
                 if ((++cant_pasajes) >= max_cant_pasajes && atrasEnc == 0)
                     btnAtras.Visible = false;
@@ -486,6 +505,8 @@ namespace FrbaBus.Compra_de_Pasajes
                 if (atrasEnc == 1)
                 {
                     cambiarVisibilidadEnc();
+                    limpiarCampos();
+                    MessageBox.Show("Se limpiaron los datos de la encomienda del DNI: " + dnisAgregados.Last<int>() + ". Ahora puede volver a ingresar datos para la encomienda.");
                     // Si no hay mas pasajes a cargar, obligo a cargar
                     if (cant_pasajes == 0)
                         chkEncomienda.AutoCheck = false;
@@ -586,7 +607,7 @@ namespace FrbaBus.Compra_de_Pasajes
         {
             Common.validacionNumerica(txtTel);
         }
-        
+
         private void txtTarjeta_LostFocus(object sender, EventArgs e)
         {
             Common.validacionNumerica(txtTarjeta);
@@ -596,6 +617,6 @@ namespace FrbaBus.Compra_de_Pasajes
             Common.validacionNumerica(txtCodSeg);
         }
 
-        
+
     }
 }
