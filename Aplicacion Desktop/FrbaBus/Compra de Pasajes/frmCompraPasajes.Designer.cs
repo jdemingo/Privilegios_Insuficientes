@@ -142,7 +142,7 @@
             this.txtDNI.Location = new System.Drawing.Point(73, 19);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(180, 20);
-            this.txtDNI.TabIndex = 48;
+            this.txtDNI.TabIndex = 0;
             this.txtDNI.Leave += new System.EventHandler(this.txtDNI_LostFocus);
             // 
             // label10
@@ -168,7 +168,7 @@
             this.txtNombre.Location = new System.Drawing.Point(73, 46);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(180, 20);
-            this.txtNombre.TabIndex = 44;
+            this.txtNombre.TabIndex = 1;
             // 
             // label3
             // 
@@ -185,7 +185,7 @@
             this.chkDiscapacitado.Location = new System.Drawing.Point(159, 126);
             this.chkDiscapacitado.Name = "chkDiscapacitado";
             this.chkDiscapacitado.Size = new System.Drawing.Size(94, 17);
-            this.chkDiscapacitado.TabIndex = 42;
+            this.chkDiscapacitado.TabIndex = 5;
             this.chkDiscapacitado.Text = "Discapacitado";
             this.chkDiscapacitado.UseVisualStyleBackColor = true;
             // 
@@ -195,7 +195,7 @@
             this.dateNac.Location = new System.Drawing.Point(127, 202);
             this.dateNac.Name = "dateNac";
             this.dateNac.Size = new System.Drawing.Size(88, 20);
-            this.dateNac.TabIndex = 39;
+            this.dateNac.TabIndex = 8;
             // 
             // cmbSexo
             // 
@@ -207,21 +207,21 @@
             this.cmbSexo.Location = new System.Drawing.Point(73, 124);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(72, 21);
-            this.cmbSexo.TabIndex = 38;
+            this.cmbSexo.TabIndex = 4;
             // 
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(73, 177);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(180, 20);
-            this.txtMail.TabIndex = 36;
+            this.txtMail.TabIndex = 7;
             // 
             // txtTel
             // 
             this.txtTel.Location = new System.Drawing.Point(73, 151);
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(180, 20);
-            this.txtTel.TabIndex = 35;
+            this.txtTel.TabIndex = 6;
             this.txtTel.Leave += new System.EventHandler(this.txtTel_LostFocus);
             // 
             // txtDir
@@ -229,14 +229,14 @@
             this.txtDir.Location = new System.Drawing.Point(73, 98);
             this.txtDir.Name = "txtDir";
             this.txtDir.Size = new System.Drawing.Size(180, 20);
-            this.txtDir.TabIndex = 34;
+            this.txtDir.TabIndex = 3;
             // 
             // txtApe
             // 
             this.txtApe.Location = new System.Drawing.Point(73, 72);
             this.txtApe.Name = "txtApe";
             this.txtApe.Size = new System.Drawing.Size(180, 20);
-            this.txtApe.TabIndex = 33;
+            this.txtApe.TabIndex = 2;
             // 
             // label8
             // 
@@ -329,7 +329,7 @@
             this.btnPago.Location = new System.Drawing.Point(181, 196);
             this.btnPago.Name = "btnPago";
             this.btnPago.Size = new System.Drawing.Size(115, 23);
-            this.btnPago.TabIndex = 56;
+            this.btnPago.TabIndex = 38;
             this.btnPago.Text = "Efectuar pago";
             this.btnPago.UseVisualStyleBackColor = true;
             this.btnPago.Visible = false;
@@ -384,7 +384,7 @@
             this.cmbCuotas.Location = new System.Drawing.Point(126, 121);
             this.cmbCuotas.Name = "cmbCuotas";
             this.cmbCuotas.Size = new System.Drawing.Size(67, 21);
-            this.cmbCuotas.TabIndex = 44;
+            this.cmbCuotas.TabIndex = 37;
             // 
             // dateVenc
             // 
@@ -393,7 +393,7 @@
             this.dateVenc.Location = new System.Drawing.Point(126, 69);
             this.dateVenc.Name = "dateVenc";
             this.dateVenc.Size = new System.Drawing.Size(67, 20);
-            this.dateVenc.TabIndex = 43;
+            this.dateVenc.TabIndex = 35;
             // 
             // txtTarjeta
             // 
@@ -426,7 +426,7 @@
             this.txtCodSeg.Location = new System.Drawing.Point(126, 43);
             this.txtCodSeg.Name = "txtCodSeg";
             this.txtCodSeg.Size = new System.Drawing.Size(153, 20);
-            this.txtCodSeg.TabIndex = 35;
+            this.txtCodSeg.TabIndex = 34;
             this.txtCodSeg.Leave += new System.EventHandler(this.txtCodSeg_LostFocus);
             // 
             // label15
@@ -446,7 +446,7 @@
             this.cmbTipoTarj.Location = new System.Drawing.Point(126, 95);
             this.cmbTipoTarj.Name = "cmbTipoTarj";
             this.cmbTipoTarj.Size = new System.Drawing.Size(153, 21);
-            this.cmbTipoTarj.TabIndex = 39;
+            this.cmbTipoTarj.TabIndex = 36;
             this.cmbTipoTarj.SelectedIndexChanged += new System.EventHandler(this.cmbTipoTarj_SelectedIndexChanged);
             // 
             // label16
@@ -472,7 +472,7 @@
             this.btnSigPasaje.Location = new System.Drawing.Point(166, 280);
             this.btnSigPasaje.Name = "btnSigPasaje";
             this.btnSigPasaje.Size = new System.Drawing.Size(120, 23);
-            this.btnSigPasaje.TabIndex = 45;
+            this.btnSigPasaje.TabIndex = 10;
             this.btnSigPasaje.Text = "Siguiente Pasaje";
             this.btnSigPasaje.UseVisualStyleBackColor = true;
             this.btnSigPasaje.Click += new System.EventHandler(this.btnSigPasaje_Click);
@@ -487,14 +487,14 @@
             this.grdPasajeros.ReadOnly = true;
             this.grdPasajeros.RowHeadersVisible = false;
             this.grdPasajeros.Size = new System.Drawing.Size(636, 145);
-            this.grdPasajeros.TabIndex = 27;
+            this.grdPasajeros.TabIndex = 11;
             // 
             // btnFinalizar
             // 
             this.btnFinalizar.Location = new System.Drawing.Point(517, 484);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(131, 23);
-            this.btnFinalizar.TabIndex = 46;
+            this.btnFinalizar.TabIndex = 39;
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = true;
             this.btnFinalizar.Visible = false;
@@ -517,7 +517,7 @@
             this.chkEncomienda.Location = new System.Drawing.Point(25, 247);
             this.chkEncomienda.Name = "chkEncomienda";
             this.chkEncomienda.Size = new System.Drawing.Size(85, 17);
-            this.chkEncomienda.TabIndex = 71;
+            this.chkEncomienda.TabIndex = 9;
             this.chkEncomienda.Text = "Encomienda";
             this.chkEncomienda.UseVisualStyleBackColor = true;
             this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);

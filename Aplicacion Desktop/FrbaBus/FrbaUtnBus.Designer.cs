@@ -171,6 +171,8 @@
             this.txtKg.Name = "txtKg";
             this.txtKg.Size = new System.Drawing.Size(54, 20);
             this.txtKg.TabIndex = 5;
+            this.txtKg.TextChanged += new System.EventHandler(this.txtKg_TextChanged);
+            this.txtKg.Leave += new System.EventHandler(this.txtKg_LostFocus);
             // 
             // txtCantPasajes
             // 
@@ -179,6 +181,7 @@
             this.txtCantPasajes.Size = new System.Drawing.Size(101, 20);
             this.txtCantPasajes.TabIndex = 3;
             this.txtCantPasajes.TextChanged += new System.EventHandler(this.txtCantPasajes_TextChanged);
+            this.txtCantPasajes.Leave += new System.EventHandler(this.txtCantPasajes_LostFocus);
             // 
             // btnCargarPasajes
             // 

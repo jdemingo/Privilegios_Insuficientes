@@ -21,6 +21,7 @@ namespace FrbaBus
         private SqlCommand cmd;
         private SqlDataAdapter adapter;
         public SqlConnection globalConn;
+        private int ultEnc;
         MainMenu mainMenu;
 
         public frmUtnBus()
@@ -264,51 +265,72 @@ namespace FrbaBus
             //using (globalConn/*SqlConnection conn = Common.conectar()*/)
             //{
             grdPasajes.DataSource = null;
-            try
-            {
-                string query = "SELECT dest_id,"
-                                + "       dest_fecha_salida Salida,"
-                                + "       dest_fecha_llegada_estimada LLegada,"
-                                + "       dest_butacas_libres Butacas,"
-                                + "       dest_peso_libre Kgs,"
-                                + "       serv_servicio Servicio "
-                                + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
-                                + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
-                                + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
-                                + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
-                    //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
-                                + " and DATEADD(dd, 0, DATEDIFF(dd, 0, dest_fecha_salida)) = '" + Common.fechaSQL(dateSalida) + "'"
-                                + "  and dest_viaje          = reco_viaje_codigo"
-                                + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
-                                + "  and reco_id_destino     = " + cmbDestino.SelectedValue
-                                + "  and reco_viaje_codigo   = serv_viaje_codigo";
-                if (!txtKg.Equals("") && chkEncomienda.Checked)
+            txtKg.Text = txtKg.Text == "" || (int.Parse(txtKg.Text) <= 0) ? "0" : txtKg.Text;
+            txtCantPasajes.Text = txtCantPasajes.Text == "" || (int.Parse(txtCantPasajes.Text) <= 0) ? "0" : txtCantPasajes.Text;
+            
+            if (txtCantPasajes.Text == "0" && txtKg.Text == "0")
+                MessageBox.Show("Ingrese una cantidad para pasajes o para encomienda.");
+            else try
                 {
-                    query += "  and dest_peso_libre >= " + txtKg.Text;
-                }
-                cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
-                adapter = new SqlDataAdapter(cmd);
-                tablaPasajes = new DataTable();
-                adapter.Fill(tablaPasajes);
-                if (tablaPasajes.Rows.Count == 0)
-                {
-                    MessageBox.Show("No hay disponible/s " + txtCantPasajes.Text + " pasaje/s de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text + " que tenga/n " + txtKg.Text + " kg disponible/s para encomienda.");
-                }
-                else
-                {
+                    //string query = "SELECT dest_id,"
+                    //                + "       dest_fecha_salida Salida,"
+                    //                + "       dest_fecha_llegada_estimada LLegada,"
+                    //                + "       dest_butacas_libres Butacas,"
+                    //                + "       dest_peso_libre Kgs,"
+                    //                + "       serv_servicio Servicio "
+                    //                + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
+                    //                + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
+                    //                + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
+                    //                + "  WHERE (dest_butacas_libres > 0 or dest_peso_libre > 0)"
+                    //    //  +"WHERE dest_fecha_salida   = "+dateSalida.Text    //problema al comparar fechas
+                    //                + " and DATEADD(dd, 0, DATEDIFF(dd, 0, dest_fecha_salida)) = '" + Common.fechaSQL(dateSalida) + "'"
+                    //                + "  and dest_viaje          = reco_viaje_codigo"
+                    //                + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
+                    //                + "  and reco_id_destino     = " + cmbDestino.SelectedValue
+                    //                + "  and reco_viaje_codigo   = serv_viaje_codigo";
+                    //if (!txtKg.Equals("") && chkEncomienda.Checked)
+                    //{
+                    //    query += "  and dest_peso_libre >= " + txtKg.Text;
+                    //}
 
-                    grdPasajes.DataSource = tablaPasajes;
-                    grdPasajes.AutoResizeColumns();
-                    grdPasajes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    grdPasajes.Columns["dest_id"].Visible = false;
-                    grpPasajesDisponibles.Visible = true;
+                    string query = "SELECT dest_id,"
+                                 + "       dest_fecha_salida Salida,"
+                                 + "       dest_fecha_llegada_estimada LLegada,"
+                                 + "       dest_butacas_libres Butacas,"
+                                 + "       dest_peso_libre Kgs,"
+                                 + "       serv_servicio Servicio "
+                                 + "FROM PRIVILEGIOS_INSUFICIENTES.Destinos,"
+                                 + "     PRIVILEGIOS_INSUFICIENTES.Recorridos,"
+                                 + "     PRIVILEGIOS_INSUFICIENTES.Servicios_Recorridos"
+                                 + "  WHERE (dest_butacas_libres >=" + txtCantPasajes.Text + " and dest_peso_libre >= " + txtKg.Text + ")"
+                                 + "  and DATEADD(dd, 0, DATEDIFF(dd, 0, dest_fecha_salida)) = '" + Common.fechaSQL(dateSalida) + "'"
+                                 + "  and dest_viaje          = reco_viaje_codigo"
+                                 + "  and reco_id_origen      = " + cmbOrigen.SelectedValue
+                                 + "  and reco_id_destino     = " + cmbDestino.SelectedValue
+                                 + "  and reco_viaje_codigo   = serv_viaje_codigo";
+                    cmd = new SqlCommand(query, Common.globalConn/*globalConn/*conn*/);
+                    adapter = new SqlDataAdapter(cmd);
+                    tablaPasajes = new DataTable();
+                    adapter.Fill(tablaPasajes);
+                    if (tablaPasajes.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No hay disponible/s " + txtCantPasajes.Text + " pasaje/s de " + cmbOrigen.Text + " a " + cmbDestino.Text + " el dia " + dateSalida.Text + " que tenga/n " + txtKg.Text + " kg disponible/s para encomienda.");
+                    }
+                    else
+                    {
+
+                        grdPasajes.DataSource = tablaPasajes;
+                        grdPasajes.AutoResizeColumns();
+                        grdPasajes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        grdPasajes.Columns["dest_id"].Visible = false;
+                        grpPasajesDisponibles.Visible = true;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-                MessageBox.Show(ex.Message);
-            }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
             //finally
             //{
             //    if (globalConn/*conn*/ != null)
@@ -319,11 +341,23 @@ namespace FrbaBus
             //}
 
         }
+
+        private void txtKg_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtKg);
+            btnCargarPasajes.PerformClick();
+        }
+        private void txtCantPasajes_LostFocus(object sender, EventArgs e)
+        {
+            Common.validacionNumerica(txtCantPasajes);
+            btnCargarPasajes.PerformClick();
+        }
+
         private void chkEncomienda_ChangeChecked(object sender, EventArgs e)
         {
             lblKgs.Enabled = chkEncomienda.Checked ? true : false;
-            //txtKg.Text = "";
             txtKg.Enabled = chkEncomienda.Checked ? true : false;
+            txtKg.Text = chkEncomienda.Checked ? txtKg.Text : "";
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -332,7 +366,7 @@ namespace FrbaBus
             Form frmAbm_compra;
             //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
             frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes((int)grdPasajes.CurrentRow.Cells["dest_id"].Value, grdPasajes.CurrentRow.Cells["Servicio"].Value.ToString(), txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
-            frmAbm_compra.Visible = true;
+            frmAbm_compra.Show();
         }
 
 
@@ -357,6 +391,11 @@ namespace FrbaBus
             Form frmMicros;
             frmMicros = new FrbaBus.Abm_Micro.frmMicros();
             frmMicros.Visible = true;
+        }
+
+        private void txtKg_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
 

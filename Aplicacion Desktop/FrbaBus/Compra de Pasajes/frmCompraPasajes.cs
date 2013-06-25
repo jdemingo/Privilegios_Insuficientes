@@ -31,19 +31,21 @@ namespace FrbaBus.Compra_de_Pasajes
         private decimal descJubilado = (decimal)0.5;
         private decimal descDiscapacitado = 0;
         private IList<int> dnisAgregados;
+        private DataGridViewCell ultButacaSel;
 
-        public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes, string kgs)
+        public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes_str, string kgs)
         {
             InitializeComponent();
-            this.cant_pasajes = cant_pasajes.Equals("") ? 0 : int.Parse(cant_pasajes);
+            this.cant_pasajes = cant_pasajes_str.Equals("") ? 0 : int.Parse(cant_pasajes_str);
             this.max_cant_pasajes = this.cant_pasajes;
             this.kgs = kgs.Equals("") ? 0 : decimal.Parse(kgs);
             lblCantEnc.Text = "1";
-            lblCantPasajes.Text = cant_pasajes;
-            cmbSexo.SelectedIndex = 0;
+            lblCantPasajes.Text = this.cant_pasajes.ToString();
+            cmbSexo.SelectedIndex = 0;            
             dnisAgregados = new List<int>();
             if (this.kgs == 0)
             {
+                lblCantEnc.Text = "0";
                 lblCantEnc.Visible = false;
                 lblEncText.Visible = false;
                 lblAtrasEnc.Visible = false;
@@ -56,10 +58,12 @@ namespace FrbaBus.Compra_de_Pasajes
             cargarTiposTarjeta();
             obtenerPrecios();
             obtenerDescuentos();
-            cargarButacas2();
+            cargarButacas2();           
             //cargarButacas();
             crearGridPasajeros();
             //MessageBox.Show(this.id_viaje + " - " + this.cant_pasajes + " - " + this.kgs);
+            if (cant_pasajes_str.Equals("0"))
+                cambiarObligacionEnc();
         }
 
         private void crearGridPasajeros()
@@ -136,7 +140,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void frmComprarPasajes_Load(object sender, EventArgs e)
         {
-
+            grdButacas.CurrentCell = null;
         }
 
         private bool dniPasajeroRepetido()
@@ -144,7 +148,27 @@ namespace FrbaBus.Compra_de_Pasajes
 
             if (dnisAgregados.Contains(int.Parse(txtDNI.Text)) && grdButacas.Visible && !chkEncomienda.Checked)
             {
-                MessageBox.Show("Este DNI ya fue ingresado como pasaje");
+                MessageBox.Show("Este DNI ya fue ingresado como pasaje en esta compra");
+                limpiarCampos();
+                return true;
+            }
+            string query = "SELECT COUNT(*) "
+                          + "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, "
+                          + " PRIVILEGIOS_INSUFICIENTES.Pasajes, "
+                          + " PRIVILEGIOS_INSUFICIENTES.Personas, "
+                          + " PRIVILEGIOS_INSUFICIENTES.Destinos "
+                          + "WHERE clie_id = pasa_cliente "
+                          + "and clie_dni = " + txtDNI.Text + " "
+                          + "and pasa_codigo = pers_codigo "
+                          + "and pasa_dest_id = dest_id "
+                          + "and dest_fecha_salida in (SELECT dest_fecha_salida "
+                          + "    FROM PRIVILEGIOS_INSUFICIENTES.Destinos "
+                          + "    WHERE dest_id = " + dest_id + ")";
+            SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+            int cantPasajeros = (int)cmd.ExecuteScalar();
+            if (cantPasajeros > 0)
+            {
+                MessageBox.Show("Este DNI ya compro un pasaje para esta fecha");
                 limpiarCampos();
                 return true;
             }
@@ -153,11 +177,14 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void txtDNI_LostFocus(object sender, EventArgs e)
         {
-
-            if (txtDNI.Text != "" && Common.validacionNumerica(txtDNI) && !dniPasajeroRepetido())
+            bool repe = false;
+            if (!chkEncomienda.Checked)
+                repe = dniPasajeroRepetido();
+            if (txtDNI.Text != "" && Common.validacionNumerica(txtDNI) && !repe)
             {
                 //using (globalConn/*SqlConnection conn = Common.conectar()*/)
                 //{
+                
                 try
                 {
                     string query = "select * from PRIVILEGIOS_INSUFICIENTES.clientes where clie_dni = '" + txtDNI.Text + "'";
@@ -278,7 +305,7 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private void btnSigPasaje_Click(object sender, EventArgs e)
         {
-            if (validacion() && !dniPasajeroRepetido())
+            if (validacion())
             {
                 try
                 {
@@ -294,29 +321,32 @@ namespace FrbaBus.Compra_de_Pasajes
                 // Es un pasaje
                 if (cant_pasajes > 0 && !chkEncomienda.Checked)
                 {
-                    cant_pasajes--;
-                    btnAtras.Visible = true;
-                    //decimal precio = persona_base * tipo_porcentaje;
-                    decimal precio = persona_base;
+                    if (!dniPasajeroRepetido())
+                    {
+                        cant_pasajes--;
+                        btnAtras.Visible = true;
+                        //decimal precio = persona_base * tipo_porcentaje;
+                        decimal precio = persona_base;
 
-                    string discJub = obtenerDiscJub();
-                    if (discJub.Equals("Discapacitado"))
-                        precio = precio * descDiscapacitado;
-                    else if (discJub.Equals("Jubilado"))
-                        precio = precio * descJubilado;
-                    grdPasajeros.Rows.Add("NULL", dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", precio, "NULL", "NULL", "NULL", "NULL", discJub, "NULL");
-                    dnisAgregados.Add(int.Parse(txtDNI.Text));
-                    // Oculto y guardo en rowIndexs la ultima butaca ocultada
-                    rowIndexs.Add(grdButacas.CurrentRow.Index);
-                    grdButacas.CurrentCell = null;
-                    grdButacas.Rows[rowIndexs.Last()].Visible = false;
-                    limpiarCampos();
-                    // Actualiza posicion de encomienda
-                    if (atrasEnc > 0)
-                        atrasEnc++;
-                    // Es el ultimo pasaje
-                    if (cant_pasajes == 0 && kgs > 0)
-                        cambiarObligacionEnc();
+                        string discJub = obtenerDiscJub();
+                        if (discJub.Equals("Discapacitado"))
+                            precio = precio * descDiscapacitado;
+                        else if (discJub.Equals("Jubilado"))
+                            precio = precio * descJubilado;
+                        grdPasajeros.Rows.Add("NULL", dest_id, grdButacas.CurrentRow.Cells["Butaca"].Value, grdButacas.CurrentRow.Cells["Tipo"].Value, grdButacas.CurrentRow.Cells["Piso"].Value, txtDNI.Text, "NULL", precio, "NULL", "NULL", "NULL", "NULL", discJub, "NULL");
+                        dnisAgregados.Add(int.Parse(txtDNI.Text));
+                        // Oculto y guardo en rowIndexs la ultima butaca ocultada
+                        rowIndexs.Add(grdButacas.CurrentRow.Index);
+                        grdButacas.CurrentCell = null;
+                        grdButacas.Rows[rowIndexs.Last()].Visible = false;
+                        limpiarCampos();
+                        // Actualiza posicion de encomienda
+                        if (atrasEnc > 0)
+                            atrasEnc++;
+                        // Es el ultimo pasaje
+                        if (cant_pasajes == 0 && kgs > 0)
+                            cambiarObligacionEnc();
+                    }
                 }
                 // Es una encomienda
                 else if (chkEncomienda.Checked)
@@ -348,6 +378,25 @@ namespace FrbaBus.Compra_de_Pasajes
             chkEncomienda.Visible = chkEncomienda.Visible ? false : true;
         }
 
+        private void cambiarHabilitacionButacas()
+        {
+            if (grdButacas.Enabled)
+            {
+                ultButacaSel = grdButacas.CurrentCell;
+                grdButacas.CurrentCell = null;
+                grdButacas.Enabled = false;
+                grdButacas.DefaultCellStyle.BackColor = Color.LightGray;
+                grdButacas.ForeColor = Color.LightGray;
+                //grdButacas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Gray;
+            } else if (!grdButacas.Enabled)
+            {
+                grdButacas.Enabled = true;
+                grdButacas.DefaultCellStyle.BackColor = Color.White;
+                grdButacas.ForeColor = Color.Black;
+                grdButacas.CurrentCell = ultButacaSel;
+            }
+        }
+
         private void cambiarObligacionEnc()
         {
             //chkEncomienda.Checked = true;
@@ -355,9 +404,9 @@ namespace FrbaBus.Compra_de_Pasajes
 
             //chkEncomienda.Checked = false;
             //chkEncomienda.AutoCheck = true;
-
-            chkEncomienda.Checked = chkEncomienda.Checked ? false : true;
             chkEncomienda.AutoCheck = chkEncomienda.AutoCheck ? false : true;
+            chkEncomienda.Checked = chkEncomienda.Checked ? false : true;
+            
         }
 
         private string obtenerDiscJub()
@@ -532,17 +581,19 @@ namespace FrbaBus.Compra_de_Pasajes
         }
 
         private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
-        {
+        {            
             chkDiscapacitado.Checked = false;
             if (chkEncomienda.Checked && atrasDisc == 0)
             {
-                grdButacas.ReadOnly = true;
                 chkDiscapacitado.Visible = false;
             }
             else if (!chkEncomienda.Checked && atrasDisc == 0)
             {
                 chkDiscapacitado.Visible = true;
             }
+            
+            cambiarHabilitacionButacas();
+            grdButacas.CurrentCell = null;
         }
 
         private void cmbTipoTarj_SelectedIndexChanged(object sender, EventArgs e)
@@ -598,9 +649,20 @@ namespace FrbaBus.Compra_de_Pasajes
                 SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
             }
-            SqlCommand cmd2;
-            cmd2 = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);
-            cmd2.ExecuteNonQuery();
+            try
+            {
+                SqlCommand cmd2;
+                cmd2 = new SqlCommand("EXECUTE PRIVILEGIOS_INSUFICIENTES.procesar_pasajes", Common.globalConn);
+                cmd2.ExecuteNonQuery();
+                MessageBox.Show("Compra realizada con éxito");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+ 
+            
         }
 
         private void txtTel_LostFocus(object sender, EventArgs e)

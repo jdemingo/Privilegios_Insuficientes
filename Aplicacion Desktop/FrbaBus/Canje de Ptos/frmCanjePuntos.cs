@@ -117,7 +117,7 @@ namespace FrbaBus.Canje_de_Ptos
                         }
                         else
                         {
-                            string query="EXECUTE PRIVILEGIOS_INSUFICIENTES.canjearPremios(" + premioId + "," + txtDNI.Text + "," + txtCantidad.Text + ",'" + Common.fecha + "')";
+                            string query="EXECUTE PRIVILEGIOS_INSUFICIENTES.canjearPremios " + premioId + "," + txtDNI.Text + "," + txtCantidad.Text + ",'" + Common.fecha + "'";
                             SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                             cmd.ExecuteNonQuery();
                             /*                "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +

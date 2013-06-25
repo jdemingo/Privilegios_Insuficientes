@@ -31,7 +31,7 @@ namespace FrbaBus
             bool EsNumerico = long.TryParse(txt.Text, out Dft);
             if (!EsNumerico && !txt.Text.Equals(""))
             {
-                MessageBox.Show("Este campo debe ser numerico");
+                MessageBox.Show("Ha ingresado '"+txt.Text+"' en un campo que debe ser numerico");
                 txt.Text = "";
             }
             return EsNumerico;
