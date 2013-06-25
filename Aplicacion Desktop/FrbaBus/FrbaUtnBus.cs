@@ -268,9 +268,8 @@ namespace FrbaBus
             txtKg.Text = txtKg.Text == "" || (int.Parse(txtKg.Text) <= 0) ? "0" : txtKg.Text;
             txtCantPasajes.Text = txtCantPasajes.Text == "" || (int.Parse(txtCantPasajes.Text) <= 0) ? "0" : txtCantPasajes.Text;
             
-            if (txtCantPasajes.Text == "0" && txtKg.Text == "0")
-                MessageBox.Show("Ingrese una cantidad para pasajes o para encomienda.");
-            else try
+            
+            try
                 {
                     //string query = "SELECT dest_id,"
                     //                + "       dest_fecha_salida Salida,"
@@ -362,11 +361,15 @@ namespace FrbaBus
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // MessageBox.Show(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString());
-
-            Form frmAbm_compra;
-            //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
-            frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes((int)grdPasajes.CurrentRow.Cells["dest_id"].Value, grdPasajes.CurrentRow.Cells["Servicio"].Value.ToString(), txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
-            frmAbm_compra.Show();
+            if (txtCantPasajes.Text == "0" && txtKg.Text == "0")
+                MessageBox.Show("Ingrese una cantidad de pasajes o kgs de encomienda.");
+            else
+            {
+                Form frmAbm_compra;
+                //frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes(int.Parse(grdPasajes.Rows[e.RowIndex].Cells[0].Value.ToString()), txtCantPasajes.Text, txtKg.Text);
+                frmAbm_compra = new FrbaBus.Compra_de_Pasajes.frmCompraPasajes((int)grdPasajes.CurrentRow.Cells["dest_id"].Value, grdPasajes.CurrentRow.Cells["Servicio"].Value.ToString(), txtCantPasajes.Text, txtKg.Enabled ? txtKg.Text : "");
+                frmAbm_compra.Show();
+            }
         }
 
 
