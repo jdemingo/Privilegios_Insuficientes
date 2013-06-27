@@ -116,6 +116,59 @@ namespace FrbaBus.Cancelar_Viaje
 
         }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttBajaPasaje_Click(object sender, EventArgs e)
+        {
+
+            string query = "insert into privilegios_insuficientes.tmp_pasajes_cancelar values(" + txtPasaje.Text + ",'" + txtMotivo.Text + "')";
+            cmd = new SqlCommand(query, Common.globalConn);
+            cmd.ExecuteNonQuery();
+
+
+            try
+            {
+
+                string queryB = "delete from privilegios_insuficientes.pasajes "
+                                + "where pasa_codigo in ( select canc_cod_pasaje "
+                                + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
+
+                cmd = new SqlCommand(queryB, Common.globalConn);
+                adapter = new SqlDataAdapter(cmd);
+                cmd.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+
+
+
+
+        }
+
+        private void rdbPorPasaje_CheckedChanged(object sender, EventArgs e)
+        {
+            groupPasaje.Enabled = true;
+            groupVoucher.Enabled = false;
+            bttBajaPasaje.Enabled = true;
+            bttDarDeBaja.Enabled = false;
+        }
+
+        private void rdbPorVoucher_CheckedChanged(object sender, EventArgs e)
+        {
+            groupPasaje.Enabled = false;
+            groupVoucher.Enabled = true;
+            bttBajaPasaje.Enabled = false;
+            bttDarDeBaja.Enabled = true;
+        }
+
 
 
 
