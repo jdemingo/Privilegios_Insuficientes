@@ -49,7 +49,7 @@ namespace FrbaBus.Abm_Recorrido
 
                             int resultado = tablaverificar_codigo.Select("reco_viaje_codigo = " + Convert.ToDecimal(txtbCodigo.Text) + "  and (reco_id_origen <> '" + id_orig + "' or reco_id_destino <> '" + id_dest + "')").Count();
 
-                            //                        int resultado = tablaverificar_codigo.Select(" convert(varchar(25),reco_viaje_codigo) =isnull('" + txtbCodigo.Text + "','00') and (reco_id_origen !='" + id_orig + "' or reco_id_destino != '" + id_dest + "')").Count();
+                            //int resultado = tablaverificar_codigo.Select(" convert(varchar(25),reco_viaje_codigo) =isnull('" + txtbCodigo.Text + "','00') and (reco_id_origen !='" + id_orig + "' or reco_id_destino != '" + id_dest + "')").Count();
 
                             if (resultado > 0)
                             {
@@ -59,7 +59,7 @@ namespace FrbaBus.Abm_Recorrido
                             else
                             {
                                 lblEstadoCodigo.Visible = false;
-                                bttCrear.Enabled = true;
+                               // bttCrear.Enabled = true;
                             
                             }
                         }
@@ -171,7 +171,7 @@ namespace FrbaBus.Abm_Recorrido
                             {
                                 existe_reco = false;
                                 lblEstado.Text = "Nuevo Recorrido";
-                                if (lblEstadoCodigo.Enabled== false) { bttCrear.Enabled = true; } else { bttCrear.Enabled = false; }
+                                if (lblEstadoCodigo.Visible== false) { bttCrear.Enabled = true; } else { bttCrear.Enabled = false; }
                                 bttEliminar.Enabled = false;
 
                             }
@@ -249,7 +249,9 @@ namespace FrbaBus.Abm_Recorrido
 
         private void txtbCodigo_TextChanged(object sender, EventArgs e)
         {
-            verificar_codigo();
+            //verificar_codigo();
+
+            actualizar_estado();
         }
 
         private void clbServicios_SelectedIndexChanged(object sender, EventArgs e)
@@ -377,8 +379,12 @@ try
 
 
             cargar_verificar_Codigo();
-            verificar_codigo();
+            //verificar_codigo();
             actualizar_estado();
+
+            MessageBox.Show("Ha creado el recorrido con éxito");
+            cerrar_ventana();
+
         }
 
         private void bttEliminar_Click(object sender, EventArgs e)
@@ -402,9 +408,17 @@ try
               
 
             crearCombos();
-            actualizar_estado();
             cargar_verificar_Codigo();
-            verificar_codigo();
+            actualizar_estado();
+            MessageBox.Show("Ha eliminado el recorrido con éxito");
+            cerrar_ventana();
+
+        }
+
+        private void cerrar_ventana()
+        {
+            this.Visible = false;
+
         }
 
         

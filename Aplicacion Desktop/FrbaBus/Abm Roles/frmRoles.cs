@@ -175,9 +175,11 @@ namespace FrbaBus.Abm_Roles
                     MessageBox.Show(ex.Message);
                 }
 
-            
+
+                MessageBox.Show("Rol eliminado con éxito");
 
 
+                cerrar_ventana();
             crearCombos();
 
 
@@ -285,11 +287,13 @@ namespace FrbaBus.Abm_Roles
                     Console.Write(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
+             
 
-              
 
 
-          
+
+                MessageBox.Show("ROL " + txtBoxRolMod.Text + " modificado con éxito");
+                cerrar_ventana();
                     
         }
 
@@ -341,8 +345,8 @@ namespace FrbaBus.Abm_Roles
                     }
                     ;
 
-
-
+                    MessageBox.Show("ROL " + txtbNuevo.Text + " creado con éxito");
+                    cerrar_ventana();
                 }
                 catch (Exception ex)
                 {
@@ -350,11 +354,12 @@ namespace FrbaBus.Abm_Roles
                     MessageBox.Show(ex.Message);
                 }
 
-             
 
 
 
 
+
+            txtbNuevo.Text = ""; 
             crearCombos();
             verificarExistenciaRol();
         }
@@ -363,6 +368,10 @@ namespace FrbaBus.Abm_Roles
         {
             //compruebo la existencia del nombre.
             verificarExistenciaRol();
+        }
+
+        private void cerrar_ventana() {
+            this.Visible = false;
         }
 
         private void verificarExistenciaRol()
@@ -380,6 +389,10 @@ namespace FrbaBus.Abm_Roles
                 bttNuevo.Enabled = true;
             }
 
+            if( txtbNuevo.Text.ToString() == "" ) {
+                lblRolExistenteN.Visible = false;
+                bttNuevo.Enabled = false;
+            } 
 
         }
 

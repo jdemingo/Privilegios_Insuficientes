@@ -145,6 +145,12 @@ namespace FrbaBus.GenerarViaje
                 cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
 
+
+                MessageBox.Show("Viaje generado con éxito");
+
+
+                cerrar_ventana();
+
             }
             catch (Exception ex)
             {
@@ -154,12 +160,17 @@ namespace FrbaBus.GenerarViaje
                 
 
 
-
+             
 
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cerrar_ventana() {
+            this.Visible = false;
 
         }
     }
