@@ -12,6 +12,8 @@ namespace FrbaBus
         public static SqlConnection globalConn;
         private static string user = "", bd = "", server = "", pass = "";
         public static string fecha = "";
+        public static string fechaFuncion = "";
+        public static DateTime fechaDateTime;
         //public static string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
         public static string path = Application.StartupPath;
 
@@ -70,6 +72,10 @@ namespace FrbaBus
                 counter++;
             }
             file.Close();
+
+            string[] word2 = fecha.Split('-');
+            fechaFuncion = word2[0] + "-" + word2[2] + "-" + word2[1];
+            fechaDateTime = new DateTime(int.Parse(word2[0]),int.Parse(word2[2]),int.Parse(word2[1]));
             //MessageBox.Show("Usuario:" + user + " Bd:" + bd + " Server:" + server + " Pass:" + pass + " Fecha:" + fecha);
         }
 

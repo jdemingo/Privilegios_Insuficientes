@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateLLegada = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.grdMicros = new System.Windows.Forms.DataGridView();
             this.timeLLegada = new System.Windows.Forms.DateTimePicker();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdMicros)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +83,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(493, 220);
+            this.btnRegistrar.Location = new System.Drawing.Point(362, 220);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 5;
@@ -93,6 +95,7 @@
             // 
             this.cmbOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrigen.FormattingEnabled = true;
             this.cmbOrigen.Location = new System.Drawing.Point(16, 77);
             this.cmbOrigen.Name = "cmbOrigen";
@@ -103,6 +106,7 @@
             // 
             this.cmbDestino.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbDestino.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDestino.FormattingEnabled = true;
             this.cmbDestino.Location = new System.Drawing.Point(237, 77);
             this.cmbDestino.Name = "cmbDestino";
@@ -135,7 +139,11 @@
             this.grdMicros.Location = new System.Drawing.Point(16, 116);
             this.grdMicros.Name = "grdMicros";
             this.grdMicros.ReadOnly = true;
-            this.grdMicros.Size = new System.Drawing.Size(552, 98);
+            this.grdMicros.RowHeadersVisible = false;
+            this.grdMicros.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdMicros.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdMicros.Size = new System.Drawing.Size(421, 98);
             this.grdMicros.TabIndex = 9;
             // 
             // timeLLegada
@@ -151,7 +159,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(412, 220);
+            this.btnAgregar.Location = new System.Drawing.Point(281, 220);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 10;
@@ -159,11 +167,22 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(16, 220);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(120, 23);
+            this.btnBorrar.TabIndex = 11;
+            this.btnBorrar.Text = "Borrar seleccionada";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // frmRegLLegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 253);
+            this.ClientSize = new System.Drawing.Size(452, 253);
+            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.cmbOrigen);
             this.Controls.Add(this.timeLLegada);
@@ -199,5 +218,6 @@
         private System.Windows.Forms.DataGridView grdMicros;
         private System.Windows.Forms.DateTimePicker timeLLegada;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnBorrar;
     }
 }

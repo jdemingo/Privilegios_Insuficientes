@@ -36,12 +36,16 @@ namespace FrbaBus.Compra_de_Pasajes
         public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes_str, string kgs)
         {
             InitializeComponent();
+            if (!(FrbaBus.frmUtnBus.mainMenu.MenuItems.Count > 2))
+            {
+                chkEfectivo.Visible = false;
+            }
             this.cant_pasajes = cant_pasajes_str.Equals("") ? 0 : int.Parse(cant_pasajes_str);
             this.max_cant_pasajes = this.cant_pasajes;
             this.kgs = kgs.Equals("") ? 0 : decimal.Parse(kgs);
             lblCantEnc.Text = "1";
             lblCantPasajes.Text = this.cant_pasajes.ToString();
-            cmbSexo.SelectedIndex = 0;            
+            cmbSexo.SelectedIndex = 0;
             dnisAgregados = new List<int>();
             if (this.kgs == 0)
             {
@@ -58,7 +62,7 @@ namespace FrbaBus.Compra_de_Pasajes
             cargarTiposTarjeta();
             obtenerPrecios();
             obtenerDescuentos();
-            cargarButacas2();           
+            cargarButacas2();
             //cargarButacas();
             crearGridPasajeros();
             //MessageBox.Show(this.id_viaje + " - " + this.cant_pasajes + " - " + this.kgs);
@@ -145,34 +149,38 @@ namespace FrbaBus.Compra_de_Pasajes
 
         private bool dniPasajeroRepetido()
         {
+            if (Common.validacionNumerica(txtDNI))
+            {
+                if (dnisAgregados.Contains(int.Parse(txtDNI.Text)) && grdButacas.Visible && !chkEncomienda.Checked)
+                {
+                    MessageBox.Show("Este DNI ya fue ingresado como pasaje en esta compra");
+                    limpiarCampos();
+                    return true;
+                }
+                string query = "SELECT COUNT(*) "
+                              + "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, "
+                              + " PRIVILEGIOS_INSUFICIENTES.Pasajes, "
+                              + " PRIVILEGIOS_INSUFICIENTES.Personas, "
+                              + " PRIVILEGIOS_INSUFICIENTES.Destinos "
+                              + "WHERE clie_id = pasa_cliente "
+                              + "and clie_dni = " + txtDNI.Text + " "
+                              + "and pasa_codigo = pers_codigo "
+                              + "and pasa_dest_id = dest_id "
+                              + "and dest_fecha_salida in (SELECT dest_fecha_salida "
+                              + "    FROM PRIVILEGIOS_INSUFICIENTES.Destinos "
+                              + "    WHERE dest_id = " + dest_id + ")";
+                SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                int cantPasajeros = (int)cmd.ExecuteScalar();
+                if (cantPasajeros > 0)
+                {
+                    MessageBox.Show("Este DNI ya compro un pasaje para esta fecha");
+                    limpiarCampos();
+                    return true;
+                }
+                return false;
+            }
+            return true;
 
-            if (dnisAgregados.Contains(int.Parse(txtDNI.Text)) && grdButacas.Visible && !chkEncomienda.Checked)
-            {
-                MessageBox.Show("Este DNI ya fue ingresado como pasaje en esta compra");
-                limpiarCampos();
-                return true;
-            }
-            string query = "SELECT COUNT(*) "
-                          + "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, "
-                          + " PRIVILEGIOS_INSUFICIENTES.Pasajes, "
-                          + " PRIVILEGIOS_INSUFICIENTES.Personas, "
-                          + " PRIVILEGIOS_INSUFICIENTES.Destinos "
-                          + "WHERE clie_id = pasa_cliente "
-                          + "and clie_dni = " + txtDNI.Text + " "
-                          + "and pasa_codigo = pers_codigo "
-                          + "and pasa_dest_id = dest_id "
-                          + "and dest_fecha_salida in (SELECT dest_fecha_salida "
-                          + "    FROM PRIVILEGIOS_INSUFICIENTES.Destinos "
-                          + "    WHERE dest_id = " + dest_id + ")";
-            SqlCommand cmd = new SqlCommand(query, Common.globalConn);
-            int cantPasajeros = (int)cmd.ExecuteScalar();
-            if (cantPasajeros > 0)
-            {
-                MessageBox.Show("Este DNI ya compro un pasaje para esta fecha");
-                limpiarCampos();
-                return true;
-            }
-            return false;
         }
 
         private void txtDNI_LostFocus(object sender, EventArgs e)
@@ -184,7 +192,7 @@ namespace FrbaBus.Compra_de_Pasajes
             {
                 //using (globalConn/*SqlConnection conn = Common.conectar()*/)
                 //{
-                
+
                 try
                 {
                     string query = "select * from PRIVILEGIOS_INSUFICIENTES.clientes where clie_dni = '" + txtDNI.Text + "'";
@@ -388,7 +396,8 @@ namespace FrbaBus.Compra_de_Pasajes
                 grdButacas.DefaultCellStyle.BackColor = Color.LightGray;
                 grdButacas.ForeColor = Color.LightGray;
                 //grdButacas.ColumnHeadersDefaultCellStyle.ForeColor = Color.Gray;
-            } else if (!grdButacas.Enabled)
+            }
+            else if (!grdButacas.Enabled)
             {
                 grdButacas.Enabled = true;
                 grdButacas.DefaultCellStyle.BackColor = Color.White;
@@ -406,7 +415,7 @@ namespace FrbaBus.Compra_de_Pasajes
             //chkEncomienda.AutoCheck = true;
             chkEncomienda.AutoCheck = chkEncomienda.AutoCheck ? false : true;
             chkEncomienda.Checked = chkEncomienda.Checked ? false : true;
-            
+
         }
 
         private string obtenerDiscJub()
@@ -555,7 +564,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 {
                     cambiarVisibilidadEnc();
                     limpiarCampos();
-                    MessageBox.Show("Se limpiaron los datos de la encomienda del DNI: " + dnisAgregados.Last<int>() + ". Ahora puede volver a ingresar datos para la encomienda.");
+                    MessageBox.Show("Se limpiaron los datos de la encomienda. Ahora puede volver a ingresar datos para la encomienda.");
                     // Si no hay mas pasajes a cargar, obligo a cargar
                     if (cant_pasajes == 0)
                         chkEncomienda.AutoCheck = false;
@@ -581,7 +590,7 @@ namespace FrbaBus.Compra_de_Pasajes
         }
 
         private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
             chkDiscapacitado.Checked = false;
             if (chkEncomienda.Checked && atrasDisc == 0)
             {
@@ -591,7 +600,7 @@ namespace FrbaBus.Compra_de_Pasajes
             {
                 chkDiscapacitado.Visible = true;
             }
-            
+
             cambiarHabilitacionButacas();
             grdButacas.CurrentCell = null;
         }
@@ -661,8 +670,8 @@ namespace FrbaBus.Compra_de_Pasajes
             {
                 MessageBox.Show(ex.Message);
             }
- 
-            
+
+
         }
 
         private void txtTel_LostFocus(object sender, EventArgs e)

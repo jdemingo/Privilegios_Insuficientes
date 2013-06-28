@@ -22,7 +22,7 @@ namespace FrbaBus
         private SqlDataAdapter adapter;
         public SqlConnection globalConn;
         private int ultEnc;
-        MainMenu mainMenu;
+        public static MainMenu mainMenu;
 
         public frmUtnBus()
         {
@@ -30,6 +30,8 @@ namespace FrbaBus
             globalConn = Common.conectar();
             Common.iniciarConexionGlobal();
             inicializarMenus();
+            // Descomentar despues de pruebas
+            //dateSalida.Value = Common.fechaDateTime;
             //crearMenu(1);
         }
 

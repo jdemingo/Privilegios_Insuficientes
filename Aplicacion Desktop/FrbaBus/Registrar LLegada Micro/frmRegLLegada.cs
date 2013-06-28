@@ -18,6 +18,8 @@ namespace FrbaBus.Registrar_LLegada_Micro
             cargarCombosOrigenYDestino();
             this.ActiveControl = txtPatente;
             crearGridMicros();
+            // Descomentar despues de pruebas
+            //dateLLegada.Value = Common.fechaDateTime;
         }
 
 
@@ -98,13 +100,16 @@ namespace FrbaBus.Registrar_LLegada_Micro
         {
             if (grdMicros.Rows.Count == 0)
                 MessageBox.Show("No hay micros agregados para registrar");
-            else foreach (DataRow dr in grdMicros.Rows)
+            else foreach (DataGridViewRow dr in grdMicros.Rows)
                 {
-                    SqlCommand cmd = new SqlCommand(
-                            "UPDATE PRIVILEGIOS_INSUFICIENTES.destinos " +
-                            "SET dest_fecha_llegada = '" + dr["micr_fllegada"] + "'" +
-                            "WHERE dest_id = " + dr["micr_id_viaje"], Common.globalConn);
+                    string query = "UPDATE PRIVILEGIOS_INSUFICIENTES.destinos " +
+                                "SET dest_fecha_llegada = '" + dr.Cells["micr_fllegada"].Value + "' " +
+                                "WHERE dest_id = " + dr.Cells["micr_id_viaje"].Value;
+                    SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                    cmd.ExecuteNonQuery();
                 }
+            MessageBox.Show("Registradas todas las llegadas con éxito.");
+            grdMicros.Rows.Clear();
             //if (camposValidados())
             //{
             //    using (SqlConnection conn = Common.conectar())
@@ -154,6 +159,8 @@ namespace FrbaBus.Registrar_LLegada_Micro
             grdMicros.Columns.Add("micr_fllegada", "Fecha de llegada");
             grdMicros.Columns.Add("micr_id_viaje", "ID Viaje");
             //grdMicros.Columns["micr_id_viaje"].Visible = false;
+            grdMicros.AutoResizeColumns();
+            grdMicros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -211,6 +218,12 @@ namespace FrbaBus.Registrar_LLegada_Micro
                         dest_id);
                 }
             }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Se ha borrado la patente "+grdMicros.CurrentRow.Cells["micr_patente"].Value+" de la lista a registrar");
+            grdMicros.Rows.Remove(grdMicros.CurrentRow);
         }
 
     }

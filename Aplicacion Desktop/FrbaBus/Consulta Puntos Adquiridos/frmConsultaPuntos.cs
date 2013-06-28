@@ -53,7 +53,7 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                     "SUM(pasa_precio) Importe " +
                     "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                     "WHERE clie_dni =" + txtDNI.Text + " AND " +
-                    "DATEDIFF(DAY,pasa_fcompra,GETDATE())<365 AND " +
+                    "DATEDIFF(DAY,pasa_fcompra,'"+Common.fechaFuncion+"')<365 AND " +
                     "clie_id = pasa_cliente " +
                     "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
                     "ORDER BY 1, datepart(month,pasa_fcompra)", Common.globalConn);
@@ -99,7 +99,7 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                         "SELECT datepart(year,prem_fcanje) Año, DATENAME(month,prem_fcanje) Mes, SUM(stoc_puntos*prem_id_cantidad) Puntos " +
                         "FROM PRIVILEGIOS_INSUFICIENTES.Clientes, PRIVILEGIOS_INSUFICIENTES.Stock_premios, PRIVILEGIOS_INSUFICIENTES.Premios_canjeados " +
                         "WHERE clie_dni =" + txtDNI.Text + " AND " +
-                        "DATEDIFF(DAY,prem_fcanje,GETDATE())<365 AND " +
+                        "DATEDIFF(DAY,prem_fcanje,'"+Common.fechaFuncion+"')<365 AND " +
                         "prem_cliente = clie_id AND " +
                         "prem_id_premio = stoc_id_premio " +
                         "GROUP BY datepart(year,prem_fcanje), DATENAME(month,prem_fcanje),datepart(month,prem_fcanje) " +

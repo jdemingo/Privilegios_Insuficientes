@@ -65,7 +65,7 @@ namespace FrbaBus.Canje_de_Ptos
                         "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                         "WHERE clie_dni ='" + dni + "' AND " +
                         "clie_id = pasa_cliente AND " +
-                        "DATEDIFF(DAY,pasa_fcompra,GETDATE()) < 365";
+                        "DATEDIFF(DAY,pasa_fcompra,'"+Common.fechaFuncion+"') < 365";
                     SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                     puntosDisp = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -117,7 +117,7 @@ namespace FrbaBus.Canje_de_Ptos
                         }
                         else
                         {
-                            string query="EXECUTE PRIVILEGIOS_INSUFICIENTES.canjearPremios " + premioId + "," + txtDNI.Text + "," + txtCantidad.Text + ",'" + Common.fecha + "'";
+                            string query="EXECUTE PRIVILEGIOS_INSUFICIENTES.canjearPremios " + premioId + "," + txtDNI.Text + "," + txtCantidad.Text + ",'" + Common.fechaFuncion + "'";
                             SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                             cmd.ExecuteNonQuery();
                             /*                "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Premios_canjeados (prem_cliente, prem_id_premio, prem_id_cantidad, prem_fcanje) " +
