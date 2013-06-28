@@ -30,34 +30,34 @@
         {
             this.bttNuevo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblRolExistenteN = new System.Windows.Forms.Label();
+            this.ckbInhabiliNuevo = new System.Windows.Forms.CheckBox();
+            this.txtbNuevo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.clbFunciones = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbRol = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.bttModificar = new System.Windows.Forms.Button();
             this.bttEliminar = new System.Windows.Forms.Button();
             this.ckbInhabilitar = new System.Windows.Forms.CheckBox();
-            this.txtbNuevo = new System.Windows.Forms.TextBox();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.bttGuardarCambios = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblRolExistenteMod = new System.Windows.Forms.Label();
+            this.txtBoxRolMod = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.gboxFunc = new System.Windows.Forms.GroupBox();
             this.clbFunciones_mod = new System.Windows.Forms.CheckedListBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ckbInhabiliNuevo = new System.Windows.Forms.CheckBox();
-            this.bttGuardarCambios = new System.Windows.Forms.Button();
-            this.txtBoxRolMod = new System.Windows.Forms.TextBox();
-            this.lblRolExistenteN = new System.Windows.Forms.Label();
-            this.lblRolExistenteMod = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.gboxFunc.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.gboxFunc.SuspendLayout();
             this.SuspendLayout();
             // 
             // bttNuevo
@@ -84,6 +84,44 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Roles";
             // 
+            // lblRolExistenteN
+            // 
+            this.lblRolExistenteN.AutoSize = true;
+            this.lblRolExistenteN.ForeColor = System.Drawing.Color.Red;
+            this.lblRolExistenteN.Location = new System.Drawing.Point(43, 54);
+            this.lblRolExistenteN.Name = "lblRolExistenteN";
+            this.lblRolExistenteN.Size = new System.Drawing.Size(141, 13);
+            this.lblRolExistenteN.TabIndex = 4;
+            this.lblRolExistenteN.Text = "*Rol existe! Use otro nombre";
+            this.lblRolExistenteN.Visible = false;
+            // 
+            // ckbInhabiliNuevo
+            // 
+            this.ckbInhabiliNuevo.AutoSize = true;
+            this.ckbInhabiliNuevo.Location = new System.Drawing.Point(85, 72);
+            this.ckbInhabiliNuevo.Name = "ckbInhabiliNuevo";
+            this.ckbInhabiliNuevo.Size = new System.Drawing.Size(90, 17);
+            this.ckbInhabiliNuevo.TabIndex = 7;
+            this.ckbInhabiliNuevo.Text = "Inhabilitar Rol";
+            this.ckbInhabiliNuevo.UseVisualStyleBackColor = true;
+            // 
+            // txtbNuevo
+            // 
+            this.txtbNuevo.Location = new System.Drawing.Point(75, 31);
+            this.txtbNuevo.Name = "txtbNuevo";
+            this.txtbNuevo.Size = new System.Drawing.Size(100, 20);
+            this.txtbNuevo.TabIndex = 6;
+            this.txtbNuevo.TextChanged += new System.EventHandler(this.txtbNuevo_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "   Rol :";
+            // 
             // clbFunciones
             // 
             this.clbFunciones.FormattingEnabled = true;
@@ -104,21 +142,13 @@
             // 
             // cmbRol
             // 
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRol.FormattingEnabled = true;
             this.cmbRol.Location = new System.Drawing.Point(60, 33);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(121, 21);
             this.cmbRol.TabIndex = 4;
             this.cmbRol.SelectedIndexChanged += new System.EventHandler(this.cmbRol_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "   Rol :";
             // 
             // bttModificar
             // 
@@ -150,14 +180,6 @@
             this.ckbInhabilitar.Text = "Inhabilitar Rol";
             this.ckbInhabilitar.UseVisualStyleBackColor = true;
             this.ckbInhabilitar.Visible = false;
-            // 
-            // txtbNuevo
-            // 
-            this.txtbNuevo.Location = new System.Drawing.Point(75, 31);
-            this.txtbNuevo.Name = "txtbNuevo";
-            this.txtbNuevo.Size = new System.Drawing.Size(100, 20);
-            this.txtbNuevo.TabIndex = 6;
-            this.txtbNuevo.TextChanged += new System.EventHandler(this.txtbNuevo_TextChanged);
             // 
             // tbControl
             // 
@@ -196,13 +218,60 @@
             this.tabPage2.Text = "Modificar o Eliminar Rol";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
+            // bttGuardarCambios
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 139);
-            this.checkedListBox1.TabIndex = 2;
+            this.bttGuardarCambios.Location = new System.Drawing.Point(258, 203);
+            this.bttGuardarCambios.Name = "bttGuardarCambios";
+            this.bttGuardarCambios.Size = new System.Drawing.Size(117, 23);
+            this.bttGuardarCambios.TabIndex = 7;
+            this.bttGuardarCambios.Text = "Guardar Cambios";
+            this.bttGuardarCambios.UseVisualStyleBackColor = true;
+            this.bttGuardarCambios.Visible = false;
+            this.bttGuardarCambios.Click += new System.EventHandler(this.bttGuardarCambios_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblRolExistenteMod);
+            this.groupBox4.Controls.Add(this.txtBoxRolMod);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.bttEliminar);
+            this.groupBox4.Controls.Add(this.cmbRol);
+            this.groupBox4.Controls.Add(this.bttModificar);
+            this.groupBox4.Location = new System.Drawing.Point(18, 26);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(208, 106);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Roles";
+            // 
+            // lblRolExistenteMod
+            // 
+            this.lblRolExistenteMod.AutoSize = true;
+            this.lblRolExistenteMod.ForeColor = System.Drawing.Color.Red;
+            this.lblRolExistenteMod.Location = new System.Drawing.Point(61, 61);
+            this.lblRolExistenteMod.Name = "lblRolExistenteMod";
+            this.lblRolExistenteMod.Size = new System.Drawing.Size(141, 13);
+            this.lblRolExistenteMod.TabIndex = 8;
+            this.lblRolExistenteMod.Text = "*Rol existe! Use otro nombre";
+            this.lblRolExistenteMod.Visible = false;
+            // 
+            // txtBoxRolMod
+            // 
+            this.txtBoxRolMod.Location = new System.Drawing.Point(60, 33);
+            this.txtBoxRolMod.Name = "txtBoxRolMod";
+            this.txtBoxRolMod.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxRolMod.TabIndex = 6;
+            this.txtBoxRolMod.Visible = false;
+            this.txtBoxRolMod.TextChanged += new System.EventHandler(this.txtBoxRolMod_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "   Rol :";
             // 
             // gboxFunc
             // 
@@ -223,81 +292,13 @@
             this.clbFunciones_mod.Size = new System.Drawing.Size(120, 139);
             this.clbFunciones_mod.TabIndex = 2;
             // 
-            // groupBox4
+            // checkedListBox1
             // 
-            this.groupBox4.Controls.Add(this.lblRolExistenteMod);
-            this.groupBox4.Controls.Add(this.txtBoxRolMod);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.bttEliminar);
-            this.groupBox4.Controls.Add(this.cmbRol);
-            this.groupBox4.Controls.Add(this.bttModificar);
-            this.groupBox4.Location = new System.Drawing.Point(18, 26);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(208, 106);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Roles";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "   Rol :";
-            // 
-            // ckbInhabiliNuevo
-            // 
-            this.ckbInhabiliNuevo.AutoSize = true;
-            this.ckbInhabiliNuevo.Location = new System.Drawing.Point(85, 72);
-            this.ckbInhabiliNuevo.Name = "ckbInhabiliNuevo";
-            this.ckbInhabiliNuevo.Size = new System.Drawing.Size(90, 17);
-            this.ckbInhabiliNuevo.TabIndex = 7;
-            this.ckbInhabiliNuevo.Text = "Inhabilitar Rol";
-            this.ckbInhabiliNuevo.UseVisualStyleBackColor = true;
-            // 
-            // bttGuardarCambios
-            // 
-            this.bttGuardarCambios.Location = new System.Drawing.Point(258, 203);
-            this.bttGuardarCambios.Name = "bttGuardarCambios";
-            this.bttGuardarCambios.Size = new System.Drawing.Size(117, 23);
-            this.bttGuardarCambios.TabIndex = 7;
-            this.bttGuardarCambios.Text = "Guardar Cambios";
-            this.bttGuardarCambios.UseVisualStyleBackColor = true;
-            this.bttGuardarCambios.Visible = false;
-            this.bttGuardarCambios.Click += new System.EventHandler(this.bttGuardarCambios_Click);
-            // 
-            // txtBoxRolMod
-            // 
-            this.txtBoxRolMod.Location = new System.Drawing.Point(60, 33);
-            this.txtBoxRolMod.Name = "txtBoxRolMod";
-            this.txtBoxRolMod.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxRolMod.TabIndex = 6;
-            this.txtBoxRolMod.Visible = false;
-            this.txtBoxRolMod.TextChanged += new System.EventHandler(this.txtBoxRolMod_TextChanged);
-            // 
-            // lblRolExistenteN
-            // 
-            this.lblRolExistenteN.AutoSize = true;
-            this.lblRolExistenteN.ForeColor = System.Drawing.Color.Red;
-            this.lblRolExistenteN.Location = new System.Drawing.Point(43, 54);
-            this.lblRolExistenteN.Name = "lblRolExistenteN";
-            this.lblRolExistenteN.Size = new System.Drawing.Size(141, 13);
-            this.lblRolExistenteN.TabIndex = 4;
-            this.lblRolExistenteN.Text = "*Rol existe! Use otro nombre";
-            this.lblRolExistenteN.Visible = false;
-            // 
-            // lblRolExistenteMod
-            // 
-            this.lblRolExistenteMod.AutoSize = true;
-            this.lblRolExistenteMod.ForeColor = System.Drawing.Color.Red;
-            this.lblRolExistenteMod.Location = new System.Drawing.Point(61, 61);
-            this.lblRolExistenteMod.Name = "lblRolExistenteMod";
-            this.lblRolExistenteMod.Size = new System.Drawing.Size(141, 13);
-            this.lblRolExistenteMod.TabIndex = 8;
-            this.lblRolExistenteMod.Text = "*Rol existe! Use otro nombre";
-            this.lblRolExistenteMod.Visible = false;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(120, 139);
+            this.checkedListBox1.TabIndex = 2;
             // 
             // frmRoles
             // 
@@ -315,9 +316,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.gboxFunc.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.gboxFunc.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
