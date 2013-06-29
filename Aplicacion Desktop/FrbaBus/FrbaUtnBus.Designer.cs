@@ -44,7 +44,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.grpPasajesDisponibles = new System.Windows.Forms.GroupBox();
             this.grdPasajes = new System.Windows.Forms.DataGridView();
-            this.cmdLogin = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnDesloguearse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpPasajesDisponibles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPasajes)).BeginInit();
@@ -227,15 +228,26 @@
             this.grdPasajes.TabIndex = 22;
             this.grdPasajes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // cmdLogin
+            // btnLogin
             // 
-            this.cmdLogin.Location = new System.Drawing.Point(437, 6);
-            this.cmdLogin.Name = "cmdLogin";
-            this.cmdLogin.Size = new System.Drawing.Size(46, 23);
-            this.cmdLogin.TabIndex = 7;
-            this.cmdLogin.Text = "Login";
-            this.cmdLogin.UseVisualStyleBackColor = true;
-            this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
+            this.btnLogin.Location = new System.Drawing.Point(437, 6);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(46, 23);
+            this.btnLogin.TabIndex = 7;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.cmdLogin_Click);
+            // 
+            // btnDesloguearse
+            // 
+            this.btnDesloguearse.Location = new System.Drawing.Point(393, 6);
+            this.btnDesloguearse.Name = "btnDesloguearse";
+            this.btnDesloguearse.Size = new System.Drawing.Size(90, 23);
+            this.btnDesloguearse.TabIndex = 8;
+            this.btnDesloguearse.Text = "Desloguearse";
+            this.btnDesloguearse.UseVisualStyleBackColor = true;
+            this.btnDesloguearse.Visible = false;
+            this.btnDesloguearse.Click += new System.EventHandler(this.btnDesloguearse_Click);
             // 
             // frmUtnBus
             // 
@@ -243,8 +255,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 378);
             this.Controls.Add(this.grpPasajesDisponibles);
-            this.Controls.Add(this.cmdLogin);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnDesloguearse);
             this.Name = "frmUtnBus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UTN Bus";
@@ -267,7 +280,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCargarPasajes;
         private System.Windows.Forms.GroupBox grpPasajesDisponibles;
-        private System.Windows.Forms.Button cmdLogin;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.DataGridView grdPasajes;
         private System.Windows.Forms.DateTimePicker dateSalida;
         private System.Windows.Forms.Label label4;
@@ -277,6 +290,7 @@
         private System.Windows.Forms.Label lblKgs;
         private System.Windows.Forms.CheckBox chkEncomienda;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDesloguearse;
 
     }
 }

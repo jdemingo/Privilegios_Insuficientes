@@ -380,6 +380,13 @@ namespace FrbaBus
 
         }
 
+        public void modoLogueado() {
+            btnLogin.Visible = false;
+            btnLogin.Enabled = false;
+            btnDesloguearse.Visible = true;
+            btnDesloguearse.Enabled = true;
+        }
+
         private void txtCantPasajes_TextChanged(object sender, EventArgs e)
         {
 
@@ -401,6 +408,15 @@ namespace FrbaBus
         private void txtKg_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDesloguearse_Click(object sender, EventArgs e)
+        {
+            btnLogin.Visible = true;
+            btnLogin.Enabled = true;
+            btnDesloguearse.Visible = false;
+            btnDesloguearse.Enabled = false;
+            inicializarMenus();
         }
 
 

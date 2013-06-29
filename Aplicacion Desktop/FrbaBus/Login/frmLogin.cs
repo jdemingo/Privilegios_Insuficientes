@@ -81,6 +81,7 @@ namespace FrbaBus.Login
                             MessageBox.Show("Ha ingresado con éxito.");
                             intentosFallidos = 0;
                             ingresoExitoso = true;
+                            frmUtnBus.modoLogueado();
                         }
                         // tenias 2 fallos y ahora volves a fallar
                         else if (intentosFallidos == 2)

@@ -488,7 +488,7 @@ namespace FrbaBus.Compra_de_Pasajes
                 for (int i = 0; i < grdPasajeros.Rows.Count; i++)
                 {
                     grdPasajeros.Rows[i].Cells["proc_dni_paga"].Value = txtDNI.Text;
-                    grdPasajeros.Rows[i].Cells["proc_fcompra"].Value = Common.fecha;
+                    grdPasajeros.Rows[i].Cells["proc_fcompra"].Value = Common.fechaFuncion;
                     if (groupTarjeta.Enabled)
                     {
                         grdPasajeros.Rows[i].Cells["proc_nro_tarj"].Value = txtTarjeta.Text;
