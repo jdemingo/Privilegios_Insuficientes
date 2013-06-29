@@ -114,6 +114,9 @@ namespace FrbaBus.Cancelar_Viaje
             }
 
 
+            MessageBox.Show("Baja de pasajes realizada con éxito");
+            this.Close();
+
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -149,6 +152,8 @@ namespace FrbaBus.Cancelar_Viaje
             }
 
 
+            MessageBox.Show("Baja de pasaje realizada con éxito");
+            this.Close();
 
 
         }

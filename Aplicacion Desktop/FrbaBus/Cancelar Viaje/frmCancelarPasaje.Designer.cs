@@ -44,6 +44,7 @@
             this.groupVoucher = new System.Windows.Forms.GroupBox();
             this.bttBajaPasaje = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupPasaje.SuspendLayout();
             this.groupVoucher.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -115,9 +116,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(20, 48);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Pasajes :";
+            this.label4.Text = "Codigos*:";
             // 
             // txtPasaje
             // 
@@ -129,11 +130,11 @@
             // nroPasaje
             // 
             this.nroPasaje.AutoSize = true;
-            this.nroPasaje.Location = new System.Drawing.Point(56, 29);
+            this.nroPasaje.Location = new System.Drawing.Point(65, 25);
             this.nroPasaje.Name = "nroPasaje";
-            this.nroPasaje.Size = new System.Drawing.Size(42, 13);
+            this.nroPasaje.Size = new System.Drawing.Size(47, 13);
             this.nroPasaje.TabIndex = 13;
-            this.nroPasaje.Text = "Pasaje:";
+            this.nroPasaje.Text = "Codigo*:";
             // 
             // rdbPorPasaje
             // 
@@ -204,11 +205,21 @@
             this.panel1.Size = new System.Drawing.Size(214, 28);
             this.panel1.TabIndex = 19;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 276);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "(*) Pasaje o Encomienda";
+            // 
             // frmCancelarPasajes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 311);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bttBajaPasaje);
             this.Controls.Add(this.groupVoucher);
@@ -247,5 +258,6 @@
         private System.Windows.Forms.GroupBox groupVoucher;
         private System.Windows.Forms.Button bttBajaPasaje;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
