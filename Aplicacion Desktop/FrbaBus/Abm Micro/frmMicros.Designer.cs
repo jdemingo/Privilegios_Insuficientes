@@ -374,7 +374,6 @@
             this.txtMicroId.Name = "txtMicroId";
             this.txtMicroId.Size = new System.Drawing.Size(108, 20);
             this.txtMicroId.TabIndex = 7;
-            this.txtMicroId.TextChanged += new System.EventHandler(this.txtMicroId_TextChanged);
             // 
             // label1
             // 

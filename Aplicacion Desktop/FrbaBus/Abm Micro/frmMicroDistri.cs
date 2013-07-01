@@ -71,7 +71,7 @@ namespace FrbaBus
         {
             try
             {
-                string query = "UPDATE PRIVILEGIOS_INSUFICIENTES.butacas SET buta_piso=" + cmbPiso.Text + ", buta_tipo='" + cmbTipo.Text+"' ";
+                string query = "UPDATE PRIVILEGIOS_INSUFICIENTES.butacas SET buta_piso=" + cmbPiso.Text + ", buta_tipo='" + cmbTipo.Text + "' ";
                 query += "WHERE buta_numero=" + txtButaca.Text + " AND buta_micro=" + microId;
                 cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
@@ -82,11 +82,31 @@ namespace FrbaBus
                 throw;
             }
         }
+
+        private bool errorButaca()
+        {
+            if (txtButaca.Text == "") return true;
+            if (cmbPiso.Text == "") return true;
+            if (cmbTipo.Text == "") return true;
+            return false;
+        }
         private void cmdUpd_Click(object sender, EventArgs e)
         {
-            updButaca();
-            llenarGrilla(microId, 1, grdPiso1);
-            llenarGrilla(microId, 2, grdPiso2);
+            if (errorButaca())
+            {
+                MessageBox.Show("Debe seleccionar una butaca");
+            }
+            else
+            {
+                updButaca();
+                llenarGrilla(microId, 1, grdPiso1);
+                llenarGrilla(microId, 2, grdPiso2);
+            }
+        }
+
+        private void btnDistriBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

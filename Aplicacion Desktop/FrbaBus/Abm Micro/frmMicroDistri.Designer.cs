@@ -40,6 +40,7 @@
             this.grdPiso2 = new System.Windows.Forms.DataGridView();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.grdPiso1 = new System.Windows.Forms.DataGridView();
+            this.btnDistriBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPiso2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPiso1)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDistriBack);
             this.groupBox1.Controls.Add(this.cmdUpd);
             this.groupBox1.Controls.Add(this.cmbPiso);
             this.groupBox1.Controls.Add(this.label3);
@@ -165,6 +167,16 @@
             this.grdPiso1.TabIndex = 0;
             this.grdPiso1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPiso1_CellDoubleClick);
             // 
+            // btnDistriBack
+            // 
+            this.btnDistriBack.Image = ((System.Drawing.Image)(resources.GetObject("btnDistriBack.Image")));
+            this.btnDistriBack.Location = new System.Drawing.Point(309, 255);
+            this.btnDistriBack.Name = "btnDistriBack";
+            this.btnDistriBack.Size = new System.Drawing.Size(46, 56);
+            this.btnDistriBack.TabIndex = 11;
+            this.btnDistriBack.UseVisualStyleBackColor = true;
+            this.btnDistriBack.Click += new System.EventHandler(this.btnDistriBack_Click);
+            // 
             // frmMicroDistri
             // 
             this.AcceptButton = this.cmdUpd;
@@ -196,5 +208,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbPiso;
         private System.Windows.Forms.Button cmdUpd;
+        private System.Windows.Forms.Button btnDistriBack;
     }
 }
