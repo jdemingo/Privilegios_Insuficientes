@@ -67,33 +67,75 @@ namespace FrbaBus.Login
                 try
                 {
 
-                    SqlCommand cmd = new SqlCommand(
-                    "SELECT usua_role " +
-                    "FROM PRIVILEGIOS_INSUFICIENTES.Usuarios " +
-                    "WHERE usua_nombre ='" + txtUser.Text + "' AND " +
-                    "usua_pass = '" + sha256encrypt(txtPass.Text) + "'", Common.globalConn/*conn*/);
-                    using (var myReader = cmd.ExecuteReader())
+
+
+                    SqlCommand cmd2 = new SqlCommand(
+                                        "SELECT count(*) " +
+                                        "FROM PRIVILEGIOS_INSUFICIENTES.Intentos " +
+                                        "WHERE inte_usuario ='" + txtUser.Text + "'", Common.globalConn/*conn*/);
+                    int intentosUser = (int)cmd2.ExecuteScalar();
+                    
+
+                    if (intentosUser > 2)
+                        MessageBox.Show("El usuario " + txtUser.Text + " está inhabilitado por haber realizado al menos 3 intentos fallidos de login.");
+                    else
                     {
-                        if (myReader.Read())
+                        SqlCommand cmd = new SqlCommand(
+                        "SELECT usua_role " +
+                        "FROM PRIVILEGIOS_INSUFICIENTES.Usuarios " +
+                        "WHERE usua_nombre ='" + txtUser.Text + "' AND " +
+                        "usua_pass = '" + sha256encrypt(txtPass.Text) + "'", Common.globalConn/*conn*/);
+
+                        using (var myReader = cmd.ExecuteReader())
                         {
-                            myReader.Close();
-                            userRole = (int)cmd.ExecuteScalar();
-                            MessageBox.Show("Ha ingresado con éxito.");
-                            intentosFallidos = 0;
-                            ingresoExitoso = true;
-                            frmUtnBus.modoLogueado();
-                        }
-                        // tenias 2 fallos y ahora volves a fallar
-                        else if (intentosFallidos == 2)
-                        {
-                            intentosFallidos++;
-                            MessageBox.Show("Ha sido deshabilitado por realizar 3 intentos fallidos");                            
-                            deshabilitar();
-                        }
-                        else
-                        {
-                            intentosFallidos++;
-                            MessageBox.Show("Login incorrecto, intentos fallidos: " + intentosFallidos.ToString() + ". A los 3 intentos fallidos sera deshabilitado");
+                            if (myReader.Read())
+                            {
+                                myReader.Close();
+                                userRole = (int)cmd.ExecuteScalar();                                
+                                string query = "DELETE FROM PRIVILEGIOS_INSUFICIENTES.Intentos " +
+                                               "WHERE inte_usuario = '" + txtUser.Text + "'";
+                                SqlCommand cmd3 = new SqlCommand(query, Common.globalConn);
+                                cmd3.ExecuteNonQuery();
+                                MessageBox.Show("Ha ingresado con éxito.");
+                                //intentosFallidos = 0;
+                                ingresoExitoso = true;
+                                frmUtnBus.modoLogueado();
+                                
+                            }
+                            else
+                            {
+                                myReader.Close();
+                                SqlCommand cmd3 = new SqlCommand(
+                                "SELECT count(*) " +
+                                "FROM PRIVILEGIOS_INSUFICIENTES.Usuarios " +
+                                "WHERE usua_nombre ='" + txtUser.Text + "'", Common.globalConn/*conn*/);
+                                int existeUsuario = (int) cmd3.ExecuteScalar();
+                                if (existeUsuario == 0)
+                                {
+                                    MessageBox.Show("El usuario no existe");
+                                }
+                                else
+                                {
+
+                                    string query = "INSERT INTO PRIVILEGIOS_INSUFICIENTES.Intentos (inte_usuario, inte_fecha) " +
+                                                   "VALUES ('" + txtUser.Text + "','" + Common.fecha + "')";
+                                    SqlCommand cmd4 = new SqlCommand(query, Common.globalConn);
+                                    cmd4.ExecuteNonQuery();
+
+                                    if (intentosUser == 2)
+                                    {
+                                        //intentosFallidos++;
+                                        MessageBox.Show("Ha sido deshabilitado por realizar 3 intentos fallidos");
+
+                                        //deshabilitar();
+                                    }
+                                    else
+                                    {
+                                        //intentosFallidos++;
+                                        MessageBox.Show("Login incorrecto, intentos fallidos: " + (intentosUser + 1) + ". A los 3 intentos fallidos será inhabilitado");
+                                    }
+                                }
+                            }
                         }
                     }
                 }
