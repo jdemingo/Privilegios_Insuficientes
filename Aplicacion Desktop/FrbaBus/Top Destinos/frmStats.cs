@@ -51,9 +51,9 @@ namespace FrbaBus.Top_Destinos
             {
                 case 1:
                     if (Convert.ToInt16(cmbSemestre.Text) == 2) { semMax = 12; semMin = 7; }
-                    query = "select top 5 c.ciud_nombre as CIUDAD, COUNT(*) as CANTIDAD from PRIVILEGIOS_INSUFICIENTES.destinos d, PRIVILEGIOS_INSUFICIENTES.pasajes p, PRIVILEGIOS_INSUFICIENTES.recorridos r, PRIVILEGIOS_INSUFICIENTES.Ciudades c ";
-                    query += "WHERE r.reco_id_destino = c.ciud_id and p.pasa_dest_id=d.dest_id AND d.dest_viaje = r.reco_viaje_codigo AND ";
-                    query += "YEAR(pasa_fcompra)=" + cmbAno.Text + " AND MONTH(pasa_fcompra)<=" + semMax + " AND MONTH(pasa_fcompra)>=" + semMin;
+                    query = "select top 5 c.ciud_nombre as CIUDAD, COUNT(*) as CANTIDAD from PRIVILEGIOS_INSUFICIENTES.destinos d, privilegios_insuficientes.ventas p, PRIVILEGIOS_INSUFICIENTES.recorridos r, PRIVILEGIOS_INSUFICIENTES.Ciudades c ";
+                    query += "WHERE r.reco_id_destino = c.ciud_id and p.vent_dest_id=d.dest_id AND d.dest_viaje = r.reco_viaje_codigo AND ";
+                    query += "YEAR(vent_fcompra)=" + cmbAno.Text + " AND MONTH(vent_fcompra)<=" + semMax + " AND MONTH(vent_fcompra)>=" + semMin;
                     query += " GROUP BY c.ciud_nombre order by COUNT(*) desc";
                     cmd = new SqlCommand(query, Common.globalConn);
                     adapter = new SqlDataAdapter(cmd);
@@ -75,10 +75,10 @@ namespace FrbaBus.Top_Destinos
                     lstStats.DataSource = tabla;
                     break;
                 case 3:
-                    query = "SELECT TOP 5 (clie_nombre+' '+clie_apellido) as Nombre FROM PRIVILEGIOS_INSUFICIENTES.pasajes p, PRIVILEGIOS_INSUFICIENTES.clientes c ";
-                    query += "WHERE pasa_cliente=clie_id AND ";
-                    query += "YEAR(pasa_fcompra)=" + cmbAno.Text + " AND MONTH(pasa_fcompra)<=" + semMax + " AND MONTH(pasa_fcompra)>=" + semMin;
-                    query += " GROUP BY (clie_nombre+' '+clie_apellido) ORDER BY sum(pasa_puntos) desc";
+                    query = "SELECT TOP 5 (clie_nombre+' '+clie_apellido) as Nombre FROM privilegios_insuficientes.ventas p, PRIVILEGIOS_INSUFICIENTES.clientes c ";
+                    query += "WHERE vent_cliente=clie_id AND ";
+                    query += "YEAR(vent_fcompra)=" + cmbAno.Text + " AND MONTH(vent_fcompra)<=" + semMax + " AND MONTH(vent_fcompra)>=" + semMin;
+                    query += " GROUP BY (clie_nombre+' '+clie_apellido) ORDER BY sum(vent_puntos) desc";
                     cmd = new SqlCommand(query, Common.globalConn);
                     adapter = new SqlDataAdapter(cmd);
                     tabla = new DataTable();

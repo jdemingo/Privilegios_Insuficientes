@@ -49,14 +49,14 @@ namespace FrbaBus.Consulta_Puntos_Adquiridos
                 {
                     //"mes, importe, puntos, canjes, total_puntos";
                     SqlCommand cmd = new SqlCommand(
-                    "SELECT datepart(year,pasa_fcompra) Año, DATENAME(month,pasa_fcompra) Mes, SUM(pasa_puntos) Puntos, " +
-                    "SUM(pasa_precio) Importe " +
-                    "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                    "SELECT datepart(year,vent_fcompra) Año, DATENAME(month,vent_fcompra) Mes, SUM(vent_puntos) Puntos, " +
+                    "SUM(vent_precio) Importe " +
+                    "FROM privilegios_insuficientes.ventas, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                     "WHERE clie_dni =" + txtDNI.Text + " AND " +
-                    "DATEDIFF(DAY,pasa_fcompra,'"+Common.fechaFuncion+"')<365 AND " +
-                    "clie_id = pasa_cliente " +
-                    "GROUP BY datepart(year,pasa_fcompra), DATENAME(month,pasa_fcompra), datepart(month,pasa_fcompra) " +
-                    "ORDER BY 1, datepart(month,pasa_fcompra)", Common.globalConn);
+                    "DATEDIFF(DAY,vent_fcompra,'"+Common.fechaFuncion+"')<365 AND " +
+                    "clie_id = vent_cliente " +
+                    "GROUP BY datepart(year,vent_fcompra), DATENAME(month,vent_fcompra), datepart(month,vent_fcompra) " +
+                    "ORDER BY 1, datepart(month,vent_fcompra)", Common.globalConn);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable table = new DataTable();
                     adapter.Fill(table);

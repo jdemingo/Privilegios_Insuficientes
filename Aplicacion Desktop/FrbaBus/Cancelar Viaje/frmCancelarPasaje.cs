@@ -40,15 +40,15 @@ namespace FrbaBus.Cancelar_Viaje
             try
             {
                 
-                string query = "select pasa_codigo,'ENCOMIENDA' tipo "
-                                + "from privilegios_insuficientes.Pasajes, privilegios_insuficientes.Encomiendas "
-                                + "where enco_codigo = pasa_codigo "
-                                + "and pasa_voucher =" + Convert.ToInt16(txtVoucher.Text)
+                string query = "select vent_codigo,'ENCOMIENDA' tipo "
+                                + "from privilegios_insuficientes.ventas, privilegios_insuficientes.Encomiendas "
+                                + "where enco_codigo = vent_codigo "
+                                + "and vent_voucher =" + Convert.ToInt16(txtVoucher.Text)
                                 + "union "
-                                + "select pasa_codigo, 'butaca nro: ' + cast(pers_codigo as varchar)   "
-                                + "from privilegios_insuficientes.Pasajes, privilegios_insuficientes.Personas "
-                                + "where pasa_codigo = pers_codigo "
-                                + "and pasa_voucher =" + Convert.ToInt16(txtVoucher.Text);
+                                + "select vent_codigo, 'butaca nro: ' + cast(pasa_codigo as varchar)   "
+                                + "from privilegios_insuficientes.ventas, privilegios_insuficientes.pasajes "
+                                + "where vent_codigo = pasa_codigo "
+                                + "and vent_voucher =" + Convert.ToInt16(txtVoucher.Text);
 
                 cmd = new SqlCommand(query, Common.globalConn);
                 adapter = new SqlDataAdapter(cmd);
@@ -56,7 +56,7 @@ namespace FrbaBus.Cancelar_Viaje
                 adapter.Fill(tablaPasajes);
                 cklbPasajes.DataSource = tablaPasajes;
                 cklbPasajes.DisplayMember = "tipo";
-                cklbPasajes.ValueMember = "pasa_codigo";
+                cklbPasajes.ValueMember = "vent_codigo";
 
 
             }
@@ -97,8 +97,8 @@ namespace FrbaBus.Cancelar_Viaje
             try
             {
 
-                string query = "delete from privilegios_insuficientes.pasajes "
-                                + "where pasa_codigo in ( select canc_cod_pasaje "
+                string query = "delete from privilegios_insuficientes.ventas "
+                                + "where vent_codigo in ( select canc_cod_pasaje "
                                 + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
 
                 cmd = new SqlCommand(query, Common.globalConn);
@@ -135,8 +135,8 @@ namespace FrbaBus.Cancelar_Viaje
             try
             {
 
-                string queryB = "delete from privilegios_insuficientes.pasajes "
-                                + "where pasa_codigo in ( select canc_cod_pasaje "
+                string queryB = "delete from privilegios_insuficientes.ventas "
+                                + "where vent_codigo in ( select canc_cod_pasaje "
                                 + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
 
                 cmd = new SqlCommand(queryB, Common.globalConn);

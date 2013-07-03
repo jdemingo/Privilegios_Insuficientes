@@ -233,8 +233,8 @@ namespace FrbaBus.Abm_Micro
             {
                 try
                 {
-                    string query = "SELECT dest_id FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.destinos ";
-                    query += "WHERE dest_id_micro=" + txtMicroId.Text + " and pasa_dest_id= dest_id and dest_fecha_salida > " + Common.fecha + "'";
+                    string query = "SELECT dest_id FROM privilegios_insuficientes.ventas, PRIVILEGIOS_INSUFICIENTES.destinos ";
+                    query += "WHERE dest_id_micro=" + txtMicroId.Text + " and vent_dest_id= dest_id and dest_fecha_salida > " + Common.fecha + "'";
                     cmd = new SqlCommand(query, Common.globalConn);
                     adapter = new SqlDataAdapter(cmd);
                     tabla = new DataTable();

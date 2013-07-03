@@ -61,11 +61,11 @@ namespace FrbaBus.Canje_de_Ptos
             int puntosDisp = 0;
                 try
                 {
-                    string query = "SELECT SUM(pasa_puntos) " +
-                        "FROM PRIVILEGIOS_INSUFICIENTES.Pasajes, PRIVILEGIOS_INSUFICIENTES.Clientes " +
+                    string query = "SELECT SUM(vent_puntos) " +
+                        "FROM privilegios_insuficientes.ventas, PRIVILEGIOS_INSUFICIENTES.Clientes " +
                         "WHERE clie_dni ='" + dni + "' AND " +
-                        "clie_id = pasa_cliente AND " +
-                        "DATEDIFF(DAY,pasa_fcompra,'"+Common.fechaFuncion+"') < 365";
+                        "clie_id = vent_cliente AND " +
+                        "DATEDIFF(DAY,vent_fcompra,'"+Common.fechaFuncion+"') < 365";
                     SqlCommand cmd = new SqlCommand(query, Common.globalConn);
                     puntosDisp = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -131,7 +131,7 @@ namespace FrbaBus.Canje_de_Ptos
                                             command.CommandText = "UPDATE PRIVILEGIOS_INSUFICIENTES.Stock_premios " +
                                             "SET stoc_cantidad = stoc_cantidad-" + txtCantidad.Text + " " +
                                             "WHERE stoc_id_premio = " + premioId + "";
-                                            //command.CommandText = "UPDATE Pasajes SET pasa_puntos = pasa_puntos-" + lblPuntosReq.Text + " WHERE pasa_codigo = ";
+                                            //command.CommandText = "UPDATE Pasajes SET vent_puntos = vent_puntos-" + lblPuntosReq.Text + " WHERE vent_codigo = ";
                                             command.ExecuteNonQuery();*/
                             MessageBox.Show("Canje registrado con éxito.");
                         }

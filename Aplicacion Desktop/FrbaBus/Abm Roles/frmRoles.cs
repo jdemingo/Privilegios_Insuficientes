@@ -324,11 +324,11 @@ namespace FrbaBus.Abm_Roles
 
 
 
-                    for (int i = 0; i < clbFunciones_mod.Items.Count; i++)
+                    for (int i = 0; i < clbFunciones.Items.Count; i++)
                     {
 
                         string tipo_serv = tablaFunciones.Rows[i][0].ToString();
-                        if (clbFunciones_mod.GetItemChecked(i))
+                        if (clbFunciones.GetItemChecked(i))
                         {
                             //si existe, lo inseto. sino, lo borro.
 
