@@ -15,6 +15,7 @@ namespace FrbaBus.Abm_Micro
         public frmMicros()
         {
             InitializeComponent();
+            dateAlta.Value = Convert.ToDateTime(invertirFecha(Common.fecha)) ;
         }
         DataTable tabla;
         SqlCommand cmd;
@@ -267,7 +268,7 @@ namespace FrbaBus.Abm_Micro
                 query += "EXCEPT ";
                 query += "(SELECT dest_id_micro, micr_patente ";
                 query += "FROM PRIVILEGIOS_INSUFICIENTES.destinos, PRIVILEGIOS_INSUFICIENTES.micros ";
-                query += "WHERE dest_id_mipatecro=micr_id AND dest_fecha_salida IN ( SELECT dest_fecha_salida FROM PRIVILEGIOS_INSUFICIENTES.destinos ";
+                query += "WHERE dest_id_micro=micr_id AND dest_fecha_salida IN ( SELECT dest_fecha_salida FROM PRIVILEGIOS_INSUFICIENTES.destinos ";
                 query += "WHERE dest_fecha_salida > '" + Common.fecha + "' AND dest_id_micro = " + Convert.ToInt16(txtMicroId.Text) + " ))";
                 cmd = new SqlCommand(query, Common.globalConn);
                 adapter = new SqlDataAdapter(cmd);
@@ -300,7 +301,7 @@ namespace FrbaBus.Abm_Micro
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
+                return true;
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -365,7 +366,6 @@ namespace FrbaBus.Abm_Micro
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
         }
 
@@ -386,7 +386,6 @@ namespace FrbaBus.Abm_Micro
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
         }
         private void btnDel_Click(object sender, EventArgs e)
@@ -403,7 +402,6 @@ namespace FrbaBus.Abm_Micro
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    throw;
                 }
             }
         }
