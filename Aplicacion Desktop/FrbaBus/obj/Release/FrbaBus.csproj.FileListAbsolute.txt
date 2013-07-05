@@ -99,3 +99,5 @@ C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insufi
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.pdb
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.GenerarViaje.frmGenerarViaje.resources
 C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb
+C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.exe
+C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb

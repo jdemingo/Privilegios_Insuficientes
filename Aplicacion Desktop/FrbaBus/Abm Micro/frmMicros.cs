@@ -15,7 +15,7 @@ namespace FrbaBus.Abm_Micro
         public frmMicros()
         {
             InitializeComponent();
-            dateAlta.Value = Convert.ToDateTime(invertirFecha(Common.fecha)) ;
+            dateAlta.Value = Convert.ToDateTime(invertirFecha(Common.fecha));
         }
         DataTable tabla;
         SqlCommand cmd;
@@ -39,7 +39,6 @@ namespace FrbaBus.Abm_Micro
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -48,10 +47,10 @@ namespace FrbaBus.Abm_Micro
         {
             try
             {
-                string query = "SELECT micr_id as nroMicro, micr_patente as Patente, micr_modelo as Modelo, marc_nombre as Marca, ";
+                string query = "SELECT micr_id as Micro, micr_patente as Patente, micr_modelo as Modelo, marc_nombre as Marca, ";
                 query += "micr_kg as Kilos, micr_butacas as Butacas, micr_tipo_servicio as Tipo, isnull((Select CASE WHEN fall_ffin is null THEN 'B' ";
                 query += "WHEN '" + Common.fecha + "' BETWEEN fall_finicio AND fall_ffin THEN 'R' ELSE 'D' END FROM PRIVILEGIOS_INSUFICIENTES.fallas ";
-                query += " WHERE fall_id_micro=micr_id and '" + Common.fecha + "' between fall_finicio and isnull(fall_ffin,'" + Common.fecha + "')),'D') as Estado ";
+                query += " WHERE fall_id_micro=micr_id AND '" + Common.fecha + "' BETWEEN fall_finicio AND isnull(fall_ffin,'" + Common.fecha + "')),'D') as Estado ";
                 query += "FROM PRIVILEGIOS_INSUFICIENTES.micros, PRIVILEGIOS_INSUFICIENTES.marcas_micros ";
                 query += "WHERE micr_id_marca = marc_id";
                 cmd = new SqlCommand(query, Common.globalConn);
@@ -59,10 +58,14 @@ namespace FrbaBus.Abm_Micro
                 tabla = new DataTable();
                 adapter.Fill(tabla);
                 grdMicros.DataSource = tabla;
+                grdMicros.Columns[0].Width = 50;
+                grdMicros.Columns[3].Width = 120;
+                grdMicros.Columns[4].Width = 70;
+                grdMicros.Columns[5].Width = 70;
+                grdMicros.Columns[7].Width = 50;
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -262,10 +265,10 @@ namespace FrbaBus.Abm_Micro
 
             try
             {
-                string query = "SELECT a.micr_id as id, a.micr_patente as Patente FROM  PRIVILEGIOS_INSUFICIENTES.micros a, PRIVILEGIOS_INSUFICIENTES.micros b ";
-                query += "WHERE a.micr_id <> " + Convert.ToInt16(txtMicroId.Text) + " AND a.micr_tipo_servicio=b.micr_tipo_servicio AND a.micr_modelo=b.micr_modelo AND ";
-                query += "a.micr_id_marca=b.micr_id_marca AND b.micr_kg <= a.micr_kg AND b.micr_butacas <= a.micr_butacas AND a.micr_tipo_servicio=b.micr_tipo_servicio ";
-                query += "EXCEPT ";
+                string query = "SELECT micr_id as id, micr_patente as Patente FROM  PRIVILEGIOS_INSUFICIENTES.micros ";
+                query += "WHERE micr_id <> " + Convert.ToInt16(txtMicroId.Text) + " AND micr_tipo_servicio='" + cmbServicios.Text + "' AND micr_modelo='" + txtModelo.Text + "' AND ";
+                query += "micr_id_marca=(select micr_id_marca from PRIVILEGIOS_INSUFICIENTES.Micros where micr_id=" + Convert.ToInt16(txtMicroId.Text) + ") ";
+                query += "AND micr_kg <=" + txtKilos.Text + " AND micr_butacas <= " + txtButacas.Text + " EXCEPT ";
                 query += "(SELECT dest_id_micro, micr_patente ";
                 query += "FROM PRIVILEGIOS_INSUFICIENTES.destinos, PRIVILEGIOS_INSUFICIENTES.micros ";
                 query += "WHERE dest_id_micro=micr_id AND dest_fecha_salida IN ( SELECT dest_fecha_salida FROM PRIVILEGIOS_INSUFICIENTES.destinos ";
@@ -278,7 +281,7 @@ namespace FrbaBus.Abm_Micro
                 cmbMicros.ValueMember = "id";
                 cmbMicros.DataSource = tabla;
                 cmbMicros.Focus();
-                return true;
+                if (tabla.Rows.Count == 0) { return false; } else { return true; }
             }
             catch (Exception ex)
             {
@@ -304,25 +307,37 @@ namespace FrbaBus.Abm_Micro
                 return true;
             }
         }
+        private bool errorDelUP(ref string errorMsg) {
+            if (txtMicroId.Text == "") errorMsg="Debe seleccionar un Micro para eliminar";
+            if (Convert.ToString(grdMicros.CurrentRow.Cells[7].Value).CompareTo("B")==0) errorMsg= "El micro esta dado de baja";
+            if (errorMsg != "") return false;
+            return true;
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (txtMicroId.Text != "")
+            string errorMsg = "";
+            if (errorDelUP(ref errorMsg)) 
             {
                 controlOpe = 4;
                 grdMicros.Enabled = false;
                 if (!checkPasajes(Common.fecha))
                 {
                     txtMicroMsg.Text = "El micro " + txtPatente.Text + " posee pasajes pendientes puede cancelarlos o reemplazar por otro micro con las mismas caracteristicas";
+                    if (!(llenarComboDelete()))
+                    {
+                        txtMicroMsg.Text = "El micro " + txtPatente.Text + " tiene pasajes pendientes pero NO hay micros disponibles. Si esta seguro presione Eliminar (Se eliminaran los viajes asignados a este micro";
+                        btnReempl.Enabled = false;
+                        cmbMicros.Enabled = false;
+                    }
                 }
-                if (!(llenarComboDelete()))
+                else
                 {
-                    txtMicroMsg.Text = "El micro " + txtPatente.Text + " tiene pasajes pendientes y NO hay micros disponibles.";
-                    btnReempl.Enabled = false;
-                    cmbMicros.Enabled = false;
+                    txtMicroMsg.Text = "El micro " + txtPatente.Text + " NO tiene viajes pendientes, Si esta seguro de eliminarlo presione Eliminar.";
                 }
                 grpDelete.Visible = true;
             }
-            else MessageBox.Show("Debe seleccionar un Micro para eliminar", "ATENCION");
+            else MessageBox.Show(errorMsg, "ATENCION");
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -379,6 +394,10 @@ namespace FrbaBus.Abm_Micro
             try
             {
                 if (repair) { fechaFin = "'" + fechaFin + "'"; }
+                else
+                {
+                    fechaFin = "NULL";
+                }
                 string query = "INSERT INTO PRIVILEGIOS_INSUFICIENTES.fallas VALUES (" + txtMicroId.Text + ",'" + fechaInicio + "'," + fechaFin + ")";
                 cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
@@ -390,20 +409,28 @@ namespace FrbaBus.Abm_Micro
         }
         private void btnDel_Click(object sender, EventArgs e)
         {
+            if (!checkPasajes(Common.fecha))
             {
                 try
                 {
                     string query = "DELETE FROM PRIVILEGIOS_INSUFICIENTES.destinos WHERE ";
-                    query += " dest_id_micros =" + txtMicroId.Text;
+                    query += " dest_id_micro =" + txtMicroId.Text + " AND dest_fecha_llegada >='" + Common.fecha + "'";
                     cmd = new SqlCommand(query, Common.globalConn);
                     cmd.ExecuteNonQuery();
-                    insertFalla(Common.fecha, "", false);
+                    grpDelete.Visible = false;
+                    llenarGrilla();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+            else
+                insertFalla(Common.fecha, "", false);
+            grdMicros.Enabled = true;
+            grdRepair.Visible = false;
+            grpDelete.Visible = false;
+            MessageBox.Show("El micro " + txtPatente.Text + " fue sacado de servicio");
         }
         private string invertirFecha(string fecha)
         {
