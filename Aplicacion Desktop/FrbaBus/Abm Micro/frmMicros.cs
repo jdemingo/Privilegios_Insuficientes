@@ -268,11 +268,11 @@ namespace FrbaBus.Abm_Micro
                 string query = "SELECT micr_id as id, micr_patente as Patente FROM  PRIVILEGIOS_INSUFICIENTES.micros ";
                 query += "WHERE micr_id <> " + Convert.ToInt16(txtMicroId.Text) + " AND micr_tipo_servicio='" + cmbServicios.Text + "' AND micr_modelo='" + txtModelo.Text + "' AND ";
                 query += "micr_id_marca=(select micr_id_marca from PRIVILEGIOS_INSUFICIENTES.Micros where micr_id=" + Convert.ToInt16(txtMicroId.Text) + ") ";
-                query += "AND micr_kg <=" + txtKilos.Text + " AND micr_butacas <= " + txtButacas.Text + " EXCEPT ";
+                query += "AND micr_kg >=" + txtKilos.Text + " AND micr_butacas >= " + txtButacas.Text + " EXCEPT ";
                 query += "(SELECT dest_id_micro, micr_patente ";
                 query += "FROM PRIVILEGIOS_INSUFICIENTES.destinos, PRIVILEGIOS_INSUFICIENTES.micros ";
                 query += "WHERE dest_id_micro=micr_id AND dest_fecha_salida IN ( SELECT dest_fecha_salida FROM PRIVILEGIOS_INSUFICIENTES.destinos ";
-                query += "WHERE dest_fecha_salida > '" + Common.fecha + "' AND dest_id_micro = " + Convert.ToInt16(txtMicroId.Text) + " ))";
+                query += "WHERE dest_fecha_salida >= '" + Common.fecha + "' AND dest_id_micro = " + Convert.ToInt16(txtMicroId.Text) + " ))";
                 cmd = new SqlCommand(query, Common.globalConn);
                 adapter = new SqlDataAdapter(cmd);
                 tabla = new DataTable();
@@ -330,6 +330,11 @@ namespace FrbaBus.Abm_Micro
                         btnReempl.Enabled = false;
                         cmbMicros.Enabled = false;
                     }
+                    else
+                    {
+                        btnReempl.Enabled = true;
+                        cmbMicros.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -366,7 +371,7 @@ namespace FrbaBus.Abm_Micro
                 cmd = new SqlCommand(query, Common.globalConn);
                 int idMicro = (int)cmd.ExecuteScalar();
                 query = "UPDATE PRIVILEGIOS_INSUFICIENTES.destinos SET dest_id_micro=" + idMicro + " WHERE ";
-                query += " dest_id_micros =" + txtMicroId.Text;
+                query += " dest_id_micro =" + txtMicroId.Text + " AND dest_fecha_salida >= '" + Common.fecha + "'";
                 cmd = new SqlCommand(query, Common.globalConn);
                 cmd.ExecuteNonQuery();
                 if (controlOpe == 3)
@@ -377,6 +382,10 @@ namespace FrbaBus.Abm_Micro
                 {
                     insertFalla(Common.fecha, "", false);
                 }
+                MessageBox.Show("Se ha reemplazado al micro y pasado a baja definitiva", "Informacion");
+                grpDelete.Visible = false;
+                grdMicros.Enabled = true;
+                llenarGrilla();
             }
             catch (Exception ex)
             {
