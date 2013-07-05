@@ -126,37 +126,46 @@ namespace FrbaBus.Cancelar_Viaje
 
         private void bttBajaPasaje_Click(object sender, EventArgs e)
         {
-
-            string query = "insert into privilegios_insuficientes.tmp_pasajes_cancelar values(" + txtPasaje.Text + ",'" + txtMotivo.Text + "')";
-            cmd = new SqlCommand(query, Common.globalConn);
-            cmd.ExecuteNonQuery();
-
-
             try
             {
 
-                string queryB = "delete from privilegios_insuficientes.ventas "
-                                + "where vent_codigo in ( select canc_cod_pasaje "
-                                + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
 
-                cmd = new SqlCommand(queryB, Common.globalConn);
-                adapter = new SqlDataAdapter(cmd);
-                cmd.ExecuteNonQuery();
+                    SqlCommand cmd2 = new SqlCommand(
+                                        "SELECT count(*) " +
+                                        "FROM PRIVILEGIOS_INSUFICIENTES.ventas " +
+                                        "WHERE vent_codigo ='" + txtPasaje.Text + "'", Common.globalConn/*conn*/);
+                    int existePasaje = (int)cmd2.ExecuteScalar();
+                    
+
+                    if (existePasaje == 0)
+                        MessageBox.Show("El pasaje " + txtPasaje.Text + " no existe.");
+                    else
+                    {
+
+                        string query = "insert into privilegios_insuficientes.tmp_pasajes_cancelar values(" + txtPasaje.Text + ",'" + txtMotivo.Text + "')";
+                        cmd = new SqlCommand(query, Common.globalConn);
+                        cmd.ExecuteNonQuery();
+
+                        string queryB = "delete from privilegios_insuficientes.ventas "
+                                        + "where vent_codigo in ( select canc_cod_pasaje "
+                                        + "from privilegios_insuficientes.tmp_pasajes_cancelar ) ";
+
+                        cmd = new SqlCommand(queryB, Common.globalConn);
+                        adapter = new SqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
 
 
-            }
+                        MessageBox.Show("Baja de pasaje realizada con éxito");
+                        this.Close();
+
+                    }}
             catch (Exception ex)
-            {
+                {
                 Console.Write(ex.Message);
                 MessageBox.Show(ex.Message);
+                }
             }
-
-
-            MessageBox.Show("Baja de pasaje realizada con éxito");
-            this.Close();
-
-
-        }
+        
 
         private void rdbPorPasaje_CheckedChanged(object sender, EventArgs e)
         {
