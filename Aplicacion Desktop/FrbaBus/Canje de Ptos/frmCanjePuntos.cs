@@ -168,6 +168,22 @@ namespace FrbaBus.Canje_de_Ptos
         private void txtDNI_LostFocus(object sender, EventArgs e)
         {
             Common.validacionNumerica(txtDNI);
+            int existeDNI = 0;
+            try
+            {
+                string query = "SELECT COUNT(*) FROM PRIVILEGIOS_INSUFICIENTES.Clientes WHERE clie_dni = " + txtDNI.Text;
+                SqlCommand cmd = new SqlCommand(query, Common.globalConn);
+                existeDNI = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+            }
+            if (existeDNI == 0)
+            {
+                MessageBox.Show("El DNI ingresado no existe");
+                txtDNI.Text = "";
+            }
         }
 
     }

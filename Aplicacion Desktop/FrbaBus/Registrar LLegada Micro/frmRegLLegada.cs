@@ -179,8 +179,8 @@ namespace FrbaBus.Registrar_LLegada_Micro
                 "dest_viaje = reco_viaje_codigo AND " +
                 "reco_id_destino = " + cmbDestino.SelectedValue.ToString() + " AND " +
                 "reco_id_origen = " + cmbOrigen.SelectedValue.ToString() + " AND " +
-                "dest_fecha_salida < '" + Common.fechaSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "' AND " +
-                "DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaFuncionSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "') < 24 " +
+                "dest_fecha_salida < '" + Common.fechaSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "' " +
+                //"DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaFuncionSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "') < 24 " +
                 "ORDER BY DATEDIFF(hh, dest_fecha_salida, '" + Common.fechaFuncionSQL(dateLLegada) + " " + Common.tiempoSQL(timeLLegada) + "')", conn);
                         DataTable dt = new DataTable();
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -222,9 +222,14 @@ namespace FrbaBus.Registrar_LLegada_Micro
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Se ha borrado la patente "+grdMicros.CurrentRow.Cells["micr_patente"].Value+" de la lista a registrar");
-            grdMicros.Rows.Remove(grdMicros.CurrentRow);
-        }
+            if (grdMicros.CurrentRow == null)
+                MessageBox.Show("No hay ninguna fila seleccionada");
+            else
+            {
+                MessageBox.Show("Se ha borrado la patente " + grdMicros.CurrentRow.Cells["micr_patente"].Value + " de la lista a registrar");
+                grdMicros.Rows.Remove(grdMicros.CurrentRow);
+            }
+        } 
 
     }
 

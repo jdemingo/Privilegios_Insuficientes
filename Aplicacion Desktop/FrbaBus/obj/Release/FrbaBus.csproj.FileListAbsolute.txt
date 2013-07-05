@@ -94,3 +94,8 @@ C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Abm_Roles.frmRoles.resources
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.GenerarViaje.frmGenerarViaje.resources
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.Top_Destinos.frmStats.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.exe
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.exe
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\bin\Release\FrbaBus.pdb
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.GenerarViaje.frmGenerarViaje.resources
+C:\Documents and Settings\Administrador\Mis documentos\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Release\FrbaBus.pdb
