@@ -124,3 +124,4 @@ C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Roles.frmRoles.resources
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.GenerarViaje.frmGenerarViaje.resources
 C:\Users\Matias\Desktop\UTN\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Top_Destinos.frmStats.resources
+C:\Users\VM\Documents\GitHub\Privilegios_Insuficientes\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.GenerarViaje.frmGenerarViaje.resources
