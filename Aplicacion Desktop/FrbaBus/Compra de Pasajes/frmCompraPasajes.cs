@@ -36,7 +36,7 @@ namespace FrbaBus.Compra_de_Pasajes
         public frmCompraPasajes(int dest_id, string servicio, string cant_pasajes_str, string kgs)
         {
             InitializeComponent();
-            if (!(FrbaBus.frmUtnBus.mainMenu.MenuItems.Count > 2))
+            if (!(FrbaBus.frmUtnBus.mainMenu.MenuItems.Count > 1))
             {
                 chkEfectivo.Visible = false;
             }

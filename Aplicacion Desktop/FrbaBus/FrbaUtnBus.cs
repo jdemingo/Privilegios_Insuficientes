@@ -120,7 +120,7 @@ namespace FrbaBus
             }
             if (tablaFunciones.Rows.Contains("Estadisticas"))
             {
-                mainMenu.MenuItems.Add(menuEstadisticas = new MenuItem("&Estadisticas"));
+                menuABM.MenuItems.Add(menuEstadisticas = new MenuItem("&Estadisticas"));
                 menuEstadisticas.Click += new System.EventHandler(this.menuTopDest_Click);
             }
 
