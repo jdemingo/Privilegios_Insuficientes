@@ -21,15 +21,16 @@ namespace FrbaBus.Cancelar_Viaje
         public frmCancelarPasajes()
         {
             InitializeComponent();
+            rdbPorPasaje.Checked = true;
         }
 
         private void bttConsultar_Click(object sender, EventArgs e)
         {
-              
-            
+
+
         }
 
-      
+
         private void txtVoucher_TextChanged(object sender, EventArgs e)
         {
 
@@ -39,7 +40,7 @@ namespace FrbaBus.Cancelar_Viaje
         {
             try
             {
-                
+
                 string query = "select vent_codigo,'ENCOMIENDA' tipo "
                                 + "from privilegios_insuficientes.ventas, privilegios_insuficientes.Encomiendas "
                                 + "where enco_codigo = vent_codigo "
@@ -81,7 +82,7 @@ namespace FrbaBus.Cancelar_Viaje
                 if (cklbPasajes.GetItemChecked(i))
                 {
 
-                   string query = "insert into privilegios_insuficientes.tmp_pasajes_cancelar values(" + pasaje + ",'" + txtMotivo.Text + "')";
+                    string query = "insert into privilegios_insuficientes.tmp_pasajes_cancelar values(" + pasaje + ",'" + txtMotivo.Text + "')";
                     cmd = new SqlCommand(query, Common.globalConn);
                     cmd.ExecuteNonQuery();
 
@@ -126,8 +127,11 @@ namespace FrbaBus.Cancelar_Viaje
 
         private void bttBajaPasaje_Click(object sender, EventArgs e)
         {
-            try
-            {
+            if (txtPasaje.Text == "" || txtVoucher.Text == "")
+                MessageBox.Show("Falta llenar uno o más campos");
+            else
+                try
+                {
 
 
                     SqlCommand cmd2 = new SqlCommand(
@@ -135,7 +139,7 @@ namespace FrbaBus.Cancelar_Viaje
                                         "FROM PRIVILEGIOS_INSUFICIENTES.ventas " +
                                         "WHERE vent_codigo ='" + txtPasaje.Text + "'", Common.globalConn/*conn*/);
                     int existePasaje = (int)cmd2.ExecuteScalar();
-                    
+
 
                     if (existePasaje == 0)
                         MessageBox.Show("El pasaje " + txtPasaje.Text + " no existe.");
@@ -158,14 +162,15 @@ namespace FrbaBus.Cancelar_Viaje
                         MessageBox.Show("Baja de pasaje realizada con éxito");
                         this.Close();
 
-                    }}
-            catch (Exception ex)
-                {
-                Console.Write(ex.Message);
-                MessageBox.Show(ex.Message);
+                    }
                 }
-            }
-        
+                catch (Exception ex)
+                {
+                    //Console.Write(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+        }
+
 
         private void rdbPorPasaje_CheckedChanged(object sender, EventArgs e)
         {
