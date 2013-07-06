@@ -32,7 +32,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbSemestre = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.lstStats = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbAno = new System.Windows.Forms.ComboBox();
@@ -41,14 +40,15 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.lstStats1 = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstStats1);
             this.groupBox1.Controls.Add(this.cmbSemestre);
             this.groupBox1.Controls.Add(this.btnBuscar);
-            this.groupBox1.Controls.Add(this.lstStats);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbAno);
@@ -59,7 +59,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(31, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(595, 238);
+            this.groupBox1.Size = new System.Drawing.Size(724, 238);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -84,14 +84,6 @@
             this.btnBuscar.TabIndex = 12;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // lstStats
-            // 
-            this.lstStats.FormattingEnabled = true;
-            this.lstStats.Location = new System.Drawing.Point(276, 34);
-            this.lstStats.Name = "lstStats";
-            this.lstStats.Size = new System.Drawing.Size(289, 186);
-            this.lstStats.TabIndex = 11;
             // 
             // label2
             // 
@@ -172,6 +164,19 @@
             this.radioButton1.Text = "Destinos Mas Vendidos";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // lstStats1
+            // 
+            this.lstStats1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstStats1.FullRowSelect = true;
+            this.lstStats1.Location = new System.Drawing.Point(264, 16);
+            this.lstStats1.MultiSelect = false;
+            this.lstStats1.Name = "lstStats1";
+            this.lstStats1.Size = new System.Drawing.Size(440, 205);
+            this.lstStats1.TabIndex = 1;
+            this.lstStats1.UseCompatibleStateImageBehavior = false;
+            this.lstStats1.View = System.Windows.Forms.View.Details;
+            this.lstStats1.VirtualListSize = 5;
+            // 
             // frmStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,8 +203,8 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ListBox lstStats;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.ComboBox cmbSemestre;
+        private System.Windows.Forms.ListView lstStats1;
     }
 }
