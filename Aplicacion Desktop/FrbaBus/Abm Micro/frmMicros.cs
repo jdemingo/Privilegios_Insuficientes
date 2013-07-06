@@ -356,6 +356,7 @@ namespace FrbaBus.Abm_Micro
 
         private void btnDistri_Click(object sender, EventArgs e)
         {
+            if (txtMicroId.Text == "") { return; }
             Form frmMicroDistri;
             frmMicroDistri = new FrbaBus.frmMicroDistri(Convert.ToInt16(txtMicroId.Text));
             frmMicroDistri.Visible = true;

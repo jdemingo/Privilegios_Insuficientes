@@ -126,5 +126,10 @@ namespace FrbaBus.Top_Destinos
             if (radioButton4.Checked) genStats(4);
             if (radioButton5.Checked) genStats(5);
         }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
