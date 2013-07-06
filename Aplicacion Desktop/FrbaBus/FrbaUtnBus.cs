@@ -33,6 +33,7 @@ namespace FrbaBus
             // Descomentar despues de pruebas
             //dateSalida.Value = Common.fechaDateTime;
             //crearMenu(1);
+            dateSalida.Text = Common.fechaFuncion;
         }
 
         private void button1_Click(object sender, EventArgs e)
