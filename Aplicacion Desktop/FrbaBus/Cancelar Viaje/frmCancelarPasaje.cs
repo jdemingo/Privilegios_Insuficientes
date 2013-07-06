@@ -70,8 +70,11 @@ namespace FrbaBus.Cancelar_Viaje
 
         private void bttDarDeBaja_Click(object sender, EventArgs e)
         {
-
-
+            if (txtVoucher.Text == "")
+            {
+                MessageBox.Show("Falta llenar uno o más campos");
+                return;
+            }
 
             for (int i = 0; i < cklbPasajes.Items.Count; i++)
             {
@@ -127,9 +130,9 @@ namespace FrbaBus.Cancelar_Viaje
 
         private void bttBajaPasaje_Click(object sender, EventArgs e)
         {
-            if (txtPasaje.Text == "" || txtVoucher.Text == "")
+            if (txtPasaje.Text == "")
                 MessageBox.Show("Falta llenar uno o más campos");
-            else
+                else
                 try
                 {
 
