@@ -79,7 +79,7 @@ namespace FrbaBus
 
         private void mostrarMenusAdmin(MainMenu mainMenu, DataTable tablaFunciones)
         {
-            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuRegLLegadas, menuGenerarViaje;
+            MenuItem menuRoles, menuMicros, menuRecorridos, menuCanjes, menuCancelarPasajes, menuRegLLegadas, menuGenerarViaje, menuEstadisticas;
             MenuItem menuABM = new MenuItem("&Administrativo");
 
             if (tablaFunciones.Rows.Contains("Roles"))
@@ -117,6 +117,12 @@ namespace FrbaBus
                 menuABM.MenuItems.Add(menuRegLLegadas = new MenuItem("&Registro de llegadas"));
                 menuRegLLegadas.Click += new System.EventHandler(this.menuRegLLegada_Click);
             }
+            if (tablaFunciones.Rows.Contains("Estadisticas"))
+            {
+                mainMenu.MenuItems.Add(menuEstadisticas = new MenuItem("&Estadisticas"));
+                menuEstadisticas.Click += new System.EventHandler(this.menuTopDest_Click);
+            }
+
 
             if (menuABM.MenuItems.Count > 0)
                 mainMenu.MenuItems.Add(menuABM);
@@ -127,7 +133,7 @@ namespace FrbaBus
             mainMenu = new MainMenu();
             this.Menu = mainMenu;
 
-            MenuItem menuConsultaPuntos, menuTopDest;
+            MenuItem menuConsultaPuntos;
             //if (tablaFunciones.Rows.Contains("Consulta de puntos"))
             //{
             mainMenu.MenuItems.Add(menuConsultaPuntos = new MenuItem("&Consulta de puntos"));
@@ -135,9 +141,7 @@ namespace FrbaBus
             //}
 
             //if (tablaFunciones.Rows.Contains("Top destinos"))
-            //{
-            mainMenu.MenuItems.Add(menuTopDest = new MenuItem("&Top destinos"));
-            menuTopDest.Click += new System.EventHandler(this.menuTopDest_Click);
+            //{            
             //}
         }
 
