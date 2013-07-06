@@ -264,7 +264,11 @@ namespace FrbaBus.Abm_Recorrido
             string tipo_serv;
             /// Verifico si existe o no
             /// 
-
+            if (txtbCodigo.Text == "" | txtbPasaje.Text == "" | txtbKg.Text == "")
+            {
+                MessageBox.Show("Debe completar TODOS los campos.");
+                return;
+            }
 try
 {
                 if (existe_reco == false)

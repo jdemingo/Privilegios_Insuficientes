@@ -27,8 +27,16 @@ namespace FrbaBus.GenerarViaje
         public frmGenerarViaje()
         {
             InitializeComponent();
+
+            dateSalida.Value = Convert.ToDateTime(invertirFecha(Common.fecha));
+            dateLlegada.Value = Convert.ToDateTime(invertirFecha(Common.fecha));
         }
 
+        private string invertirFecha(string fecha)
+        {
+            string[] arr = fecha.Split('-');
+            return (arr[0] + '-' + arr[2] + '-' + arr[1]);
+        }
 
         private void crearCombos()
         {

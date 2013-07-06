@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.timeLlegada = new System.Windows.Forms.DateTimePicker();
             this.dateLlegada = new System.Windows.Forms.DateTimePicker();
             this.timeSalida = new System.Windows.Forms.DateTimePicker();
@@ -49,7 +48,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.timeLlegada);
             this.groupBox1.Controls.Add(this.dateLlegada);
             this.groupBox1.Controls.Add(this.timeSalida);
@@ -67,15 +65,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccionar Recorrido";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "label4";
             // 
             // timeLlegada
             // 
@@ -240,6 +229,5 @@
         private System.Windows.Forms.DateTimePicker dateLlegada;
         private System.Windows.Forms.DateTimePicker timeSalida;
         private System.Windows.Forms.DateTimePicker dateSalida;
-        private System.Windows.Forms.Label label4;
     }
 }
