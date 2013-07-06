@@ -18,8 +18,9 @@ namespace FrbaBus.Registrar_LLegada_Micro
             cargarCombosOrigenYDestino();
             this.ActiveControl = txtPatente;
             crearGridMicros();
+
             // Descomentar despues de pruebas
-            //dateLLegada.Value = Common.fechaDateTime;
+            dateLLegada.Value = Common.fechaDateTime;
         }
 
 
